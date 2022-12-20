@@ -2,6 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const verifyUser = require('./handlers/verifyUser');
+const addZodiac = require('./handlers/addZodiac');
 
 const app = express();
 //MIDDLEWARE
@@ -11,6 +12,7 @@ app.use(express.static('public'));
 
 //ENDPOINTS
 app.post('/api/user', verifyUser); //EXECUTED IN /
+app.patch('/api/user/zodiac', addZodiac); //EXECUTED IN /
 //404 ERROR
 app.get('*', (req, res) => {
 	res.status(404).json({
