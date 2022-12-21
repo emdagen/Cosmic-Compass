@@ -15,13 +15,12 @@ const addZodiac = async (req, res) => {
 	try {
 		await client.connect();
 		const db = client.db('horoscope');
-		const collection = db.collection('user');
+		const collection = db.collection('users');
 		console.log(_id);
 		const updateUser = await collection.updateOne(
 			{ _id },
 			{ $set: { zodiac: 'aries' } }
 		);
-		console.log(updateUser);
 
 		if (updateUser.modifiedCount > 0) {
 			res.status(200).json({
