@@ -16,7 +16,7 @@ const verifyUser = async (req, res) => {
 	try {
 		await client.connect();
 		const db = client.db('horoscope');
-		const collection = db.collection('user');
+		const collection = db.collection('users');
 		const { email, nickname, picture, name } = req.body;
 		let user = await collection.findOne({ email });
 

@@ -10,15 +10,14 @@ export const useInitializeUser = () => {
 	useEffect(() => {
 		const handleCollectInfo = async () => {
 			try {
-				const response = await postHandler('/api/user', user);
-				// console.log(response);
+				const response = await postHandler('/api/user/verify', user);
 				setUserData(response.data);
 				setLoadingObj({
 					...loadingObj,
 					user: 'verify',
 					zodiac: response.zodiac,
 				});
-				// console.log('SUCCESS✅', response.message);
+				console.log('SUCCESS✅', response.message);
 			} catch (err) {
 				console.log('hello', err);
 			}
