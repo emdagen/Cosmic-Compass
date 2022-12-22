@@ -1,3 +1,5 @@
+//🚔 Only touch the Navbar, RoutesContainer & Welcome components
+
 import { useAuth0 } from '@auth0/auth0-react';
 import Welcome from './pages/Welcome';
 import Spinner from './libs/materialUI/Spinner';

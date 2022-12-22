@@ -14,6 +14,9 @@ const ButtonList = () => {
 			<Link to='/past'>
 				<p>Past</p>
 			</Link>
+			<Link to='/profile'>
+				<p>Profile</p>
+			</Link>
 			<button
 				onClick={() => {
 					setDarkTheme(!darkTheme);

@@ -1,8 +1,18 @@
+import React from 'react';
+import { useUserContext } from '../../hooks/context/useUserContext';
+import InitialSetup from '../../pages/InitialSetup.js';
+import Horoscope from '../../pages/Horoscope';
+
 const Home = () => {
+	const { loadingObj, userData } = useUserContext();
 	return (
-		<div>
-			<h1>Home Page</h1>
-		</div>
+		<>
+			{loadingObj.zodiac !== 'loading' && userData.zodiac ? (
+				<Horoscope />
+			) : (
+				loadingObj.zodiac === 'checked' && <InitialSetup />
+			)}
+		</>
 	);
 };
 
