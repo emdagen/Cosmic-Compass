@@ -1,9 +1,7 @@
 'use strict';
 const express = require('express');
 const morgan = require('morgan');
-// const userRoutes = require()
-const { usersHandlers } = require('./db/handlers');
-const { verifyUser } = require('./routes/userRoutes');
+const userRoutes = require('./routes/user/userRoutes');
 
 const app = express();
 //MIDDLEWARE
@@ -24,13 +22,8 @@ app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Credentials', true);
 	next();
 });
-
 //ENDPOINTS
-app.post('/api/user/verify', verifyUser);
-app.patch('/api/user/zodiac', async (req, res) => {
-	const data = await usersHandlers.horoscopeUser(req.body);
-	res.status(data.status).json(data);
-});
+app.use('/api/user', userRoutes);
 
 //404 ERROR
 app.get('*', (req, res) => {
