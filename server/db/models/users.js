@@ -5,6 +5,7 @@ class User {
 	constructor(data) {
 		this._id = `JEFF-${uuid()}`;
 		this.createdAt = new Date();
+		this.setup = 0;
 
 		this.email = data.email;
 		this.zodiac = data.zodiac;
