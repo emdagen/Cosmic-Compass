@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const morgan = require('morgan');
+const getHoroscope = require('./data/getHoroscope');
 const userRoutes = require('./routes/user/userRoutes');
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(function (req, res, next) {
 });
 //ENDPOINTS
 app.use('/api/user', userRoutes);
+app.get('/api/horoscope/:zodiac/:date', getHoroscope);
 
 //404 ERROR
 app.get('*', (req, res) => {
