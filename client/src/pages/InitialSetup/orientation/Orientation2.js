@@ -30,8 +30,13 @@ const Orientation2 = () => {
 					setup,
 				});
 				const { data, status, message } = uploadResponse;
+
 				if (status === 200) {
-					setUserData({ ...userData, ...data });
+					setUserData({
+						...userData,
+						data: { ...userData.data, profileImg: data.profileImg },
+						setup: data.setup,
+					});
 					console.log(message);
 				} else {
 					console.log(message);

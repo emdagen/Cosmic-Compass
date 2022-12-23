@@ -19,7 +19,11 @@ const OrientationOne = () => {
 			});
 			const { username } = response.data;
 			if (response.status === 200) {
-				setUserData({ ...userData, setup: response.data.setup, username });
+				setUserData({
+					...userData,
+					setup: response.data.setup,
+					data: { ...userData.data, username },
+				});
 				setError(false);
 			} else {
 				console.log('nooooo', response.message);

@@ -7,7 +7,7 @@ const Home = () => {
 	const { loadingObj, userData } = useUserContext();
 	return (
 		<>
-			{loadingObj.zodiac !== 'loading' && userData.zodiac ? (
+			{loadingObj.zodiac !== 'loading' && userData.setup === 'Completed' ? (
 				<Horoscope />
 			) : (
 				loadingObj.zodiac === 'checked' && <InitialSetup />
