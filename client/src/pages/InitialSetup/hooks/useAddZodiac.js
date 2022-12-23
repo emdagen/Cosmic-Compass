@@ -5,14 +5,17 @@ import patchHandler from '../../../utils/http-requests/patchHandler';
 
 export const useAddZodiac = () => {
 	const { userData, setUserData } = useUserContext();
+	const { _id, setup } = userData;
+
 	return async (formData) => {
 		const response = await patchHandler('/api/user/zodiac', {
-			_id: userData._id,
 			...formData,
+			_id,
+			setup,
 		});
 		if (response.status === 200) {
 			console.log(response.message);
-			setUserData({ ...userData, zodiac: response.data });
+			setUserData({ ...userData, ...response.data });
 		} else {
 			console.log(response.message);
 		}

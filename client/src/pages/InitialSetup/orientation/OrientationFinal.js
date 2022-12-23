@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import FormInput from '../../components/form/FormInput';
-import { useAddZodiac } from './hooks/useAddZodiac';
+import FormInput from '../../../components/form/FormInput';
+import { useAddZodiac } from '../hooks/useAddZodiac';
 
-const BirthdayForm = () => {
+const OrientationFinal = () => {
 	const [formData, setFormData] = useState(null);
 	const [error, setError] = useState(false);
 
@@ -41,7 +41,7 @@ const BirthdayForm = () => {
 	);
 };
 
-export default BirthdayForm;
+export default OrientationFinal;
 
 const StyledForm = styled.form`
 	display: flex;

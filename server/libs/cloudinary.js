@@ -1,0 +1,15 @@
+//configuring a cloudinary object
+//allows us to use this configuration in a different file if needed
+require('dotenv').config();
+
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+	// upload_preset: 'example_preset',
+	// folder: 'example_folder',
+});
+
+module.exports = { cloudinary };
