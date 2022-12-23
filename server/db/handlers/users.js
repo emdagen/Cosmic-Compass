@@ -1,5 +1,4 @@
 const { User } = require('../models');
-const findZodiacSign = require('../../util/findZodiacSign');
 
 const findUsers = async () => {
 	const users = await User.findAll();
@@ -37,16 +36,13 @@ const verifyUser = async (data) => {
 	};
 };
 
-const horoscopeUser = async (data) => {
-	const { _id, birthday } = data;
-
-	const zodiac = findZodiacSign(birthday);
-	const updateUser = await User.updateOne({ _id }, { zodiac, birthday });
+const updateUser = async (data) => {
+	const { query, body } = data;
+	const updateUser = await User.updateOne({ ...query }, { ...body });
 	if (updateUser.modifiedCount > 0) {
 		return {
 			status: 200,
-			message: 'Zodiac has been added to User',
-			data: zodiac,
+			message: 'User has been updated',
 		};
 	} else {
 		return {
@@ -60,5 +56,5 @@ module.exports = {
 	findUsers,
 	getUser,
 	verifyUser,
-	horoscopeUser,
+	updateUser,
 };

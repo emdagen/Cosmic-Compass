@@ -6,12 +6,10 @@ class User {
 		this._id = `JEFF-${uuid()}`;
 		this.createdAt = new Date();
 		this.setup = 0;
-
 		this.email = data.email;
-		this.zodiac = data.zodiac;
-		this.nickname = data.nickname;
-		this.picture = data.picture;
-		this.name = data.name;
+		this.data = {
+			name: data.name,
+		};
 	}
 
 	static async findAll() {

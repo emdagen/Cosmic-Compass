@@ -8,7 +8,9 @@ const Horoscope = () => {
 	const [date, setDate] = useState('today');
 	const [horoscope, setHoroscope] = useState(null);
 	const {
-		userData: { zodiac },
+		userData: {
+			data: { zodiac },
+		},
 	} = useUserContext();
 
 	useEffect(() => {
