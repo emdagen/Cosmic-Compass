@@ -17,9 +17,10 @@ export const useAddZodiac = () => {
 		if (response.status === 200) {
 			console.log(response.message);
 			const { birthday, zodiac } = response.data;
+			console.log(response.data);
 			setUserData({
 				...userData,
-				...response.data,
+				setup: response.data.setup,
 				data: { ...userData.data, birthday, zodiac },
 			});
 		} else {
