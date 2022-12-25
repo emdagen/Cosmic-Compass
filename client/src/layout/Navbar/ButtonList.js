@@ -11,8 +11,8 @@ const ButtonList = () => {
 			<Link to='/'>
 				<p>Home</p>
 			</Link>
-			<Link to='/past'>
-				<p>Past</p>
+			<Link to='/tarot'>
+				<p>Tarot</p>
 			</Link>
 			<Link to='/profile'>
 				<p>Profile</p>

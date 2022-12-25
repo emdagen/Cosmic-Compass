@@ -8,6 +8,7 @@ class DatabaseConnection {
 		this.db = null;
 		this.collections = {
 			users: null,
+			tarot: null,
 		};
 	}
 
@@ -22,6 +23,7 @@ class DatabaseConnection {
 		const db = client.db(DATABASE_NAME);
 		this.db = db;
 		this.users = db.collection('users');
+		this.tarot = db.collection('tarot');
 
 		console.log('Database client initialized');
 	}
