@@ -1,5 +1,6 @@
 const { usersHandlers } = require('../../db/handlers');
-const { cloudinary } = require('../../libs/cloudinary');
+// const { cloudinary } = require('../../libs/cloudinary/cloudinary');
+const uploadCloudinary = require('../../libs/cloudinary/uploadCloudinary');
 const findZodiacSign = require('../../util/findZodiacSign');
 
 const verifyUser = async (req, res) => {
@@ -38,26 +39,22 @@ const addProfileImage = async (req, res) => {
 
 		if (imageData) {
 			//add image to cloudinary
-			const uploadResponse = await cloudinary.uploader.upload(imageData, {
-				upload_preset: 'vr6hp6xz',
-				folder: 'zodiac_profile_images',
-			});
-			const { url, public_id } = uploadResponse;
+			const cloudinaryResponse = await uploadCloudinary(
+				imageData,
+				'zodiac_profile_images'
+			);
 			console.log('added to cloudinary');
-
 			//add image to MongoDB User document
 			const updateObject = {
 				query: { _id },
-				body: { 'data.profileImg': { url, public_id }, setup: setup + 1 },
+				body: { 'data.profileImg': cloudinaryResponse, setup: setup + 1 },
 			};
-			console.log('sup dawg');
-
 			const mongoResponse = await usersHandlers.updateUser(updateObject);
 			// console.log({ profile: { url, public_id }, setup: setup + 1 });
 			if (mongoResponse.status === 200) {
 				res.status(200).json({
 					...mongoResponse,
-					data: { profileImg: { url, public_id }, setup: setup + 1 },
+					data: { profileImg: cloudinaryResponse, setup: setup + 1 },
 				});
 			} else {
 				res.status(400).json({
