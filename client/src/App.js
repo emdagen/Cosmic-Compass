@@ -12,10 +12,10 @@ import { useInitializeUser } from './libs/auth0/hooks/useInitializeUser';
 import { themeObject } from './data/theme';
 
 const App = () => {
-	const { loadingObj, darkTheme } = useUserContext();
+	const { loadingObj, userData } = useUserContext();
 	const { isAuthenticated, isLoading } = useAuth0();
 	useInitializeUser(); //will create or get user data
-	const theme = darkTheme ? themeObject.light : themeObject.dark;
+	const theme = userData?.theme ? themeObject.dark : themeObject.light;
 
 	return (
 		<StyledApp>

@@ -84,7 +84,7 @@ const Orientation2 = () => {
 export default Orientation2;
 
 const StyledOrientationPage = styled.div`
-	img {
+	/* img {
 		width: 100%;
-	}
+	} */
 `;
