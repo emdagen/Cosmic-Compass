@@ -34,6 +34,9 @@ body{
   background-color:var(--wave-color-5) ;
   color: var(--wave-text);
 }
+img{
+  width: 100%;
+}
 `;
 
 export default GlobalStyle;

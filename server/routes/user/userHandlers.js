@@ -103,9 +103,34 @@ const determineZodiac = async (req, res) => {
 	}
 };
 
+const updateTheme = async (req, res) => {
+	const { theme, _id } = req.body;
+	if (typeof theme === 'boolean') {
+		//object for updating user document
+		const updateObject = {
+			query: { _id },
+			body: {
+				theme,
+			},
+		};
+		const mongoResponse = await usersHandlers.updateUser(updateObject);
+		res.status(200).json({
+			...mongoResponse,
+			theme,
+		});
+	} else {
+		console.log('bye');
+		res.status(400).json({
+			status: 400,
+			message: 'There was nothing that changed',
+		});
+	}
+};
+
 module.exports = {
 	verifyUser,
 	addUsername,
 	addProfileImage,
 	determineZodiac,
+	updateTheme,
 };

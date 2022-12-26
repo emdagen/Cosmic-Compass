@@ -6,6 +6,7 @@ class User {
 		this._id = `JEFF-${uuid()}`;
 		this.createdAt = new Date();
 		this.setup = 0;
+		this.theme = false;
 		this.email = data.email;
 		this.data = {
 			name: data.name,

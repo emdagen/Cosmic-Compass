@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { UserProvider } from './context/UserContext';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { BrowserRouter } from 'react-router-dom';
+import { SuperProvider } from './context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,11 +13,11 @@ root.render(
 		clientId='0TWIF5Mfu01ry2nnyEOcbDl0dqsAhAue'
 		redirectUri={window.location.origin}
 	>
-		<UserProvider>
+		<SuperProvider>
 			<BrowserRouter>
 				<App />
 			</BrowserRouter>
-		</UserProvider>
+		</SuperProvider>
 	</Auth0Provider>
 	// </React.StrictMode>
 );
