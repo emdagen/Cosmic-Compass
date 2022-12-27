@@ -22,7 +22,8 @@ const App = () => {
 			<GlobalStyle theme={theme} />
 			{isAuthenticated && loadingObj.user === 'verify' ? (
 				<>
-					<Navbar />
+					{loadingObj.zodiac !== 'loading' &&
+						userData.setup === 'Completed' && <Navbar />}
 					<RoutesContainer />
 				</>
 			) : !isLoading && loadingObj.user === 'loading' ? (
@@ -42,4 +43,7 @@ export default App;
 
 const StyledApp = styled.div`
 	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 `;

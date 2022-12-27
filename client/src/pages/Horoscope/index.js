@@ -21,6 +21,9 @@ const Horoscope = () => {
 		getHoroscope();
 	}, [date]);
 
+	// #TO DO render the horoscope data
+	// console.log(horoscope);
+
 	return (
 		<>
 			{horoscope ? (
