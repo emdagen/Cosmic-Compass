@@ -2,7 +2,10 @@ const getHoroscope = async (req, res) => {
 	try {
 		let { zodiac, date } = req.params;
 		dateParam = date.toLowerCase();
-		console.log(date);
+		let endpoint = `https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign=${zodiac}&day=${dateParam}`;
+		if (dateParam === 'today') {
+			endpoint = `https://ohmanda.com/api/horoscope/${zodiac}`;
+		}
 		const options = {
 			method: 'POST',
 			headers: {
@@ -10,10 +13,7 @@ const getHoroscope = async (req, res) => {
 				'X-RapidAPI-Host': 'sameer-kumar-aztro-v1.p.rapidapi.com',
 			},
 		};
-		const response = await fetch(
-			`https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign=${zodiac}&day=${dateParam}`,
-			options
-		);
+		const response = await fetch(endpoint, options);
 		const json = await response.json();
 
 		res.status(200).json({
