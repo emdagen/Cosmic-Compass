@@ -10,7 +10,7 @@ const InitialSetup = () => {
 	const {
 		userData: { setup },
 	} = useUserContext();
-	console.log(setup);
+	// console.log(setup);
 
 	//array of pages to loop through
 	const arrayOfSteps = [
