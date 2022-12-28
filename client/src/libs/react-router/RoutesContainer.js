@@ -7,6 +7,7 @@ import Oopsie from '../../pages/Oopsie';
 import Profile from '../../pages/Profile';
 import Tarot from '../../pages/Tarot';
 import Zodiac from '../../pages/Zodiac';
+import Compatibility from '../../pages/Compatibility';
 import { StyledPage } from '../styled-components/StyledPage';
 
 const RoutesContainer = () => {
@@ -21,6 +22,7 @@ const RoutesContainer = () => {
 						<Route path='/card/:name/:_id' element={<CardDetails />} />
 						<Route path='/zodiac/:sign' element={<Zodiac />} />
 						<Route path='/profile' element={<Profile />} />
+						<Route path='/compatibility' element={<Compatibility />} />
 					</>
 				)}
 				<Route path='*' element={<Home />} />

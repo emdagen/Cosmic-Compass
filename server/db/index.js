@@ -9,6 +9,7 @@ class DatabaseConnection {
 		this.collections = {
 			users: null,
 			tarot: null,
+			compatibility: null,
 		};
 	}
 
@@ -24,6 +25,7 @@ class DatabaseConnection {
 		this.db = db;
 		this.users = db.collection('users');
 		this.tarot = db.collection('tarot');
+		this.compatibility = db.collection('compatibility');
 
 		console.log('Database client initialized');
 	}
