@@ -2,6 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const getHoroscope = require('./util/getHoroscope');
+const getDailyHoroscope = require('./util/getDailyHoroscope');
 const userRoutes = require('./routes/user/userRoutes');
 const tarotRoutes = require('./routes/tarot/tarotRoutes');
 
@@ -28,6 +29,7 @@ app.use(function (req, res, next) {
 app.use('/api/user', userRoutes);
 app.use('/api/tarot', tarotRoutes);
 app.get('/api/horoscope/:zodiac/:date', getHoroscope);
+app.get('/api/horoscope/:zodiac', getDailyHoroscope);
 
 //404 ERROR
 app.get('*', (req, res) => {
