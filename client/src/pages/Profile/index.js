@@ -3,7 +3,6 @@ import { UserContext } from '../../context/UserContext';
 import styled from 'styled-components';
 import { format, parseISO } from 'date-fns';
 import zodiacData from '../../data/zodiacData';
-import getHandler from '../../utils/http-requests/getHandler';
 import React, { useEffect, useState } from 'react';
 
 const Profile = () => {
@@ -14,24 +13,19 @@ const Profile = () => {
   const dateFormatted = format(parseISO(date), 'MMM d, yyyy');
   let zodiacInfo = zodiacData[zodiac];
 
-  // useEffect(() => {
-  //   const getHoroscope = async () => {
-  //     const response = await getHandler(
-  //       `https://ohmanda.com/api/horoscope/${zodiac}`
-  //     );
-  //     setHoroscope(response.data);
-  //     console.log(horoscope);
-  //   };
-  //   getHoroscope();
-  // }, []);
-
-  // console.log(userData);
-
-  // console.log(zodiacInfo);
+  useEffect(() => {
+    const getDailyHoroscope = async () => {
+      const res = await fetch(`/api/horoscope/${zodiac}`);
+      const json = await res.json();
+      setHoroscope(json.data);
+      console.log(horoscope);
+    };
+    getDailyHoroscope();
+  }, []);
 
   return (
     <>
-      {userData && (
+      {userData && horoscope && (
         <StyledContainer>
           <h2>Profile</h2>
           <StyledProfilePic>
@@ -42,6 +36,8 @@ const Profile = () => {
             <StyledDetails>Joined: {dateFormatted}</StyledDetails>
           </StyledUser>
           <StyledDetails>{zodiac.toUpperCase()}</StyledDetails>
+          <p>Daily Horoscope:</p>
+          <p>{horoscope.horoscope}</p>
           <p>{zodiacInfo.dates}</p>
           <p>{zodiacInfo.symbol}</p>
           <p>{zodiacInfo.element}</p>
