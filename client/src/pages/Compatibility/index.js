@@ -30,7 +30,7 @@ const Compatibility = () => {
       </StyledRow>
       <div>
         {!matchResults ? (
-          <h2>Nothing to see here</h2>
+          <h2>Please Select your sign and your partners sign</h2>
         ) : (
           <div>
             <h2>Compatibility Results</h2>
