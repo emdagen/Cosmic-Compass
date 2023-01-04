@@ -10,6 +10,7 @@ import RoutesContainer from './libs/react-router/RoutesContainer';
 import { useUserContext } from './hooks/context/useUserContext';
 import { useInitializeUser } from './libs/auth0/hooks/useInitializeUser';
 import { themeObject } from './data/theme';
+import MaterialNav from './layout/MaterialNav.js';
 
 const App = () => {
 	const { loadingObj, userData } = useUserContext();
@@ -23,7 +24,7 @@ const App = () => {
 			{isAuthenticated && loadingObj.user === 'verify' ? (
 				<>
 					{loadingObj.zodiac !== 'loading' &&
-						userData.setup === 'Completed' && <Navbar />}
+						userData.setup === 'Completed' && <MaterialNav />}
 					<RoutesContainer />
 				</>
 			) : !isLoading && loadingObj.user === 'loading' ? (
