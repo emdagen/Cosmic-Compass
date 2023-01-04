@@ -11,11 +11,14 @@ const GlobalStyle = createGlobalStyle`
 :root {
   --nav-height: 48px;
   --container-height: calc(100vh - 48px);
-  --layout-width: 500px;
+  /* --mobile-width: 500px; */
   --layout-padding: 32px 32px;
   --primary: #6C9A8B;
   --secondary: #A1683A;
   --error: #e7195a;
+  --desktop-spacing: 0 32px;
+  --mobile-spacing: 0 24px;
+  --width-limit: 1024px
   ${(props) => props.theme}
   /* --wave-primary: #C7D3dd;
   --wave-text: #012a4a;

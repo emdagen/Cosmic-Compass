@@ -15,6 +15,7 @@ const Navbar = () => {
 	return (
 		<StyledNavbar>
 			<StyledTitle>Brand Name</StyledTitle>
+			<ButtonList />
 			<Searchbar
 				value={value}
 				setValue={setValue}
@@ -29,7 +30,6 @@ const Navbar = () => {
 					}
 				}}
 			/>
-			<ButtonList />
 		</StyledNavbar>
 	);
 };
