@@ -14,7 +14,7 @@ export const useInitializeUser = () => {
 		const handleCollectInfo = async () => {
 			try {
 				const response = await postHandler('/api/user/verify', user);
-				const tarotResponse = await getHandler(`/api/tarot/list`);
+				const tarotResponse = await getHandler(`/api/search-results`);
 				setTarotList(tarotResponse.data);
 				setUserData(response.data);
 				setLoadingObj({

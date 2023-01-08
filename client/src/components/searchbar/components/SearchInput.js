@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { GiCrystalBall } from 'react-icons/gi';
 
 const SearchInput = ({
 	value,
@@ -9,72 +10,92 @@ const SearchInput = ({
 	handleSelect,
 	setIsVisible,
 }) => {
+	const [isActive, setIsActive] = useState(true);
 	const selectedSuggestion = matchedSuggestions[selectedSuggestionIndex];
 	return (
-		<input
-			type='text'
-			value={value}
-			onChange={(ev) => {
-				setValue(ev.target.value);
-			}}
-			onFocus={() => {
-				setIsVisible(true);
-			}}
-			onKeyDown={(ev) => {
-				switch (ev.key) {
-					case 'Enter': {
-						handleSelect(selectedSuggestion);
-						return;
-					}
-					case 'Escape': {
-						setIsVisible(false);
-						setValue('');
-						setSelectedSuggestionIndex(0);
-						return;
-					}
-					case 'ArrowUp':
-					case 'ArrowDown': {
-						ev.preventDefault();
-
-						// If the user's entry doesn't match any suggestions, there's
-						// no use trying to shift between them!
-						if (!matchedSuggestions) {
+		<>
+			{value.length !== 0 ||
+				(isActive === true && (
+					<label>
+						<GiCrystalBall size={25} />
+						<p>Search...</p>
+					</label>
+				))}
+			<input
+				type='text'
+				value={value}
+				onClick={() => setIsActive(false)}
+				onChange={(ev) => {
+					setValue(ev.target.value);
+				}}
+				onMouseOut={() => {
+					setIsActive(true);
+				}}
+				onMouseOver={() => {
+					setIsActive(false);
+				}}
+				onFocus={(e) => {
+					setIsActive(false);
+					setIsVisible(true);
+				}}
+				onKeyDown={(ev) => {
+					switch (ev.key) {
+						case 'Enter': {
+							handleSelect(selectedSuggestion);
+							setIsActive(true);
 							return;
 						}
+						case 'Escape': {
+							setIsVisible(false);
+							setValue('');
+							setSelectedSuggestionIndex(0);
+							setIsActive(true);
+							return;
+						}
+						case 'ArrowUp':
+						case 'ArrowDown': {
+							ev.preventDefault();
 
-						const direction = ev.key === 'ArrowDown' ? 'down' : 'up';
+							// If the user's entry doesn't match any suggestions, there's
+							// no use trying to shift between them!
+							if (!matchedSuggestions) {
+								return;
+							}
 
-						// Inherit the current selected index.
-						// We create a copy so that we can modify it without
-						// accidentally mutating state, which is a no-no
-						let nextSuggestionIndex = selectedSuggestionIndex;
+							const direction = ev.key === 'ArrowDown' ? 'down' : 'up';
 
-						nextSuggestionIndex =
-							direction === 'down'
-								? nextSuggestionIndex + 1
-								: nextSuggestionIndex - 1;
+							// Inherit the current selected index.
+							// We create a copy so that we can modify it without
+							// accidentally mutating state, which is a no-no
+							let nextSuggestionIndex = selectedSuggestionIndex;
 
-						// If the user is on the very first item and they try to go
-						// up, we don't want to select negative indices
-						const clamp = (val, min = 0, max = 1) =>
-							Math.max(min, Math.min(max, val));
+							nextSuggestionIndex =
+								direction === 'down'
+									? nextSuggestionIndex + 1
+									: nextSuggestionIndex - 1;
 
-						nextSuggestionIndex = clamp(
-							nextSuggestionIndex,
-							0,
-							matchedSuggestions.length - 1
-						);
+							// If the user is on the very first item and they try to go
+							// up, we don't want to select negative indices
+							const clamp = (val, min = 0, max = 1) =>
+								Math.max(min, Math.min(max, val));
 
-						setSelectedSuggestionIndex(nextSuggestionIndex);
-						return;
+							nextSuggestionIndex = clamp(
+								nextSuggestionIndex,
+								0,
+								matchedSuggestions.length - 1
+							);
+
+							setSelectedSuggestionIndex(nextSuggestionIndex);
+							return;
+						}
+						default: {
+							setIsVisible(true);
+							return;
+						}
 					}
-					default: {
-						setIsVisible(true);
-						return;
-					}
-				}
-			}}
-		/>
+				}}
+			/>
+		</>
 	);
 };
 
