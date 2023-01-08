@@ -28,11 +28,9 @@ const SearchInput = ({
 				onChange={(ev) => {
 					setValue(ev.target.value);
 				}}
-				onMouseOut={() => {
+				onMouseOut={(ev) => {
 					setIsActive(true);
-				}}
-				onMouseOver={() => {
-					setIsActive(false);
+					ev.target.blur();
 				}}
 				onFocus={(e) => {
 					setIsActive(false);

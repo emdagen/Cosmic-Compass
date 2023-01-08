@@ -16,6 +16,7 @@ import { Button } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react';
 import Searchbar from '../../components/searchbar';
+import ZodiacDropdown from './ZodiacDropdown';
 
 const pages = ['Compatibility', 'Horoscope', 'Tarot'];
 export default function MaterialNav() {
@@ -62,15 +63,8 @@ export default function MaterialNav() {
 					>
 						<GiHamburgerMenu />
 					</IconButton>
-					<IconButton
-						size='medium'
-						edge='start'
-						color='inherit'
-						aria-label='open drawer'
-						sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-					>
-						<GiAries />
-					</IconButton>
+					<ZodiacDropdown />
+
 					<Typography
 						variant='h5'
 						noWrap

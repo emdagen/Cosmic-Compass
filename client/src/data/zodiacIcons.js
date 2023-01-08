@@ -1,0 +1,28 @@
+import {
+	GiCapricorn,
+	GiAquarius,
+	GiPisces,
+	GiAries,
+	GiTaurus,
+	GiGemini,
+	GiCancer,
+	GiLeo,
+	GiVirgo,
+	GiLibra,
+	GiScorpio,
+	GiSagittarius,
+} from 'react-icons/gi';
+export const zodiacIcons = [
+	{ sign: 'Capricorn', icon: () => <GiCapricorn size={20} /> },
+	{ sign: 'Aquarius', icon: () => <GiAquarius size={20} /> },
+	{ sign: 'Pisces', icon: () => <GiPisces size={20} /> },
+	{ sign: 'Aries', icon: () => <GiAries size={20} /> },
+	{ sign: 'Taurus', icon: () => <GiTaurus size={20} /> },
+	{ sign: 'Gemini', icon: () => <GiGemini size={20} /> },
+	{ sign: 'Cancer', icon: () => <GiCancer size={20} /> },
+	{ sign: 'Leo', icon: () => <GiLeo size={20} /> },
+	{ sign: 'Virgo', icon: () => <GiVirgo size={20} /> },
+	{ sign: 'Libra', icon: () => <GiLibra size={20} /> },
+	{ sign: 'Scorpio', icon: () => <GiScorpio size={20} /> },
+	{ sign: 'Sagittarius', icon: () => <GiSagittarius /> },
+];

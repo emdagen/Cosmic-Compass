@@ -21,7 +21,6 @@ const Searchbar = () => {
 			handleSelect={(item) => {
 				if (zodiacSignsArray.includes(item[0].toLowerCase())) {
 					const sign = item[0].toLowerCase();
-					console.log(sign);
 					setValue('');
 					setSelectedSuggestionIndex(0);
 					navigate(`/zodiac/${sign}`);
