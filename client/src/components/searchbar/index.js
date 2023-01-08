@@ -1,77 +1,39 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import SearchInput from './components/SearchInput';
-import { filteredArray } from './handlers';
-import Suggestion from './components/Suggestion';
+import { useTarotContext } from '../../hooks/context/useTarotContext';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import SearchContainer from '../searchbar/components/SearchContainer';
+import { zodiacSignsArray } from '../../data/zodiacSignsArray';
 
-const Searchbar = ({
-	suggestions,
-	handleSelect,
-	value,
-	setValue,
-	selectedSuggestionIndex,
-	setSelectedSuggestionIndex,
-}) => {
-	const [isVisible, setIsVisible] = useState(false);
-	let matchedSuggestions = filteredArray(suggestions, value);
-
-	const shouldShowSuggestions = matchedSuggestions.length > 0 && isVisible;
+const Searchbar = () => {
+	const [value, setValue] = useState('');
+	const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(0);
+	const { tarotList } = useTarotContext();
+	const cardNames = Object.entries(tarotList);
+	const navigate = useNavigate();
 
 	return (
-		<StyledSearchbar>
-			<SearchInput
-				value={value}
-				setValue={setValue}
-				matchedSuggestions={matchedSuggestions}
-				selectedSuggestionIndex={selectedSuggestionIndex}
-				setSelectedSuggestionIndex={setSelectedSuggestionIndex}
-				handleSelect={handleSelect}
-				setIsVisible={setIsVisible}
-			/>
-
-			{shouldShowSuggestions && (
-				<StyledListContainer
-					onMouseLeave={() => {
-						setValue('');
-						setSelectedSuggestionIndex(0);
-					}}
-				>
-					{matchedSuggestions.map((suggestion, index) => {
-						const isSelected = index === selectedSuggestionIndex;
-						return (
-							<Suggestion
-								key={suggestion[1]}
-								index={index}
-								suggestion={suggestion[0]}
-								isSelected={isSelected}
-								onMouseEnter={() => {
-									setSelectedSuggestionIndex(index);
-								}}
-								onMouseDown={() => {
-									handleSelect(suggestion);
-								}}
-							/>
-						);
-					})}
-				</StyledListContainer>
-			)}
-		</StyledSearchbar>
+		<SearchContainer
+			value={value}
+			setValue={setValue}
+			selectedSuggestionIndex={selectedSuggestionIndex}
+			setSelectedSuggestionIndex={setSelectedSuggestionIndex}
+			suggestions={cardNames}
+			handleSelect={(item) => {
+				if (zodiacSignsArray.includes(item[0].toLowerCase())) {
+					const sign = item[0].toLowerCase();
+					setValue('');
+					setSelectedSuggestionIndex(0);
+					navigate(`/zodiac/${sign}`);
+					return;
+				}
+				if (item) {
+					setValue('');
+					setSelectedSuggestionIndex(0);
+					navigate(`/card/${item[0]}/${item[1]}`);
+				}
+			}}
+		/>
 	);
 };
 
 export default Searchbar;
-
-const StyledSearchbar = styled.div`
-	position: relative;
-`;
-
-const StyledListContainer = styled.div`
-	position: absolute;
-	width: 100%;
-	left: 0;
-	right: 0;
-	bottom: 0px;
-	border-radius: 4px;
-	box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.2);
-	transform: translateY(100%);
-`;

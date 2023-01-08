@@ -1,18 +1,11 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import {
-	GiCrystalBall,
-	GiHamburgerMenu,
-	GiSun,
-	GiMoon,
-	GiAries,
-} from 'react-icons/gi';
+import { GiHamburgerMenu, GiSun, GiMoon } from 'react-icons/gi';
 import { useUserContext } from '../../hooks/context/useUserContext';
 import patchHandler from '../../utils/http-requests/patchHandler';
 import Avatar from '@mui/material/Avatar';
@@ -22,64 +15,26 @@ import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react';
+import Searchbar from '../../components/searchbar';
+import { FaUser } from 'react-icons/fa';
+import { RiDoorOpenFill } from 'react-icons/ri';
+import ZodiacDropdown from './ZodiacDropdown';
+import styled from 'styled-components';
 
-const Search = styled('div')(({ theme }) => {
-	// console.log(theme);
-	return {
-		position: 'relative',
-		borderRadius: theme.shape.borderRadius,
-		backgroundColor: alpha(theme.palette.common.white, 0.15),
-		'&:hover': {
-			backgroundColor: alpha(theme.palette.common.white, 0.25),
-		},
-		marginLeft: 0,
-		width: 'auto',
-		[theme.breakpoints.up('xs')]: {
-			marginLeft: theme.spacing(1),
-			width: 'auto',
-		},
-	};
-});
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-	padding: theme.spacing(0, 2),
-	height: '100%',
-	position: 'absolute',
-	pointerEvents: 'none',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-	color: 'inherit',
-	'& .MuiInputBase-input': {
-		padding: theme.spacing(1, 1, 1, 0),
-		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-		transition: theme.transitions.create('width'),
-		width: '100%',
-		[theme.breakpoints.up('xs')]: {
-			width: '12ch',
-			'&:focus': {
-				width: '18ch',
-			},
-		},
-	},
-}));
-
-const settings = ['Profile', 'Logout'];
 const pages = ['Compatibility', 'Horoscope', 'Tarot'];
 export default function MaterialNav() {
-	const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+	const { logout } = useAuth0();
 	const location = useLocation();
 	const navigate = useNavigate();
+	const [value, setValue] = React.useState(null);
+	const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const { userData, setUserData } = useUserContext();
 	const {
 		_id,
 		theme,
 		data: { name, profileImg },
 	} = userData;
+
 	const toggleDarkMode = async () => {
 		const mongoResponse = await patchHandler('/api/user/theme', {
 			_id,
@@ -88,23 +43,16 @@ export default function MaterialNav() {
 		setUserData({ ...userData, theme: mongoResponse.theme });
 	};
 
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
-	const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-	const handleOpenNavMenu = (event) => {
-		setAnchorElNav(event.currentTarget);
-	};
 	const handleOpenUserMenu = (event) => {
 		setAnchorElUser(event.currentTarget);
-	};
-
-	const handleCloseNavMenu = () => {
-		setAnchorElNav(null);
 	};
 
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
+	React.useEffect(() => {
+		console.log(value);
+	}, [value]);
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position='static'>
@@ -118,15 +66,8 @@ export default function MaterialNav() {
 					>
 						<GiHamburgerMenu />
 					</IconButton>
-					<IconButton
-						size='medium'
-						edge='start'
-						color='inherit'
-						aria-label='open drawer'
-						sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-					>
-						<GiAries />
-					</IconButton>
+					<ZodiacDropdown />
+
 					<Typography
 						variant='h5'
 						noWrap
@@ -173,16 +114,7 @@ export default function MaterialNav() {
 							);
 						})}
 					</Box>
-
-					<Search sx={{ flexGrow: 0, display: 'flex' }}>
-						<SearchIconWrapper>
-							<GiCrystalBall />
-						</SearchIconWrapper>
-						<StyledInputBase
-							placeholder='Search…'
-							inputProps={{ 'aria-label': 'search' }}
-						/>
-					</Search>
+					<Searchbar />
 					<Box sx={{ flexGrow: 0, display: 'flex' }}>
 						<IconButton
 							size='medium'
@@ -215,21 +147,23 @@ export default function MaterialNav() {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							<MenuItem
+							<StyledMenuItems
 								onClick={(e) => {
 									if (location.pathname !== `/profile`) navigate(`/profile`);
 								}}
 							>
+								<FaUser size={18} />
 								<Typography>Profile</Typography>
-							</MenuItem>
-							<MenuItem
+							</StyledMenuItems>
+							<StyledMenuItems
 								onClick={(e) => {
 									logout({ returnTo: window.location.origin });
 									if (location.pathname !== `/profile`) navigate(`/profile`);
 								}}
 							>
+								<RiDoorOpenFill size={20} />
 								<Typography>Logout</Typography>
-							</MenuItem>
+							</StyledMenuItems>
 						</Menu>
 					</Box>
 				</Toolbar>
@@ -237,3 +171,15 @@ export default function MaterialNav() {
 		</Box>
 	);
 }
+
+const StyledMenuItems = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 8px;
+	cursor: pointer;
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+`;

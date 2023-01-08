@@ -6,6 +6,7 @@ const getDailyHoroscope = require('./util/getDailyHoroscope');
 const userRoutes = require('./routes/user/userRoutes');
 const tarotRoutes = require('./routes/tarot/tarotRoutes');
 const compatibilityRoutes = require('./routes/compatibility/compatibilityRoutes');
+const getSearchResults = require('./util/getSearchResults');
 
 const app = express();
 //MIDDLEWARE
@@ -32,6 +33,7 @@ app.use('/api/tarot', tarotRoutes);
 app.use('/api/compatibility', compatibilityRoutes);
 app.get('/api/horoscope/:zodiac/:date', getHoroscope);
 app.get('/api/horoscope/:zodiac', getDailyHoroscope);
+app.get('/api/search-results', getSearchResults);
 
 //404 ERROR
 app.get('*', (req, res) => {
