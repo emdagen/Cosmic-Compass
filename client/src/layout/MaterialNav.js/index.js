@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { GiHamburgerMenu, GiSun, GiMoon, GiAries } from 'react-icons/gi';
+import { GiHamburgerMenu, GiSun, GiMoon } from 'react-icons/gi';
 import { useUserContext } from '../../hooks/context/useUserContext';
 import patchHandler from '../../utils/http-requests/patchHandler';
 import Avatar from '@mui/material/Avatar';
@@ -16,7 +16,10 @@ import { Button } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react';
 import Searchbar from '../../components/searchbar';
+import { FaUser } from 'react-icons/fa';
+import { RiDoorOpenFill } from 'react-icons/ri';
 import ZodiacDropdown from './ZodiacDropdown';
+import styled from 'styled-components';
 
 const pages = ['Compatibility', 'Horoscope', 'Tarot'];
 export default function MaterialNav() {
@@ -144,21 +147,23 @@ export default function MaterialNav() {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							<MenuItem
+							<StyledMenuItems
 								onClick={(e) => {
 									if (location.pathname !== `/profile`) navigate(`/profile`);
 								}}
 							>
+								<FaUser size={18} />
 								<Typography>Profile</Typography>
-							</MenuItem>
-							<MenuItem
+							</StyledMenuItems>
+							<StyledMenuItems
 								onClick={(e) => {
 									logout({ returnTo: window.location.origin });
 									if (location.pathname !== `/profile`) navigate(`/profile`);
 								}}
 							>
+								<RiDoorOpenFill size={20} />
 								<Typography>Logout</Typography>
-							</MenuItem>
+							</StyledMenuItems>
 						</Menu>
 					</Box>
 				</Toolbar>
@@ -166,3 +171,15 @@ export default function MaterialNav() {
 		</Box>
 	);
 }
+
+const StyledMenuItems = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 8px;
+	cursor: pointer;
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+`;

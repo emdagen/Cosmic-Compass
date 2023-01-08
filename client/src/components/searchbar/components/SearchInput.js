@@ -41,6 +41,7 @@ const SearchInput = ({
 						case 'Enter': {
 							handleSelect(selectedSuggestion);
 							setIsActive(true);
+							// ev.target.blur();
 							return;
 						}
 						case 'Escape': {

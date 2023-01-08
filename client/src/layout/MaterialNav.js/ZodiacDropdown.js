@@ -1,7 +1,6 @@
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import { GiAries } from 'react-icons/gi';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 import { zodiacIcons } from '../../data/zodiacIcons';
@@ -22,17 +21,18 @@ export default function ZodiacDropdown() {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const navigate = useNavigate();
 	const open = Boolean(anchorEl);
+
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 	const handleClose = (zodiac) => {
-		navigate(`/zodiac/${zodiac.sign.toLowerCase()}`);
+		if (zodiac.sign) navigate(`/zodiac/${zodiac.sign.toLowerCase()}`);
 		setAnchorEl(null);
 	};
 
 	return (
 		<div>
-			<IconButton
+			<StyledIconButton
 				aria-label='more'
 				id='long-button'
 				aria-controls={open ? 'long-menu' : undefined}
@@ -45,7 +45,7 @@ export default function ZodiacDropdown() {
 				sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
 			>
 				{userZodiac.icon()}
-			</IconButton>
+			</StyledIconButton>
 			<Menu
 				id='long-menu'
 				MenuListProps={{
@@ -57,7 +57,7 @@ export default function ZodiacDropdown() {
 				PaperProps={{
 					style: {
 						maxHeight: ITEM_HEIGHT * 4.5,
-						width: '20ch',
+						width: '16ch',
 					},
 				}}
 			>
@@ -82,5 +82,12 @@ const StyledMenuItem = styled.li`
 	:hover {
 		color: #fff;
 		background-color: rgba(0, 0, 0, 0.5);
+	}
+`;
+
+const StyledIconButton = styled(IconButton)`
+	svg {
+		width: 25px;
+		height: 25px;
 	}
 `;
