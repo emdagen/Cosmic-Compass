@@ -5,13 +5,13 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { GiHamburgerMenu, GiSun, GiMoon } from 'react-icons/gi';
+import { GiSun, GiMoon } from 'react-icons/gi';
 import { useUserContext } from '../../hooks/context/useUserContext';
 import patchHandler from '../../utils/http-requests/patchHandler';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+
 import { Button } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -21,6 +21,9 @@ import { RiDoorOpenFill } from 'react-icons/ri';
 import ZodiacDropdown from './ZodiacDropdown';
 import styled from 'styled-components';
 
+import ToggleDrawer from './ToggleDrawer';
+import { useToggleTheme } from '../../hooks/useToggleTheme';
+
 const pages = ['Compatibility', 'Horoscope', 'Tarot'];
 export default function MaterialNav() {
 	const { logout } = useAuth0();
@@ -28,20 +31,13 @@ export default function MaterialNav() {
 	const navigate = useNavigate();
 	const [value, setValue] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const [toggleDarkMode] = useToggleTheme();
 	const { userData, setUserData } = useUserContext();
 	const {
 		_id,
 		theme,
 		data: { name, profileImg },
 	} = userData;
-
-	const toggleDarkMode = async () => {
-		const mongoResponse = await patchHandler('/api/user/theme', {
-			_id,
-			theme: !theme,
-		});
-		setUserData({ ...userData, theme: mongoResponse.theme });
-	};
 
 	const handleOpenUserMenu = (event) => {
 		setAnchorElUser(event.currentTarget);
@@ -57,17 +53,8 @@ export default function MaterialNav() {
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position='static'>
 				<Toolbar>
-					<IconButton
-						size='medium'
-						edge='start'
-						color='inherit'
-						aria-label='open drawer'
-						sx={{ mr: 2, display: { xs: 'flex', md: 'none' } }}
-					>
-						<GiHamburgerMenu />
-					</IconButton>
+					<ToggleDrawer />
 					<ZodiacDropdown />
-
 					<Typography
 						variant='h5'
 						noWrap
