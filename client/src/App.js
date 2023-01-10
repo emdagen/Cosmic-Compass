@@ -5,12 +5,11 @@ import Welcome from './pages/Welcome';
 import Spinner from './libs/materialUI/Spinner';
 import GlobalStyle from './libs/styled-components/GlobalStyles';
 import styled from 'styled-components';
-import Navbar from './layout/Navbar';
 import RoutesContainer from './libs/react-router/RoutesContainer';
 import { useUserContext } from './hooks/context/useUserContext';
 import { useInitializeUser } from './libs/auth0/hooks/useInitializeUser';
 import { themeObject } from './data/theme';
-import MaterialNav from './layout/MaterialNav.js';
+import Navbar from './layout/Navbar';
 
 const App = () => {
 	const { loadingObj, userData } = useUserContext();
@@ -24,7 +23,7 @@ const App = () => {
 			{isAuthenticated && loadingObj.user === 'verify' ? (
 				<>
 					{loadingObj.zodiac !== 'loading' &&
-						userData.setup === 'Completed' && <MaterialNav />}
+						userData.setup === 'Completed' && <Navbar />}
 					<RoutesContainer />
 				</>
 			) : !isLoading && loadingObj.user === 'loading' ? (
