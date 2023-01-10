@@ -8,7 +8,7 @@ const SignInOut = () => {
 	const { loadingObj } = useContext(UserContext);
 
 	return (
-		<button
+		<h1
 			onClick={() => {
 				if (isAuthenticated) {
 					logout({ returnTo: window.location.origin });
@@ -18,7 +18,7 @@ const SignInOut = () => {
 			}}
 		>
 			{loadingObj.user !== 'loading' ? 'Log Out' : 'Log In'}
-		</button>
+		</h1>
 	);
 };
 
