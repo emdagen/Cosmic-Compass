@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import FormInput from '../../../components/form/FormInput';
 import { useUserContext } from '../../../hooks/context/useUserContext';
 import patchHandler from '../../../utils/http-requests/patchHandler';
-import Typography from '@mui/material/Typography';
+
 import Button from '@mui/material/Button';
-import { useTheme } from '@mui/material';
+
 import styled from 'styled-components';
+import StepNumber from './components/StepNumber';
+import { greetingsArray } from './data';
+import DynamicTitle from './components/DynamicTitle';
 
 const OrientationOne = () => {
 	const [formData, setFormData] = useState({});
 	const [error, setError] = useState(false);
 	const { userData, setUserData } = useUserContext();
 	const { _id, setup } = userData;
-	const theme = useTheme();
-	console.log(theme);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -40,24 +41,21 @@ const OrientationOne = () => {
 		}
 	};
 
+	console.log(formData);
 	return (
 		<StyledContainer>
-			<Typography variant='h6' component='h6'>
-				Step 1
-			</Typography>
-			<Typography variant='h3' component='h2'>
-				Welcome <br />
-				to the App
-			</Typography>
+			<StepNumber step={1} />
+			<DynamicTitle strArray={greetingsArray} />
 			<StyledForm onSubmit={handleSubmit}>
 				<FormInput
 					formData={formData}
 					setFormData={setFormData}
 					name={'username'}
 					type={'text'}
-					errorData={[error, 'Please add a user']}
+					label={'Please add a username'}
+					errorData={[error, 'New phone who dis?']}
 				/>
-				<Button type='submit' variant='outlined'>
+				<Button size='large' type='submit' variant='outlined' sx={{ mt: 1 }}>
 					Next Step
 				</Button>
 			</StyledForm>
@@ -79,6 +77,8 @@ const StyledForm = styled.form`
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 8px;
+
+	margin-top: 8px;
 	width: 100%;
 
 	label {

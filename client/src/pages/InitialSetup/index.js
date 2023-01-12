@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useUserContext } from '../../hooks/context/useUserContext';
+import Beautiful from './orientation/Beautiful';
+import Greeting from './orientation/Greeting';
+import Initial from './orientation/Initial';
 
 import Orientation1 from './orientation/Orientation1';
 import Orientation2 from './orientation/Orientation2';
@@ -14,8 +17,11 @@ const InitialSetup = () => {
 
 	//array of pages to loop through
 	const arrayOfSteps = [
+		<Initial />,
 		<Orientation1 />,
+		<Greeting />,
 		<Orientation2 />,
+		<Beautiful />,
 		<OrientationFinal />,
 	];
 
@@ -35,10 +41,18 @@ const InitialSetup = () => {
 
 export default InitialSetup;
 const StyledInit = styled.div`
-	/* background-color: black; */
 	border: 1px solid yellow;
+	position: relative;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	gap: 16px;
+
+	max-width: 500px;
+	margin: auto;
+	padding: 32px;
+	h2 {
+		text-align: center;
+	}
 `;

@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import patchHandler from '../../../utils/http-requests/patchHandler';
 import { useUserContext } from '../../../hooks/context/useUserContext';
+import DynamicTitle from './components/DynamicTitle';
+import { pictureArray } from './data';
+import { Button, Input } from '@mui/material';
+
+import { buttonProps } from './styles';
+import StepNumber from './components/StepNumber';
 
 const Orientation2 = () => {
 	const { userData, setUserData } = useUserContext();
@@ -52,20 +58,34 @@ const Orientation2 = () => {
 
 	return (
 		<StyledOrientationPage>
-			<img src={imageData} alt='user image' />
-			<form onSubmit={handleSubmit}>
+			<StepNumber step={2} />
+			<DynamicTitle strArray={pictureArray} />
+			<StyledImageContainer>
+				{imageData && <img src={imageData} alt='user image' />}
+			</StyledImageContainer>
+			<form onSubmit={handleSubmit} className={error ? 'error' : ''}>
 				{error && <p>Must select an image</p>}
-				<h2>Add profile</h2>
 				{!imageData ? (
-					<input
+					<Input
+						error={error}
+						fullWidth
+						variant='filled'
 						type='file'
 						accept='image/*'
 						id='file'
 						placeholder='Upload file'
+						sx={{
+							background: 'rgba(0,0,0,0.2)',
+							p: 1,
+							borderTopLeftRadius: 4,
+							borderTopRightRadius: 4,
+						}}
 						onChange={(e) => handleFileUpload(e)}
 					/>
 				) : (
-					<button
+					<Button
+						{...buttonProps}
+						sx={{ mt: 1 }}
 						type='reset'
 						onClick={(e) => {
 							e.preventDefault();
@@ -73,9 +93,11 @@ const Orientation2 = () => {
 						}}
 					>
 						Remove
-					</button>
+					</Button>
 				)}
-				<button type='submit'>Next Step</button>
+				<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
+					Upload Image
+				</Button>
 			</form>
 		</StyledOrientationPage>
 	);
@@ -84,7 +106,31 @@ const Orientation2 = () => {
 export default Orientation2;
 
 const StyledOrientationPage = styled.div`
-	/* img {
-		width: 100%;
-	} */
+	img {
+		width: 250px;
+	}
+	input {
+		cursor: pointer;
+	}
+	.error {
+		color: #d32f2f;
+		input {
+			color: #d32f2f;
+		}
+	}
+`;
+
+const StyledImageContainer = styled.div`
+	border-radius: 50%;
+	overflow: hidden;
+
+	background-color: rgba(0, 0, 0, 0.6);
+	margin: 24px auto;
+
+	width: 250px;
+	height: 250px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
