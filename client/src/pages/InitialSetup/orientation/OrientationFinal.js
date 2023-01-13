@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import FormInput from '../../../components/form/FormInput';
 import { useAddZodiac } from '../hooks/useAddZodiac';
+import DynamicTitle from './components/DynamicTitle';
+import StepNumber from './components/StepNumber';
+import { birthdayArray } from './data';
 
 const OrientationFinal = () => {
 	const [formData, setFormData] = useState(null);
@@ -25,15 +28,17 @@ const OrientationFinal = () => {
 
 	return (
 		<>
-			<h1>When's your birthday?</h1>
-			<h2>Lorem ipsum ...</h2>
-			<StyledForm onSubmit={handleSubmit}>
-				{error && <h1>Try again</h1>}
+			<StepNumber step={3} />
+			<DynamicTitle strArray={birthdayArray} />
+
+			<StyledForm onSubmit={handleSubmit} error={error}>
 				<FormInput
 					setFormData={setFormData}
 					formData={formData}
 					name={'Birthday'}
 					type={'date'}
+					errorData={[error, 'Enter birthday']}
+					label={''}
 				/>
 				<button type='submit'>Save</button>
 			</StyledForm>
@@ -46,9 +51,14 @@ export default OrientationFinal;
 const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	/* align-items: center; */
 
 	gap: 16px;
+
+	input {
+		${(props) => props.error && 'color: #d32f2f'}
+	}
+
 	button {
 		padding: 12px 16px;
 		width: 100%;
