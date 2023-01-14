@@ -9,6 +9,7 @@ import Tarot from '../../pages/Tarot';
 import Zodiac from '../../pages/Zodiac';
 import Compatibility from '../../pages/Compatibility';
 import { StyledPage } from '../styled-components/StyledPage';
+import Spread from '../../pages/Tarot/Spread';
 
 const RoutesContainer = () => {
 	const { loadingObj, userData } = useUserContext();
@@ -19,6 +20,7 @@ const RoutesContainer = () => {
 				{loadingObj.zodiac !== 'loading' && userData.setup === 'Completed' && (
 					<>
 						<Route path='/tarot/' element={<Tarot />} />
+						<Route path='/tarot/spread' element={<Spread />} />
 						<Route path='/card/:name/:_id' element={<CardDetails />} />
 						<Route path='/zodiac/:sign' element={<Zodiac />} />
 						<Route path='/profile' element={<Profile />} />

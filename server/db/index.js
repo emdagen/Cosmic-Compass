@@ -10,6 +10,7 @@ class DatabaseConnection {
 			users: null,
 			tarot: null,
 			compatibility: null,
+			spread: null,
 		};
 	}
 
@@ -26,6 +27,7 @@ class DatabaseConnection {
 		this.users = db.collection('users');
 		this.tarot = db.collection('tarot');
 		this.compatibility = db.collection('compatibility');
+		this.spread = db.collection('spread');
 
 		console.log('Database client initialized');
 	}

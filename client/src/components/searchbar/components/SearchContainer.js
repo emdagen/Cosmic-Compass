@@ -56,7 +56,7 @@ const SearchContainer = ({
 					})}
 				</StyledListContainer>
 			)}
-			{value.length > 2 && matchedSuggestions.length === 0 && (
+			{value.length > 1 && matchedSuggestions.length === 0 && (
 				<StyledNothing
 					onMouseLeave={() => {
 						setValue('');

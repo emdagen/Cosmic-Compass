@@ -2,14 +2,8 @@ import { Typography } from '@mui/material';
 import styled from 'styled-components';
 import SignUp from '../../libs/auth0/SignUp';
 import Background from './Background';
-import SpaceStars from './SpaceStars';
 
 const Welcome = () => {
-	// #TO DO style sign up page
-	// Keep it simple: The signup process should be as straightforward and easy to follow as possible. Avoid using unnecessary fields or information that may distract or confuse the user.
-
-	// Make it visually appealing: Use a clean, attractive layout and choose colors and fonts that are easy to read and visually appealing.
-
 	return (
 		<>
 			<StyledWelcome>
@@ -27,7 +21,7 @@ const Welcome = () => {
 					<SignUp />
 				</StyledInfo>
 			</StyledWelcome>
-			<SpaceStars />
+			<Background />
 		</>
 	);
 };
@@ -47,19 +41,24 @@ const StyledWelcome = styled.div`
 	align-items: center;
 
 	padding: var(--layout-padding);
+	visibility: hidden;
 `;
 
 const StyledInfo = styled.div`
+	visibility: visible;
 	position: relative;
 	z-index: 1;
 	max-width: 420px;
 
 	color: #ccc;
 
+	pointer-events: none;
+
 	span {
 		color: var(--primary);
 	}
 	button {
+		pointer-events: all;
 		color: #ccc;
 		border-color: #ccc;
 		&:hover {

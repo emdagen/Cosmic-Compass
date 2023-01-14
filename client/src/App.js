@@ -10,6 +10,7 @@ import { useUserContext } from './hooks/context/useUserContext';
 import { useInitializeUser } from './libs/auth0/hooks/useInitializeUser';
 import { themeObject } from './data/theme';
 import Navbar from './layout/Navbar';
+import SpaceStars from './pages/Welcome/SpaceStars';
 
 const App = () => {
 	const { loadingObj, userData } = useUserContext();
@@ -35,6 +36,7 @@ const App = () => {
 			) : (
 				<Spinner />
 			)}
+			{userData?.setup !== 'Completed' && <SpaceStars />}
 		</StyledApp>
 	);
 };

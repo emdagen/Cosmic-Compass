@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import FormInput from '../../../components/form/FormInput';
@@ -5,6 +6,7 @@ import { useAddZodiac } from '../hooks/useAddZodiac';
 import DynamicTitle from './components/DynamicTitle';
 import StepNumber from './components/StepNumber';
 import { birthdayArray } from './data';
+import { buttonProps } from './styles';
 
 const OrientationFinal = () => {
 	const [formData, setFormData] = useState(null);
@@ -40,7 +42,9 @@ const OrientationFinal = () => {
 					errorData={[error, 'Enter birthday']}
 					label={''}
 				/>
-				<button type='submit'>Save</button>
+				<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
+					Save
+				</Button>
 			</StyledForm>
 		</>
 	);
