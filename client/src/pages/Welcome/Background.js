@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import SpaceStars from './SpaceStars';
 
 const Background = () => {
 	return (
@@ -18,12 +17,13 @@ const Background = () => {
 export default Background;
 
 const StyledAbsolute = styled.div`
-	position: absolute;
+	position: fixed;
 	/* top: 0; */
 	/* z-index: -1; */
 	/* display: none; */
 	height: 120vh;
-	width: 100%;
+	width: 100vw;
+
 	display: flex;
 	align-items: center;
 	/* background-color: #e8c7dd; */

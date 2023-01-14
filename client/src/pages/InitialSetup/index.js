@@ -40,6 +40,7 @@ const InitialSetup = () => {
 };
 
 export default InitialSetup;
+
 const StyledInit = styled.div`
 	border: 1px solid yellow;
 	position: relative;
