@@ -27,6 +27,8 @@ const Welcome = () => {
 					<SignUp />
 				</StyledInfo>
 			</StyledWelcome>
+
+			<Background />
 			<SpaceStars />
 		</>
 	);
@@ -47,19 +49,24 @@ const StyledWelcome = styled.div`
 	align-items: center;
 
 	padding: var(--layout-padding);
+	visibility: hidden;
 `;
 
 const StyledInfo = styled.div`
+	visibility: visible;
 	position: relative;
 	z-index: 1;
 	max-width: 420px;
 
 	color: #ccc;
 
+	pointer-events: none;
+
 	span {
 		color: var(--primary);
 	}
 	button {
+		pointer-events: all;
 		color: #ccc;
 		border-color: #ccc;
 		&:hover {
