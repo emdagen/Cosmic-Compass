@@ -1,4 +1,6 @@
 const { tarotHandlers } = require('../../db/handlers');
+const { buildSpread } = require('./data/buildSpread');
+const { spreadArray, spreadData } = require('./data/spreadArray');
 
 const getAllCards = async (req, res) => {
 	try {
@@ -51,8 +53,27 @@ const getSingleCard = async (req, res) => {
 	}
 };
 
+const createTarotSpread = async (req, res) => {
+	const { spread } = req.body;
+	try {
+		const spreadData = await buildSpread(spread);
+
+		res.status(200).json({
+			status: 200,
+			message: 'Created Tarot Spread Data',
+			data: spreadData,
+		});
+	} catch (err) {
+		res.status(400).json({
+			status: 400,
+			message: 'Unable to create tarot spread!!',
+		});
+	}
+};
+
 module.exports = {
 	getAllCards,
 	getCardList,
 	getSingleCard,
+	createTarotSpread,
 };
