@@ -1,37 +1,38 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useTarotContext } from '../../../hooks/context/useTarotContext';
+import ResetButton from '../components/ResetButton';
+import SpreadTitle from './SpreadTitle';
 
 const Spread = () => {
-	const { spreadData, setSpreadData } = useTarotContext();
 	const navigate = useNavigate();
+	const location = useLocation();
+	const { spreadData, activeTarot } = useTarotContext();
+
+	// console.log(location.pathname);
 
 	useEffect(() => {
 		if (spreadData === null) {
-			console.log('hello');
 			navigate('/tarot');
 		}
 	}, [spreadData, navigate]);
 
-	const handleReset = () => {
-		setSpreadData(null);
+	const handleClick = (path, location) => {
+		navigate(path, { state: { background: location } });
 	};
+
 	return (
 		<div>
-			<h2>Spread</h2>
-			<button onClick={handleReset}>Clear</button>
-			<div>
-				{spreadData &&
-					spreadData.map((data) => {
-						const { card, meaning } = data;
-						return (
-							<div key={card._id}>
-								<h3>{card.name}</h3>
-								<p>{meaning}</p>
-							</div>
-						);
-					})}
-			</div>
+			<SpreadTitle spreadData={spreadData} />
+			{!activeTarot && (
+				<>
+					<p>Will You Seek the Truth?</p>
+					<ResetButton />
+					<button onClick={() => handleClick(spreadData[0].card._id, location)}>
+						Begin Reading
+					</button>
+				</>
+			)}
 		</div>
 	);
 };
