@@ -21,6 +21,7 @@ const buildSpread = async (spread) => {
 				}
 				const direction = randomBoolean(70) ? 'light' : 'shadow';
 				return {
+					spreadType: spread,
 					card,
 					direction,
 					meaning: meanings[index],

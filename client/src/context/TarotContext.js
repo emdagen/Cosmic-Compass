@@ -5,6 +5,7 @@ export const TarotContext = createContext();
 export const TarotProvider = ({ children }) => {
 	const [tarotList, setTarotList] = useState(null);
 	const [spreadData, setSpreadData] = useState(null);
+	const [activeTarot, setActiveTarot] = useState(false);
 
 	return (
 		<TarotContext.Provider
@@ -13,6 +14,8 @@ export const TarotProvider = ({ children }) => {
 				setTarotList,
 				spreadData,
 				setSpreadData,
+				activeTarot,
+				setActiveTarot,
 			}}
 		>
 			{children}
