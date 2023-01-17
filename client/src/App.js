@@ -17,6 +17,7 @@ const App = () => {
 	const { isAuthenticated, isLoading } = useAuth0();
 	useInitializeUser(); //will create or get user data
 	const theme = userData?.theme ? themeObject.dark : themeObject.light;
+	console.log(userData?.theme);
 
 	return (
 		<StyledApp>
@@ -36,7 +37,11 @@ const App = () => {
 			) : (
 				<Spinner />
 			)}
-			{userData?.setup !== 'Completed' && <SpaceStars />}
+			{userData?.theme === undefined ? (
+				<SpaceStars />
+			) : (
+				userData?.theme === true && <SpaceStars />
+			)}
 		</StyledApp>
 	);
 };

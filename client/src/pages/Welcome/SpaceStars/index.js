@@ -425,7 +425,7 @@ const SpaceStars = () => {
 export default SpaceStars;
 
 const StyledSpaceStars = styled.div`
-	position: absolute;
+	position: fixed;
 	z-index: -2;
 	height: 100vh;
 	width: 100%;
