@@ -47,7 +47,7 @@ export default function Navbar() {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position='static'>
-				<Toolbar>
+				<StyledToolbar>
 					<ToggleDrawer />
 					<ZodiacDropdown />
 					<Typography
@@ -114,7 +114,7 @@ export default function Navbar() {
 							</IconButton>
 						</Tooltip>
 						<Menu
-							sx={{ mt: '45px' }}
+							sx={{ mt: '40px' }}
 							id='menu-appbar'
 							anchorEl={anchorElUser}
 							anchorOrigin={{
@@ -148,7 +148,7 @@ export default function Navbar() {
 							</StyledMenuItems>
 						</Menu>
 					</Box>
-				</Toolbar>
+				</StyledToolbar>
 			</AppBar>
 		</Box>
 	);
@@ -164,4 +164,13 @@ const StyledMenuItems = styled.div`
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.1);
 	}
+`;
+
+const StyledToolbar = styled(Toolbar)`
+	height: var(--nav-height);
+	min-height: unset !important;
+	width: 100%;
+	max-width: var(--width-limit);
+
+	margin: auto;
 `;
