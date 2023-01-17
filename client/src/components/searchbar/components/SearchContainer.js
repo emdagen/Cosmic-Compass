@@ -76,7 +76,7 @@ const StyledSearchContainer = styled.div`
 	position: relative;
 	border-radius: 4px;
 	/* border: 0.5px solid red; */
-	padding: 9px;
+	padding: 4px 9px;
 
 	background-color: rgba(0, 0, 0, 0.2);
 
