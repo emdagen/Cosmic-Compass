@@ -9,11 +9,21 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+
+//ReactIcon Imports
+import {
+  GiLovers,
+  GiModernCity,
+  GiSmallFire,
+  GiStarsStack,
+  GiTakeMyMoney,
+  GiThreeFriends,
+} from 'react-icons/gi';
+import { BiChevronDown } from 'react-icons/bi';
 
 //TODO display signs astro card, once in data //
 const Compatibility = () => {
@@ -59,44 +69,58 @@ const Compatibility = () => {
       </StyledDrop>
       <div>
         {!matchResults ? (
-          <h2>Please Select your sign and your partners sign</h2>
+          <StyledInstruction>
+            Please Select your sign and your partners sign
+          </StyledInstruction>
         ) : (
           <StyledContainer>
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={12}>
                   <Item style={section}>
-                    <h3>General Compatibility</h3>
+                    <h3>
+                      General Compatibility <GiStarsStack />
+                    </h3>
                     <p>{matchResults.default.answer}</p>
                   </Item>
                 </Grid>
                 <Grid item xs={6} md={6}>
                   <Item style={section}>
-                    <h3>As a Couple</h3>
+                    <h3>
+                      As a Couple <GiLovers />
+                    </h3>
                     <p>{matchResults.romantic.answer}</p>
                   </Item>
                 </Grid>
                 <Grid item xs={6} md={6}>
                   <Item style={section}>
-                    <h3>As Friends</h3>
+                    <h3>
+                      As Friends <GiThreeFriends />
+                    </h3>
                     <p>{matchResults.friend.answer}</p>
                   </Item>
                 </Grid>
                 <Grid item xs={6} md={6}>
                   <Item style={section}>
-                    <h3>As Coworkers</h3>
+                    <h3>
+                      As Coworkers <GiModernCity />
+                    </h3>
                     <p>{matchResults.career.answer}</p>
                   </Item>
                 </Grid>
                 <Grid item xs={6} md={6}>
                   <Item style={section}>
-                    <h3>Let's Talk Money</h3>
+                    <h3>
+                      Let's Talk Money <GiTakeMyMoney color='green' />
+                    </h3>
                     <p>{matchResults.financial.answer}</p>
                   </Item>
                 </Grid>
                 <Grid item xs={12} md={12}>
                   <Item style={section}>
-                    <h3>Sexual Chemistry</h3>
+                    <h3>
+                      Sexual Chemistry <GiSmallFire color='red' />
+                    </h3>
                     <p>{matchResults.sexually.answer}</p>
                   </Item>
                 </Grid>
@@ -105,7 +129,7 @@ const Compatibility = () => {
             <StyledAccordion>
               <Accordion>
                 <AccordionSummary
-                  // expandIcon={<ExpandMoreIcon />}
+                  expandIcon={<BiChevronDown />}
                   aria-controls='panel1a-content'
                   id='panel1a-header'
                 >
@@ -121,7 +145,7 @@ const Compatibility = () => {
               </Accordion>
               <Accordion>
                 <AccordionSummary
-                  // expandIcon={<ExpandMoreIcon />}
+                  expandIcon={<BiChevronDown />}
                   aria-controls='panel2a-content'
                   id='panel2a-header'
                 >
@@ -137,7 +161,7 @@ const Compatibility = () => {
               </Accordion>
               <Accordion>
                 <AccordionSummary
-                  // expandIcon={<ExpandMoreIcon />}
+                  expandIcon={<BiChevronDown />}
                   aria-controls='panel2a-content'
                   id='panel2a-header'
                 >
@@ -181,4 +205,9 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 align-items:center;
+`;
+
+const StyledInstruction = styles.h2`
+text-align:center;
+margin-top:8px;
 `;
