@@ -1,16 +1,29 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
-
+const container = {
+	visible: { rotateY: 0 },
+	hidden: { rotateY: 180 },
+};
 const Card = ({ data, direction }) => {
 	const { img, meanings, Numerology, Astrology } = data;
 	console.log(meanings[direction]);
 	return (
-		<StyledCard>
+		<StyledCard
+			variants={container}
+			initial={'hidden'}
+			animate={'visible'}
+			transition={{ delay: 2, duration: 0.5 }}
+		>
 			<img src={img.url} />
-			<div>
+			<motion.div
+				initial={{ opacity: 0, y: 100 }}
+				animate={{ opacity: 1, y: 0 }}
+				exit={{ opacity: 0, y: 100 }}
+				transition={{ duration: 1, delay: 2.3 }}
+			>
 				<h2>Details</h2>
 				<h3>{Astrology}</h3>
-				{/* <h3>{Numerology}</h3> */}
 				<ul>
 					{meanings[direction].map((meaning, index) => {
 						if (index < 5) {
@@ -20,14 +33,14 @@ const Card = ({ data, direction }) => {
 						}
 					})}
 				</ul>
-			</div>
+			</motion.div>
 		</StyledCard>
 	);
 };
 
 export default Card;
 
-const StyledCard = styled.div`
+const StyledCard = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;

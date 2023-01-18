@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 import { useUserContext } from '../../hooks/context/useUserContext';
@@ -27,14 +28,16 @@ const InitialSetup = () => {
 
 	return (
 		<StyledInit>
-			{arrayOfSteps.map((step, index) => {
-				if (index === setup) {
-					//conditionally render the page
-					return <React.Fragment key={index}> {step} </React.Fragment>;
-				} else {
-					return null;
-				}
-			})}
+			<AnimatePresence exitBeforeEnter>
+				{arrayOfSteps.map((step, index) => {
+					if (index === setup) {
+						//conditionally render the page
+						return <React.Fragment key={index}> {step} </React.Fragment>;
+					} else {
+						return null;
+					}
+				})}
+			</AnimatePresence>
 		</StyledInit>
 	);
 };
@@ -42,9 +45,6 @@ const InitialSetup = () => {
 export default InitialSetup;
 
 const StyledInit = styled.div`
-	border: 1px solid #ccc;
-	border-radius: 8px;
-
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -55,16 +55,16 @@ const StyledInit = styled.div`
 	justify-content: center;
 	gap: 16px;
 
-	max-width: 500px;
 	margin: auto;
+
 	padding: 32px;
 
-	color: #ccc;
+	color: black;
 	h2 {
 		text-align: center;
 	}
 	button {
-		border-color: white;
-		color: white;
+		border-color: black;
+		color: black;
 	}
 `;

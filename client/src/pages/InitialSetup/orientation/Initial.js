@@ -1,10 +1,11 @@
 import { Typography } from '@mui/material';
+import { slideProps } from '../../../libs/framer-motion';
 import NextStep from './components/NextStep';
 import { StyledOrientationContainer } from './styles';
 
 const Initial = () => {
 	return (
-		<StyledOrientationContainer>
+		<StyledOrientationContainer {...slideProps}>
 			<Typography variant='h3' component='h2'>
 				Welcome to the
 				<br />

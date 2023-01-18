@@ -1,7 +1,10 @@
 import { Button } from '@mui/material';
+import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import FormInput from '../../../components/form/FormInput';
+import { slideProps } from '../../../libs/framer-motion';
+import FramerShake from '../../../libs/framer-motion/FramerShake';
 import { useAddZodiac } from '../hooks/useAddZodiac';
 import DynamicTitle from './components/DynamicTitle';
 import StepNumber from './components/StepNumber';
@@ -29,24 +32,25 @@ const OrientationFinal = () => {
 	};
 
 	return (
-		<>
+		<motion.div {...slideProps}>
 			<StepNumber step={3} />
 			<DynamicTitle strArray={birthdayArray} />
-
-			<StyledForm onSubmit={handleSubmit} error={error}>
-				<FormInput
-					setFormData={setFormData}
-					formData={formData}
-					name={'Birthday'}
-					type={'date'}
-					errorData={[error, 'Enter birthday']}
-					label={''}
-				/>
-				<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
-					Save
-				</Button>
-			</StyledForm>
-		</>
+			<FramerShake error={error}>
+				<StyledForm onSubmit={handleSubmit} error={error}>
+					<FormInput
+						setFormData={setFormData}
+						formData={formData}
+						name={'Birthday'}
+						type={'date'}
+						errorData={[error, 'Enter birthday']}
+						label={''}
+					/>
+					<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
+						Save
+					</Button>
+				</StyledForm>
+			</FramerShake>
+		</motion.div>
 	);
 };
 

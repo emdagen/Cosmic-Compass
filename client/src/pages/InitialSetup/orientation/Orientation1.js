@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import FormInput from '../../../components/form/FormInput';
 import { useUserContext } from '../../../hooks/context/useUserContext';
 import patchHandler from '../../../utils/http-requests/patchHandler';
@@ -9,6 +9,9 @@ import styled from 'styled-components';
 import StepNumber from './components/StepNumber';
 import { greetingsArray } from './data';
 import DynamicTitle from './components/DynamicTitle';
+import { motion } from 'framer-motion';
+import { slideProps } from '../../../libs/framer-motion';
+import FramerShake from '../../../libs/framer-motion/FramerShake';
 
 const OrientationOne = () => {
 	const [formData, setFormData] = useState({});
@@ -40,32 +43,44 @@ const OrientationOne = () => {
 			console.log('oof, a username was not included');
 		}
 	};
+	useEffect(() => {
+		if (error) setError(true);
+	}, [error]);
 
-	console.log(formData);
 	return (
-		<StyledContainer>
+		<StyledContainer {...slideProps}>
 			<StepNumber step={1} />
 			<DynamicTitle strArray={greetingsArray} />
-			<StyledForm onSubmit={handleSubmit}>
-				<FormInput
-					formData={formData}
-					setFormData={setFormData}
-					name={'username'}
-					type={'text'}
-					label={'Please add a username'}
-					errorData={[error, 'New phone who dis?']}
-				/>
-				<Button size='large' type='submit' variant='outlined' sx={{ mt: 1 }}>
-					Next Step
-				</Button>
-			</StyledForm>
+			<FramerShake error={error}>
+				<StyledForm onSubmit={handleSubmit}>
+					<FormInput
+						formData={formData}
+						setFormData={setFormData}
+						name={'username'}
+						type={'text'}
+						label={'Please add a username'}
+						errorData={[error, 'New phone who dis?']}
+					/>
+					<Button
+						size='large'
+						type='submit'
+						variant='outlined'
+						sx={{ mt: 1 }}
+						onClick={() => {
+							error && setError(true);
+						}}
+					>
+						Next Step
+					</Button>
+				</StyledForm>
+			</FramerShake>
 		</StyledContainer>
 	);
 };
 
 export default OrientationOne;
 
-const StyledContainer = styled.div`
+const StyledContainer = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
