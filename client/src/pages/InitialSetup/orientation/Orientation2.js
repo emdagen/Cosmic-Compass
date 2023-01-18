@@ -8,6 +8,9 @@ import { Button, Input } from '@mui/material';
 
 import { buttonProps } from './styles';
 import StepNumber from './components/StepNumber';
+import { motion } from 'framer-motion';
+import { slideProps } from '../../../libs/framer-motion';
+import FramerShake from '../../../libs/framer-motion/FramerShake';
 
 const Orientation2 = () => {
 	const { userData, setUserData } = useUserContext();
@@ -57,55 +60,57 @@ const Orientation2 = () => {
 	};
 
 	return (
-		<StyledOrientationPage>
+		<StyledOrientationPage {...slideProps}>
 			<StepNumber step={2} />
 			<DynamicTitle strArray={pictureArray} />
 			<StyledImageContainer>
 				{imageData && <img src={imageData} alt='user image' />}
 			</StyledImageContainer>
-			<form onSubmit={handleSubmit} className={error ? 'error' : ''}>
-				{error && <p>Must select an image</p>}
-				{!imageData ? (
-					<Input
-						error={error}
-						fullWidth
-						variant='filled'
-						type='file'
-						accept='image/*'
-						id='file'
-						placeholder='Upload file'
-						sx={{
-							background: 'rgba(0,0,0,0.2)',
-							p: 1,
-							borderTopLeftRadius: 4,
-							borderTopRightRadius: 4,
-						}}
-						onChange={(e) => handleFileUpload(e)}
-					/>
-				) : (
-					<Button
-						{...buttonProps}
-						sx={{ mt: 1 }}
-						type='reset'
-						onClick={(e) => {
-							e.preventDefault();
-							setImageData(null);
-						}}
-					>
-						Remove
+			<FramerShake error={error}>
+				<form onSubmit={handleSubmit} className={error ? 'error' : ''}>
+					{error && <p>Must select an image</p>}
+					{!imageData ? (
+						<Input
+							error={error}
+							fullWidth
+							variant='filled'
+							type='file'
+							accept='image/*'
+							id='file'
+							placeholder='Upload file'
+							sx={{
+								background: 'rgba(0,0,0,0.2)',
+								p: 1,
+								borderTopLeftRadius: 4,
+								borderTopRightRadius: 4,
+							}}
+							onChange={(e) => handleFileUpload(e)}
+						/>
+					) : (
+						<Button
+							{...buttonProps}
+							sx={{ mt: 1 }}
+							type='reset'
+							onClick={(e) => {
+								e.preventDefault();
+								setImageData(null);
+							}}
+						>
+							Remove
+						</Button>
+					)}
+					<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
+						Upload Image
 					</Button>
-				)}
-				<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
-					Upload Image
-				</Button>
-			</form>
+				</form>
+			</FramerShake>
 		</StyledOrientationPage>
 	);
 };
 
 export default Orientation2;
 
-const StyledOrientationPage = styled.div`
+const StyledOrientationPage = styled(motion.div)`
 	img {
 		width: 250px;
 	}

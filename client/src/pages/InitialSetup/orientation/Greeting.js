@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import { useUserContext } from '../../../hooks/context/useUserContext';
+import { slideProps } from '../../../libs/framer-motion';
 import NextStep from './components/NextStep';
 import { StyledOrientationContainer } from './styles';
 
@@ -10,7 +11,7 @@ const Greeting = () => {
 	const { username } = data;
 
 	return (
-		<StyledOrientationContainer>
+		<StyledOrientationContainer {...slideProps}>
 			<Typography variant='h3' component='h2'>
 				Nice to meet you {username}
 			</Typography>

@@ -2,12 +2,17 @@ import { Typography } from '@mui/material';
 import styled from 'styled-components';
 import SignUp from '../../libs/auth0/SignUp';
 import Background from './Background';
+import { motion } from 'framer-motion';
 
 const Welcome = () => {
 	return (
 		<>
 			<StyledWelcome>
-				<StyledInfo>
+				<StyledInfo
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+				>
 					<Typography variant='h1' component='h1' sx={{ fontWeight: 'bold' }}>
 						Cosmic
 						<br /> <span>Compass</span>
@@ -44,7 +49,7 @@ const StyledWelcome = styled.div`
 	visibility: hidden;
 `;
 
-const StyledInfo = styled.div`
+const StyledInfo = styled(motion.div)`
 	visibility: visible;
 	position: relative;
 	z-index: 1;
