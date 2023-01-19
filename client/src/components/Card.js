@@ -6,7 +6,7 @@ const container = {
 	hidden: { rotateY: 180 },
 };
 const Card = ({ data, direction }) => {
-	const { img, meanings, Numerology, Astrology } = data;
+	const { img, meanings, Astrology } = data;
 	console.log(meanings[direction]);
 	return (
 		<StyledCard
