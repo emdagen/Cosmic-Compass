@@ -11,6 +11,7 @@ import { useInitializeUser } from './libs/auth0/hooks/useInitializeUser';
 import { themeObject } from './data/theme';
 import Navbar from './layout/Navbar';
 import SpaceStars from './pages/Welcome/SpaceStars';
+import { ToggleColorMode } from './libs/materialUI/ToggleColorMode';
 
 const App = () => {
 	const { loadingObj, userData } = useUserContext();
@@ -20,29 +21,31 @@ const App = () => {
 	console.log(userData?.theme);
 
 	return (
-		<StyledApp>
-			<GlobalStyle theme={theme} />
-			{isAuthenticated && loadingObj.user === 'verify' ? (
-				<>
-					{loadingObj.zodiac !== 'loading' &&
-						userData.setup === 'Completed' && <Navbar />}
-					<RoutesContainer />
-				</>
-			) : !isLoading && loadingObj.user === 'loading' ? (
-				loadingObj.user === 'verify' || isAuthenticated ? (
-					<Spinner />
+		<ToggleColorMode>
+			<StyledApp>
+				<GlobalStyle theme={theme} />
+				{isAuthenticated && loadingObj.user === 'verify' ? (
+					<>
+						{loadingObj.zodiac !== 'loading' &&
+							userData.setup === 'Completed' && <Navbar />}
+						<RoutesContainer />
+					</>
+				) : !isLoading && loadingObj.user === 'loading' ? (
+					loadingObj.user === 'verify' || isAuthenticated ? (
+						<Spinner />
+					) : (
+						<Welcome />
+					)
 				) : (
-					<Welcome />
-				)
-			) : (
-				<Spinner />
-			)}
-			{userData?.theme === undefined ? (
-				<SpaceStars />
-			) : (
-				userData?.theme === true && <SpaceStars />
-			)}
-		</StyledApp>
+					<Spinner />
+				)}
+				{userData?.theme === undefined ? (
+					<SpaceStars />
+				) : (
+					userData?.theme === true && <SpaceStars />
+				)}
+			</StyledApp>
+		</ToggleColorMode>
 	);
 };
 
