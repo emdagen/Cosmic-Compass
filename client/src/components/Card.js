@@ -63,6 +63,8 @@ const StyledCard = styled(motion.div)`
 	align-items: center;
 	border: 1px solid purple;
 	padding: 32px 32px;
+
+	max-width: 420px;
 	div {
 		flex: 1;
 		display: flex;
@@ -70,7 +72,7 @@ const StyledCard = styled(motion.div)`
 		gap: 16px;
 	}
 	img {
-		max-width: 450px;
+		max-width: 420px;
 	}
 `;
 
