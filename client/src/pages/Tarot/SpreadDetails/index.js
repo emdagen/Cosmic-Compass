@@ -23,7 +23,9 @@ const SpreadDetails = () => {
 	}, [spreadData, _id, setActiveTarot]);
 
 	useEffect(() => {
-		containerRef.current.scrollLeft = containerRef.current?.scrollWidth;
+		if (containerRef.current) {
+			containerRef.current.scrollLeft = containerRef.current?.scrollWidth;
+		}
 	}, [currentIndex]);
 
 	return (
@@ -35,7 +37,6 @@ const SpreadDetails = () => {
 						setCurrentIndex={setCurrentIndex}
 					/>
 					<StyledContainer>
-						{/* <div> */}
 						<StyledSpreadDetails ref={containerRef}>
 							{spreadData.map((data, index) => {
 								const { card, meaning, direction } = data;
@@ -64,7 +65,6 @@ const SpreadDetails = () => {
 								} else return null;
 							})}
 						</StyledSpreadDetails>
-						{/* </div> */}
 					</StyledContainer>
 				</>
 			)}
@@ -77,9 +77,14 @@ export default SpreadDetails;
 const StyledContainer = styled.div`
 	border: 1px solid green;
 	display: flex;
+	/* align-items: center; */
+	justify-content: center;
+	/* display: flex;
 	flex-direction: column;
 	align-items: center;
-	overflow: hidden;
+	justify-content: center; */
+	/* overflow: hidden; */
+
 	/* overflow-y: scroll; */
 `;
 
@@ -87,13 +92,12 @@ const StyledSpreadDetails = styled(motion.div)`
 	display: flex;
 	/* align-items: flex-start; */
 	/* align-items: flex-start; */
-	justify-content: center;
+	/* justify-content: center; */
 	/* justify-content: flex-end; */
 	gap: 16px;
 	border: 4px solid blue;
-	width: 100%;
-	top: 0%;
-	left: 0;
+	/* width: 100%; */
+
 	overflow-y: scroll;
 `;
 
