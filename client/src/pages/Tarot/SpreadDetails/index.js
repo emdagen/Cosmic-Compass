@@ -23,9 +23,7 @@ const SpreadDetails = () => {
 	}, [spreadData, _id, setActiveTarot]);
 
 	useEffect(() => {
-		console.log(containerRef.current);
-		containerRef.current.scrollLeft =
-			containerRef && containerRef.current.scrollWidth;
+		containerRef.current.scrollLeft = containerRef.current?.scrollWidth;
 	}, [currentIndex]);
 
 	return (
@@ -36,37 +34,37 @@ const SpreadDetails = () => {
 						currentIndex={currentIndex}
 						setCurrentIndex={setCurrentIndex}
 					/>
-					<StyledContainer ref={containerRef}>
-						<div>
-							<StyledSpreadDetails>
-								{spreadData.map((data, index) => {
-									const { card, meaning, direction } = data;
-									if (currentIndex >= index) {
-										return (
-											<StyledCardContainer
-												key={card._id}
-												direction={direction}
-												initial={{ opacity: 0 }}
-												animate={{ opacity: 1 }}
-												exit={{ opacity: 0 }}
-												transition={{ duration: 1 }}
+					<StyledContainer>
+						{/* <div> */}
+						<StyledSpreadDetails ref={containerRef}>
+							{spreadData.map((data, index) => {
+								const { card, meaning, direction } = data;
+								if (currentIndex >= index) {
+									return (
+										<StyledCardContainer
+											key={card._id}
+											direction={direction}
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+											transition={{ duration: 1 }}
+										>
+											<h1>{meaning.toUpperCase()}</h1>
+											<motion.div
+												ref={nextRef}
+												initial={{ opacity: 0, y: 100 }}
+												animate={{ opacity: 1, y: 0 }}
+												exit={{ opacity: 0, y: 100 }}
+												transition={{ duration: 1, delay: 0.6 }}
 											>
-												<h1>{meaning.toUpperCase()}</h1>
-												<motion.div
-													ref={nextRef}
-													initial={{ opacity: 0, y: 100 }}
-													animate={{ opacity: 1, y: 0 }}
-													exit={{ opacity: 0, y: 100 }}
-													transition={{ duration: 1, delay: 0.6 }}
-												>
-													<Card data={card} direction={direction} />
-												</motion.div>
-											</StyledCardContainer>
-										);
-									} else return null;
-								})}
-							</StyledSpreadDetails>
-						</div>
+												<Card data={card} direction={direction} />
+											</motion.div>
+										</StyledCardContainer>
+									);
+								} else return null;
+							})}
+						</StyledSpreadDetails>
+						{/* </div> */}
 					</StyledContainer>
 				</>
 			)}
@@ -75,6 +73,16 @@ const SpreadDetails = () => {
 };
 
 export default SpreadDetails;
+
+const StyledContainer = styled.div`
+	border: 1px solid green;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+	/* overflow-y: scroll; */
+`;
+
 const StyledSpreadDetails = styled(motion.div)`
 	display: flex;
 	/* align-items: flex-start; */
@@ -85,16 +93,6 @@ const StyledSpreadDetails = styled(motion.div)`
 	width: 100%;
 	top: 0%;
 	left: 0;
-	/* overflow-y: scroll; */
-`;
-
-const StyledContainer = styled.div`
-	border: 1px solid green;
-	display: flex;
-	flex-direction: column;
-
-	align-items: flex-start;
-	/* overflow: hidden; */
 	overflow-y: scroll;
 `;
 
