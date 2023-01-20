@@ -86,7 +86,8 @@ const StyledContainer = styled.div`
 const StyledSpreadDetails = styled(motion.div)`
 	display: flex;
 	/* align-items: flex-start; */
-	/* justify-content: center; */
+	/* align-items: flex-start; */
+	justify-content: center;
 	/* justify-content: flex-end; */
 	gap: 16px;
 	border: 4px solid blue;
@@ -98,7 +99,7 @@ const StyledSpreadDetails = styled(motion.div)`
 
 const StyledCardContainer = styled(motion.div)`
 	min-width: 350px;
-	flex: 1;
+	/* flex: 1; */
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
