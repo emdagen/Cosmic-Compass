@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { useTarotContext } from '../../../hooks/context/useTarotContext';
 import ResetButton from '../components/ResetButton';
 import SpreadTitle from './SpreadTitle';
@@ -22,7 +23,7 @@ const Spread = () => {
 	};
 
 	return (
-		<div>
+		<StyledSpread>
 			<SpreadTitle spreadData={spreadData} />
 			{!activeTarot && (
 				<>
@@ -33,8 +34,14 @@ const Spread = () => {
 					</button>
 				</>
 			)}
-		</div>
+		</StyledSpread>
 	);
 };
 
 export default Spread;
+
+const StyledSpread = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
