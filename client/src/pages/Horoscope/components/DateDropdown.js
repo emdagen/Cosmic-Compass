@@ -1,13 +1,31 @@
 import React from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 const DateDropdown = ({ setDate }) => {
-	return (
-		<select onChange={(e) => setDate(e.target.value)}>
-			<option defaultValue='today'>Today</option>
-			<option defaultValue='tomorrow'>Tomorrow</option>
-			<option defaultValue='yesterday'>Yesterday</option>
-		</select>
-	);
+  const [value, setValue] = React.useState('today');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    setDate(newValue);
+  };
+
+  return (
+    <Box sx={{ width: '100%' }}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        textColor='secondary'
+        indicatorColor='secondary'
+        aria-label='secondary tabs example'
+      >
+        <Tab value='today' label='Today' />
+        <Tab value='tomorrow' label='Tomorrow' />
+        <Tab value='yesterday' label='Yesterday' />
+      </Tabs>
+    </Box>
+  );
 };
 
 export default DateDropdown;
