@@ -85,12 +85,29 @@ const zodiacData = {
     element: 'Water',
     modality: 'Mutable',
     ruling_planet: 'Neptune',
-    traits:
-      'Somehow both 5 and 50 years old at once. Thinks everything is a sign.Excessively romantic. Prone to fantasy. No boundaries.',
-    famous:
-      'Rosa Luxemburg, Victor Hugo, Rihanna, Anaïs Nin, Gabriel García Márquez, Pier Paolo Pasolini.',
-    careers:
-      'Volunteer therapist. Curbside fortune teller. Amateur poet. Sad clown. Orb of light. Vapor. ',
+    traits: [
+      'Somehow both 5 and 50 years old at once',
+      'Thinks everything is a sign',
+      'Excessively romantic',
+      'Prone to fantasy',
+      'No boundaries',
+    ],
+    famous: [
+      'Rosa Luxemburg',
+      'Victor Hugo',
+      'Rihanna',
+      'Anaïs Nin',
+      'Gabriel García Márquez',
+      'Pier Paolo Pasolini',
+    ],
+    careers: [
+      'Volunteer therapist',
+      'Curbside fortune teller',
+      'Amateur poet',
+      'Sad clown',
+      'Orb of light',
+      'Vapor',
+    ],
     besties: ['Sagittarius', 'Pisces', 'Gemini'],
     best_match: ['Cancer', 'Taurus', 'Scorpio'],
     worst_match: ['Capricorn', 'Aquarius', 'Aries'],

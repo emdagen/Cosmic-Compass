@@ -46,7 +46,7 @@ const Horoscope = () => {
             <StyledHoroscope>{horoscope.description}</StyledHoroscope>
             <StyledHoroscopeInfo>
               <p>
-                <GiHearts color='white' /> Compatibilty:
+                <GiHearts color='white' /> Compatibilty:{' '}
                 {horoscope.compatibility}
               </p>
               <p>
@@ -88,12 +88,14 @@ const StyledHoroscope = styled.p`
   font-size: 32px;
 `;
 const StyledHoroscopeInfo = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 2fr;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
   font-size: 20px;
   letter-spacing: 3px;
+  width: fit-content;
 `;
+
 const StyledHeader = styled.div`
   padding-top: 32px;
   margin-bottom: 24px;
@@ -109,4 +111,5 @@ const StyledResult = styled.div`
   flex-direction: column;
   gap: 24px;
 `;
+
 export default Horoscope;
