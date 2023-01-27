@@ -204,6 +204,9 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 align-items:center;
+h2{
+  font-size:32px;
+}
 `;
 
 const StyledInstruction = styles.h2`
