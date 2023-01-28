@@ -53,26 +53,12 @@ const Form = () => {
     <StyledForm onSubmit={handleSubmit}>
       <h3>Please select a spread</h3>
       <label>{!error ? 'required*' : 'try again'}</label>
-      {/* <select
-				name='spread'
-				onChange={(e) => {
-					setFormData({ ...formData, spread: e.target.value });
-					setError(false);
-				}}
-				defaultValue={'Select'}
-			>
-				<option>Select</option>
-				<option value='single'>Single</option>
-				<option value='three-card'>3 Card</option>
-				<option value='five-card'>5 Card</option>
-				<option value='seven-card'>7 Card</option>
-			</select> */}
 
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel id='demo-simple-select-label'>Choose a Spread</InputLabel>
           <Select
-            name='spread'
+            defaultValue={'Select'}
             onChange={(e) => {
               setFormData({ ...formData, spread: e.target.value });
               setError(false);

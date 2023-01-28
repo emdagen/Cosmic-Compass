@@ -1,16 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import zodiacData from '../../data/zodiacData';
+
 // import styled from 'styled-components';
-import image from '../../data/images/gemini_dark.jpeg';
 import { useEffect, useState } from 'react';
 import getHandler from '../../utils/http-requests/getHandler';
+
 //MUI imports
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { ListItem, listItemClasses, ListItemText } from '@mui/material';
+import { ListItem, ListItemText } from '@mui/material';
 
 const Zodiac = () => {
   const { sign } = useParams();
@@ -29,6 +30,8 @@ const Zodiac = () => {
     getHoroscope();
   }, [date, zodiac]);
 
+  console.log(zodiacData[sign]);
+
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -36,6 +39,7 @@ const Zodiac = () => {
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));
+
   return (
     <div>
       {horoscope && (
@@ -73,7 +77,7 @@ const Zodiac = () => {
             </Grid>
             <Grid item xs={4} sm={4} md={4} lg={4}>
               <img
-                src={image}
+                src={zodiacObj.img.dark.url}
                 style={{ maxWidth: '100%', maxHeight: '100%' }}
               />
             </Grid>
