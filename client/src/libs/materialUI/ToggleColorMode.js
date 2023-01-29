@@ -16,6 +16,12 @@ export const ToggleColorMode = ({ children }) => {
 			createTheme({
 				palette: {
 					mode,
+					primary: {
+						main: '#1d7874', // change this to your desired color
+					},
+					secondary: {
+						main: '#744a45',
+					},
 				},
 			}),
 		[mode]
