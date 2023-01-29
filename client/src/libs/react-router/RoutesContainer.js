@@ -14,10 +14,11 @@ import SpreadDetails from '../../pages/Tarot/SpreadDetails';
 
 const RoutesContainer = () => {
 	const location = useLocation();
+	console.log(location);
 	const background = location.state && location.state.background;
 	const { loadingObj, userData } = useUserContext();
 	return (
-		<StyledPage>
+		<StyledPage location={location}>
 			<Routes location={background || location}>
 				<Route path='/' element={<Home />} />
 				{loadingObj.zodiac !== 'loading' && userData.setup === 'Completed' && (
