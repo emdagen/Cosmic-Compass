@@ -72,7 +72,7 @@ const Zodiac = () => {
               </StyledDescription>
               <StyledDescription>
                 <h2>TODAY'S HOROSCOPE</h2>
-                <StyledHoroscope>"{horoscope.description}"</StyledHoroscope>
+                <StyledHoroscope>" {horoscope.description} "</StyledHoroscope>
               </StyledDescription>
             </Grid>
             <Grid item xs={4} sm={4} md={4} lg={4}>
@@ -92,7 +92,7 @@ const Zodiac = () => {
               <StyledDescription>
                 <h2>FAMOUS {zodiacObj.zodiac.toUpperCase()}</h2>
                 {zodiacObj.famous.map((fame) => {
-                  return <p key={fame}>*{fame}</p>;
+                  return <p key={fame}>* {fame}</p>;
                 })}
               </StyledDescription>
             </Grid>
