@@ -57,16 +57,18 @@ const Form = () => {
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <Select
+            displayEmpty
             placeholder='Which will it be?'
             defaultValue={''}
             onChange={(e) => {
               setFormData({ ...formData, spread: e.target.value });
               setError(false);
             }}
-            id='demo-simple-select'
-            label='Choose a Spread'
             input={<OutlinedInput />}
           >
+            <MenuItem disabled value=''>
+              <em>Choose your tarot spread wisely </em>
+            </MenuItem>
             <MenuItem value='single'>
               <StyledCard>1 Card</StyledCard>: For instant clarity (yes or no)
               OR get a vibe check for the day
