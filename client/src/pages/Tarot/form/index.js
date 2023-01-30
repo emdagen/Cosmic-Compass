@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router';
 // import FormInput from '../../../components/form/FormInput';
 //MUI Imports
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 const Form = () => {
   const [formData, setFormData] = useState({});
@@ -56,30 +56,34 @@ const Form = () => {
 
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
-          <InputLabel id='demo-simple-select-label'>Choose a Spread</InputLabel>
           <Select
-            defaultValue={'Select'}
+            displayEmpty
+            placeholder='Which will it be?'
+            defaultValue={''}
             onChange={(e) => {
               setFormData({ ...formData, spread: e.target.value });
               setError(false);
             }}
-            labelId='demo-simple-select-label'
-            id='demo-simple-select'
-            label='Choose a Spread'
+            input={<OutlinedInput />}
           >
+            <MenuItem disabled value=''>
+              <em>Choose your tarot spread wisely </em>
+            </MenuItem>
             <MenuItem value='single'>
-              1 Card: For instant clarity (yes or no) OR get a vibe check for
-              the day
+              <StyledCard>1 Card</StyledCard>: For instant clarity (yes or no)
+              OR get a vibe check for the day
             </MenuItem>
             <MenuItem value='three-card'>
-              3 Card: Insight to Past, Present and Future
+              <StyledCard>3 Card</StyledCard>: Insight to Past, Present and
+              Future
             </MenuItem>
             <MenuItem value='five-card'>
-              5 Card: Determine a course of action OR get a deeper insight to a
-              situation
+              <StyledCard>5 Card</StyledCard>: Determine a course of action OR
+              get a deeper insight to a situation
             </MenuItem>
             <MenuItem value='seven-card'>
-              7 Card: A detailed overview and potential outcome
+              <StyledCard>7 Card</StyledCard>: A detailed overview and potential
+              outcome
             </MenuItem>
           </Select>
           <Button variant='contained' type='submit' sx={{ mt: 2 }}>
@@ -97,4 +101,7 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+const StyledCard = styled.span`
+  font-weight: bold;
 `;
