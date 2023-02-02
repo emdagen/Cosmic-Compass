@@ -5,6 +5,7 @@ import zodiacData from '../../data/zodiacData';
 // import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import getHandler from '../../utils/http-requests/getHandler';
+import { useZodiac } from '../../hooks/useZodiac';
 
 //MUI imports
 import { styled } from '@mui/material/styles';
@@ -16,6 +17,7 @@ import { ListItem, ListItemText } from '@mui/material';
 const Zodiac = () => {
   const { sign } = useParams();
   const zodiacObj = zodiacData[sign];
+  // const { zodiacObj } = useZodiac(sign);
   const zodiacName = zodiacObj.zodiac;
   const letters = zodiacName.split('');
   const [date] = useState('today');

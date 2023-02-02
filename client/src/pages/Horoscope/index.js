@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useUserContext } from '../../hooks/context/useUserContext';
-import getHandler from '../../utils/http-requests/getHandler';
+
 import Spinner from '../../libs/materialUI/Spinner';
 import DateDropdown from './components/DateDropdown';
 import styled from 'styled-components';
@@ -10,23 +10,16 @@ import {
   GiHearts,
   GiPocketWatch,
 } from 'react-icons/gi';
+import { useHoroscope } from '../../hooks/useHoroscope';
 
 const Horoscope = () => {
   const [date, setDate] = useState('today');
-  const [horoscope, setHoroscope] = useState(null);
   const {
     userData: {
       data: { zodiac },
     },
   } = useUserContext();
-
-  useEffect(() => {
-    const getHoroscope = async () => {
-      const response = await getHandler(`/api/horoscope/${zodiac}/${date}`);
-      setHoroscope(response.data);
-    };
-    getHoroscope();
-  }, [date]);
+  const { horoscope } = useHoroscope(zodiac, date);
 
   return (
     <>
