@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useUserContext } from '../../hooks/context/useUserContext';
-import TelegrafRegular from '../../assets/fonts/Telegraf-Regular.ttf';
-import SeasonsLight from '../../assets/fonts/SeasonsLight.ttf';
+import LatoLight from '../../assets/fonts/Lato-Light.ttf';
+import PlayfairDisplayRegular from '../../assets/fonts/PlayfairDisplay-Regular.ttf';
 
 export const ToggleColorMode = ({ children }) => {
   const [mode, setMode] = React.useState('light');
@@ -25,50 +25,56 @@ export const ToggleColorMode = ({ children }) => {
           },
         },
         typography: {
+          fontFamily: 'Lato',
+
           h1: {
-            fontFamily: 'SeasonsLight',
+            fontFamily: 'Playfair Display',
           },
           h2: {
-            fontFamily: 'SeasonsLight',
+            fontFamily: 'Playfair Display',
           },
           h3: {
-            fontFamily: 'SeasonsLight',
+            fontFamily: 'Playfair Display',
           },
           h4: {
-            fontFamily: 'SeasonsLight',
+            fontFamily: 'Playfair Display',
           },
           h5: {
-            fontFamily: 'SeasonsLight',
+            fontFamily: 'Playfair Display',
           },
           h6: {
-            fontFamily: 'SeasonsLight',
+            fontFamily: 'Playfair Display',
           },
           p: {
-            fontFamily: 'TelegrafRegular',
+            fontFamily: 'Lato, sans-serif',
           },
           body1: {
-            fontFamily: 'TelegrafRegular',
+            fontFamily: 'Lato, sans-serif',
+          },
+          body2: {
+            fontFamily: 'Lato, sans-serif',
           },
         },
-
         components: {
           MuiCssBaseline: {
-            styleOverrides: `
-              @font-face {
-                font-family: 'TelegrafRegular';
-                font-style: normal;
-                font-display: swap;
-                font-weight: 400;
-                src: local('TelegrafRegular'), local('TelegrafRegular-Regular'), url(${TelegrafRegular}) format('truetype');
-              }
-              @font-face {
-                font-family: 'SeasonsLight';
-                font-style: normal;
-                font-display: swap;
-                font-weight: light;
-                src: local('SeasonsLight'), local('SeasonsLight-Light'), url(${SeasonsLight}) format('truetype');
-              }
-            `,
+            styleOverrides: {
+              '@font-face': [
+                {
+                  fontFamily: 'Playfair Display',
+                  fontDisplay: 'swap',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  src: `local('Playfair Display'), local('font-family: 'Playfair Display-Regular'), url(${PlayfairDisplayRegular}) format('truetype')`,
+                },
+                {
+                  fontFamily: 'Lato',
+                  fontStyle: 'normal',
+                  fontDisplay: 'swap',
+                  fontWeight: 300,
+                  src: `local('Lato'), local('font-family: 'Lato-Light'), url(${LatoLight}) format('truetype')`,
+                },
+              ],
+            },
           },
         },
       }),
