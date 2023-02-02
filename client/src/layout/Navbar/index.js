@@ -140,7 +140,6 @@ export default function Navbar() {
 							<StyledMenuItems
 								onClick={(e) => {
 									logout({ returnTo: window.location.origin });
-									if (location.pathname !== `/profile`) navigate(`/profile`);
 								}}
 							>
 								<RiDoorOpenFill size={20} />
