@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import image from '../../data/images/gemini_dark.jpeg';
 import { useEffect, useState } from 'react';
 import getHandler from '../../utils/http-requests/getHandler';
+import { useZodiac } from '../../hooks/useZodiac';
 
 const Zodiac = () => {
   const { sign } = useParams();
   const zodiacObj = zodiacData[sign];
+  // const { zodiacObj } = useZodiac(sign);
   const zodiacName = zodiacObj.zodiac;
   const letters = zodiacName.split('');
   const [date] = useState('today');
@@ -22,8 +24,8 @@ const Zodiac = () => {
     };
     getHoroscope();
   }, [date, zodiac]);
+
   // console.log(zodiacData);
-  // horoscope && console.log(horoscope.description);
   return (
     <div>
       {horoscope && (
