@@ -31,9 +31,14 @@ const GlobalStyle = createGlobalStyle`
   --wave-color-6:   #FFFFFF; // inner top and text ring
   --settings-bg: #CEE5F2; */
 }
-
+h1, h2{
+  font-family: 'Playfair Display', serif;
+}
+a{
+  font-family: 'Playfair Display', serif;
+}
 body{
-  font-family: 'Poppins';
+  /* font-family: 'Poppins'; */
   background-color:var(--wave-color-5) ;
   color: var(--wave-text);
 }
