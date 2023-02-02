@@ -32,7 +32,7 @@ const Profile = () => {
       const res = await fetch(`/api/horoscope/${zodiac}`);
       const json = await res.json();
       setHoroscope(json.data);
-      console.log(horoscope);
+      // console.log(horoscope);
     };
     getDailyHoroscope();
   }, []);
@@ -47,7 +47,7 @@ const Profile = () => {
           <StyledImage alt='{userData.username}' src={profileImg.url} />
           <div>
             <h3>{username}</h3>
-            <h4>{dateFormatted}</h4>
+            <h4>Joined {dateFormatted}</h4>
           </div>
         </StyledTop>
         <StyledBottom>
@@ -64,7 +64,7 @@ const Profile = () => {
             <div>
               {zodiacInfo.traits.map((trait) => {
                 return (
-                  <p>
+                  <p key={trait}>
                     <GiPolarStar /> {trait}
                   </p>
                 );
@@ -74,7 +74,7 @@ const Profile = () => {
             <div>
               {zodiacInfo.careers.map((job) => {
                 return (
-                  <p>
+                  <p key={job}>
                     <GiPolarStar /> {job}
                   </p>
                 );
@@ -96,9 +96,9 @@ const Profile = () => {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography component='div'>
                     {zodiacInfo.besties.map((friend) => {
-                      return <p>{friend}</p>;
+                      return <p key={friend}>{friend}</p>;
                     })}
                   </Typography>
                 </AccordionDetails>
@@ -109,14 +109,14 @@ const Profile = () => {
                   aria-controls='panel2a-content'
                   id='panel2a-header'
                 >
-                  <Typography>
+                  <Typography component='div'>
                     Most Compatible <GiLovers />
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography component='div'>
                     {zodiacInfo.best_match.map((best) => {
-                      return <p>{best}</p>;
+                      return <p key={best}>{best}</p>;
                     })}
                   </Typography>
                 </AccordionDetails>
@@ -127,14 +127,14 @@ const Profile = () => {
                   aria-controls='panel2a-content'
                   id='panel2a-header'
                 >
-                  <Typography>
+                  <Typography component='div'>
                     Least Compatible <GiBrokenHeart />
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography component='div'>
                     {zodiacInfo.worst_match.map((worst) => {
-                      return <p>{worst}</p>;
+                      return <p key={worst}>{worst}</p>;
                     })}
                   </Typography>
                 </AccordionDetails>
@@ -163,8 +163,9 @@ const StyledTop = styled.div`
   justify-content: space-between;
   height: 50%;
   width: 100%;
-  background-image: url('https://images.rawpixel.com/image_600/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdnA5MzMtYXVkaS00NC1hXzEuanBn.jpg');
-  background-position: center 5%;
+  gap: 8px;
+  /* background-image: url('https://images.rawpixel.com/image_600/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdnA5MzMtYXVkaS00NC1hXzEuanBn.jpg');
+  background-position: center 5%; */
 `;
 const StyledImage = styled.img`
   width: 190px;
@@ -173,8 +174,7 @@ const StyledImage = styled.img`
 `;
 
 const StyledBottom = styled.div`
-  /* border: 3px solid pink; */
-  background-color: #303030;
+  /* background-color: #303030; */
   height: 50%;
   display: flex;
   justify-content: space-between;
@@ -191,8 +191,9 @@ const StyledTraits = styled.div`
 const StyledOverview = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-around; */
   width: 50%;
   padding: 16px;
+  gap: 8px;
 `;
 export default Profile;

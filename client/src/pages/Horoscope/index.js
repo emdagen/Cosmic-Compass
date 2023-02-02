@@ -99,7 +99,7 @@ const StyledHeader = styled.div`
 const StyledResult = styled.div`
   /* border: 2px solid orange; */
   padding-top: 32px;
-  width: 65%;
+  /* width: 65%; */
   display: flex;
   flex-direction: column;
   gap: 24px;

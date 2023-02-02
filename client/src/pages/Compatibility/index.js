@@ -30,6 +30,7 @@ const Compatibility = () => {
   const [signX, setSignX] = useState('');
   const [signY, setSignY] = useState('');
   const [matchResults, setMatchResults] = useState(null);
+
   useEffect(() => {
     const getCompatibility = async () => {
       const response = await getHandler(`/api/compatibility/${signX}/${signY}`);
@@ -60,7 +61,7 @@ const Compatibility = () => {
   return (
     <div>
       <StyledDrop>
-        <h2>Compatibility</h2>
+        <StyledHead>COMPATIBILITY</StyledHead>
         <StyledRow>
           <ZodiacDropdown signState={signX} setSignState={setSignX} />
           <ZodiacDropdown signState={signY} setSignState={setSignY} />
@@ -69,7 +70,7 @@ const Compatibility = () => {
       <div>
         {!matchResults ? (
           <StyledInstruction>
-            Please Select your sign and your partners sign
+            Please select your sign and your partners sign
           </StyledInstruction>
         ) : (
           <StyledContainer>
@@ -132,12 +133,12 @@ const Compatibility = () => {
                   aria-controls='panel1a-content'
                   id='panel1a-header'
                 >
-                  <Typography>
+                  <Typography component='div'>
                     <h4>Most Likely to Cheat</h4>
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography component='div'>
                     <p>{matchResults.unfaithful.answer}</p>
                   </Typography>
                 </AccordionDetails>
@@ -148,12 +149,12 @@ const Compatibility = () => {
                   aria-controls='panel2a-content'
                   id='panel2a-header'
                 >
-                  <Typography>
+                  <Typography component='div'>
                     <h4>Story Time: The Love Affair</h4>
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography component='div'>
                     <p>{matchResults.story.answer}</p>
                   </Typography>
                 </AccordionDetails>
@@ -164,12 +165,12 @@ const Compatibility = () => {
                   aria-controls='panel2a-content'
                   id='panel2a-header'
                 >
-                  <Typography>
+                  <Typography component='div'>
                     <h4>Story Time: Who's the Murderer?</h4>
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
+                  <Typography component='div'>
                     <p>{matchResults.murder.answer}</p>
                   </Typography>
                 </AccordionDetails>
@@ -204,9 +205,16 @@ display:flex;
 flex-direction: column;
 justify-content:center;
 align-items:center;
+h2{
+  font-size:32px;
+}
 `;
 
 const StyledInstruction = styles.h2`
 text-align:center;
 margin-top:8px;
+`;
+
+const StyledHead = styles.h2`
+letter-spacing: .2em;
 `;

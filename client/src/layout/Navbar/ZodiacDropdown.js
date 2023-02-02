@@ -26,7 +26,8 @@ export default function ZodiacDropdown() {
 		setAnchorEl(event.currentTarget);
 	};
 	const handleClose = (zodiac) => {
-		if (zodiac.sign) navigate(`/zodiac/${zodiac.sign.toLowerCase()}`);
+		if (zodiac.sign.toLowerCase())
+			navigate(`/zodiac/${zodiac.sign.toLowerCase()}`);
 		setAnchorEl(null);
 	};
 
@@ -54,6 +55,7 @@ export default function ZodiacDropdown() {
 				anchorEl={anchorEl}
 				open={open}
 				onClose={handleClose}
+				onClick={() => setAnchorEl(null)}
 				PaperProps={{
 					style: {
 						maxHeight: ITEM_HEIGHT * 4.5,
