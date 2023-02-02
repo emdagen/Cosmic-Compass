@@ -28,10 +28,10 @@ const SpaceStars = () => {
 		'#ffa1a1', // redish
 	];
 	// milky way constants
-	const mwStarCount = 100000; // amount of static stars not clustered in the milky way
+	const mwStarCount = 1000; // amount of static stars not clustered in the milky way
 	const mwRandomStarProp = 0.2; // proportion of stars completely random in the milky way
-	const mwClusterCount = 300; // amount of clusters in the milky way
-	const mwClusterStarCount = 1500; // amount of stars per cluster
+	const mwClusterCount = 100; // amount of clusters in the milky way
+	const mwClusterStarCount = 200; // amount of stars per cluster
 	const mwClusterSize = 120; // minimum size of a cluster
 	const mwClusterSizeR = 80; // randomness of the size of a cluster
 	const mwClusterLayers = 10; // amount of layers per cluster to draw
