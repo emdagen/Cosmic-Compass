@@ -16,7 +16,7 @@ const spreadData = {
 		meanings: [
 			'past',
 			'current',
-			'hidden influences',
+			'influences',
 			'obstacles',
 			'environment',
 			'solution',
