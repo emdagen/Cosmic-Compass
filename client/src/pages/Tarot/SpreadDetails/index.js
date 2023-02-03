@@ -5,13 +5,13 @@ import { useTarotContext } from '../../../hooks/context/useTarotContext';
 import { determineIndex } from '../../../utils/determineIndex';
 import NextButton from './NextButton';
 import Card from '../../../components/Card';
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
+import VerticalTitle from '../Spread/VerticalTitle';
 const SpreadDetails = () => {
 	const nextRef = useRef(null);
 	const containerRef = useRef(null);
-	const animation = useAnimation();
 	const { _id } = useParams();
-	const { spreadData, setActiveTarot } = useTarotContext();
+	const { spreadData, setActiveTarot, activeTarot } = useTarotContext();
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	useEffect(() => {
@@ -30,13 +30,14 @@ const SpreadDetails = () => {
 
 	return (
 		<>
-			{spreadData && (
-				<>
+			{activeTarot && spreadData && (
+				<StyledBox>
+					<VerticalTitle spreadData={spreadData} />
 					<NextButton
 						currentIndex={currentIndex}
 						setCurrentIndex={setCurrentIndex}
 					/>
-					<StyledContainer>
+					<StyledContainer spreadData={spreadData}>
 						<StyledSpreadDetails ref={containerRef}>
 							{spreadData.map((data, index) => {
 								const { card, meaning, direction } = data;
@@ -47,18 +48,24 @@ const SpreadDetails = () => {
 											direction={direction}
 											initial={{ opacity: 0 }}
 											animate={{ opacity: 1 }}
-											exit={{ opacity: 0 }}
-											transition={{ duration: 1 }}
+											// exit={{ opacity: 0 }}
+											transition={{ duration: 0.5 }}
 										>
 											<h1>{meaning.toUpperCase()}</h1>
 											<motion.div
 												ref={nextRef}
 												initial={{ opacity: 0, y: 100 }}
 												animate={{ opacity: 1, y: 0 }}
-												exit={{ opacity: 0, y: 100 }}
+												// exit={{ opacity: 0, y: 100 }}
 												transition={{ duration: 1, delay: 0.6 }}
 											>
-												<Card data={card} direction={direction} />
+												<Card
+													data={card}
+													cardIndex={index}
+													currentIndex={currentIndex}
+													direction={direction}
+													containerRef={containerRef}
+												/>
 											</motion.div>
 										</StyledCardContainer>
 									);
@@ -66,7 +73,7 @@ const SpreadDetails = () => {
 							})}
 						</StyledSpreadDetails>
 					</StyledContainer>
-				</>
+				</StyledBox>
 			)}
 		</>
 	);
@@ -74,40 +81,39 @@ const SpreadDetails = () => {
 
 export default SpreadDetails;
 
-const StyledContainer = styled.div`
-	border: 1px solid green;
+const StyledBox = styled.div`
 	display: flex;
-	/* align-items: center; */
+`;
+const StyledContainer = styled.div`
+	display: flex;
 	justify-content: center;
-	/* display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center; */
-	/* overflow: hidden; */
-
-	/* overflow-y: scroll; */
+	overflow-y: scroll;
+	${(props) => {
+		if (props.spreadData[0].spreadType === 'single') {
+			return 'width: 100%';
+		}
+	}}
 `;
 
 const StyledSpreadDetails = styled(motion.div)`
 	display: flex;
-	/* align-items: flex-start; */
-	/* align-items: flex-start; */
-	/* justify-content: center; */
-	/* justify-content: flex-end; */
 	gap: 16px;
-	border: 4px solid blue;
-	/* width: 100%; */
-
-	overflow-y: scroll;
+	overflow-y: hidden;
 `;
 
 const StyledCardContainer = styled(motion.div)`
-	min-width: 350px;
-	/* flex: 1; */
+	border: 1px solid green;
+	flex: 1;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	gap: 16px;
-	align-items: center;
+	h1 {
+		width: 300px;
+		margin: 0 32px;
+
+		text-align: center;
+	}
 	img {
 		${(props) => props.direction === 'shadow' && '	transform: rotate(180deg);'}
 	}

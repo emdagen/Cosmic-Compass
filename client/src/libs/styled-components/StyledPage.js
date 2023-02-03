@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 
 export const StyledPage = styled.div`
-	max-width: ${({ location }) => {
+	${({ location }) => {
 		const pathnameArray = location.pathname.split('/');
-		console.log(pathnameArray);
 		const legitCheck = pathnameArray.includes('tarot');
 		if (legitCheck && pathnameArray.length > 2) {
-			return 'none';
+			return `max-width:none;
+      padding: 0px 0px`;
 		}
-		return 'var(--width-limit)';
+		return `max-width:var(--width-limit);
+    padding: var(--layout-padding);`;
 	}};
 	width: 100%;
 	min-height: var(--container-height);
 	/* max-width: var(--width-limit); */
 	margin: auto;
-	padding: var(--layout-padding);
+	/* padding: var(--layout-padding); */
 	border: 1px solid purple;
 `;

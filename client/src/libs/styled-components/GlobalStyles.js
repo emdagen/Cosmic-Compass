@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
 :root {
   --nav-height: 56px;
-  --container-height: calc(100vh - 68.5px);
+  --container-height: calc(100vh - 56px);
   /* --mobile-width: 500px; */
   --layout-padding: 32px 32px;
   --primary: #6C9A8B;
@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
   --error: #e7195a;
   --desktop-spacing: 0 32px;
   --mobile-spacing: 0 24px;
+  --container-width-limit: 500px;
   --width-limit: 1024px;
   ${(props) => props.theme}
   /* --wave-primary: #C7D3dd;
