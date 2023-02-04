@@ -38,7 +38,7 @@ export default CardDetails;
 
 const StyledDetails = styled(motion.div)`
 	width: 250px;
-	padding: 32px 0;
+	padding: 0 0 48px 0;
 	${(props) => {
 		console.log(props.expandDetails);
 	}}

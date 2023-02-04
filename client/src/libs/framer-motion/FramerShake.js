@@ -8,7 +8,8 @@ export const shake = {
 };
 
 const FramerShake = ({ children, error }) => {
-	console.log(error);
+	// console.log(error);
+	console.log('hellllllo');
 	return <StyledMain animate={error ? shake : {}}>{children}</StyledMain>;
 };
 
