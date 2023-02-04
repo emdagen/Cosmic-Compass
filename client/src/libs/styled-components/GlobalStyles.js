@@ -18,6 +18,9 @@ const GlobalStyle = createGlobalStyle`
   --error: #e7195a;
   --desktop-spacing: 0 32px;
   --mobile-spacing: 0 24px;
+  --sm-padding: 16px;
+  --md-padding: 24px;
+  --lg-padding: 32px;
   --container-width-limit: 500px;
   --width-limit: 1024px;
   ${(props) => props.theme}
@@ -47,5 +50,28 @@ img{
   width: 100%;
 }
 `;
+
+const size = {
+	mobileS: '320px',
+	mobileM: '375px',
+	mobileL: '425px',
+	mobile: '500px',
+	tablet: '768px',
+	laptop: '1024px',
+	laptopL: '1440px',
+	desktop: '2560px',
+};
+
+export const device = {
+	mobileS: `(min-width: ${size.mobileS})`,
+	mobileM: `(min-width: ${size.mobileM})`,
+	mobileL: `(min-width: ${size.mobileL})`,
+	mobile: `(min-width: ${size.mobile})`,
+	tablet: `(min-width: ${size.tablet})`,
+	laptop: `(min-width: ${size.laptop})`,
+	laptopL: `(min-width: ${size.laptopL})`,
+	desktop: `(min-width: ${size.desktop})`,
+	desktopL: `(min-width: ${size.desktop})`,
+};
 
 export default GlobalStyle;

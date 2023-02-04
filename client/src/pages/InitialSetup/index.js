@@ -64,7 +64,7 @@ const StyledInit = styled.div`
 		text-align: center;
 	}
 	button {
-		border-color: black;
+		/* border-color: black; */
 		color: black;
 	}
 `;

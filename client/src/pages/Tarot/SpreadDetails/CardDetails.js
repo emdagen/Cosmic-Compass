@@ -3,8 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CardDetails = ({ expandDetails, data, direction }) => {
-	const { meanings, Astrology } = data;
-	console.log(expandDetails);
+	const { meanings, Astrology, name } = data;
+
 	return (
 		<>
 			<AnimatePresence>
@@ -17,6 +17,7 @@ const CardDetails = ({ expandDetails, data, direction }) => {
 						// expandDetails={expandDetails}
 					>
 						<StyledDetails>
+							<h2>{name}</h2>
 							<h3>{Astrology}</h3>
 							{meanings[direction].map((meaning, index) => {
 								if (index < 5) {
@@ -36,9 +37,8 @@ const CardDetails = ({ expandDetails, data, direction }) => {
 export default CardDetails;
 
 const StyledDetails = styled(motion.div)`
-	border: 1px solid red;
 	width: 250px;
-	padding: 32px 0;
+	padding: 0 0 48px 0;
 	${(props) => {
 		console.log(props.expandDetails);
 	}}

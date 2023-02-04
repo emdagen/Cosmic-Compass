@@ -7,6 +7,7 @@ import NextButton from './NextButton';
 import Card from '../../../components/Card';
 import { motion } from 'framer-motion';
 import VerticalTitle from '../Spread/VerticalTitle';
+import { device } from '../../../libs/styled-components/GlobalStyles';
 const SpreadDetails = () => {
 	const nextRef = useRef(null);
 	const containerRef = useRef(null);
@@ -102,7 +103,6 @@ const StyledSpreadDetails = styled(motion.div)`
 `;
 
 const StyledCardContainer = styled(motion.div)`
-	border: 1px solid green;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
@@ -110,11 +110,27 @@ const StyledCardContainer = styled(motion.div)`
 	gap: 16px;
 	h1 {
 		width: 300px;
-		margin: 0 32px;
-
+		margin: 0 var(--sm-padding);
 		text-align: center;
 	}
 	img {
-		${(props) => props.direction === 'shadow' && '	transform: rotate(180deg);'}
+		${(props) =>
+			props.direction === 'shadow'
+				? '	transform: rotate(180deg);'
+				: 'transform: rotate(0deg);'}
+	}
+	.back-card {
+		${(props) =>
+			props.direction === 'shadow'
+				? '	transform: scaleX(-1) rotate(180deg);'
+				: 'transform: scaleX(-1) rotate(0deg);'}
+	}
+	@media ${device.mobile} {
+		h1 {
+			width: 300px;
+			margin: 0 32px;
+
+			text-align: center;
+		}
 	}
 `;

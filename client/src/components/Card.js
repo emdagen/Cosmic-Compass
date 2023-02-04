@@ -2,6 +2,7 @@ import { Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { device } from '../libs/styled-components/GlobalStyles';
 import CardDetails from '../pages/Tarot/SpreadDetails/CardDetails';
 import { tarotButtonProps } from '../pages/Tarot/style';
 const container = {
@@ -35,7 +36,6 @@ const Card = ({ data, direction, containerRef, cardIndex, currentIndex }) => {
 						src={img.url}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
-						// exit={{ opacity: 0 }}
 						transition={{ delay: 2.25, duration: 0 }}
 					/>
 					<motion.img
@@ -45,14 +45,12 @@ const Card = ({ data, direction, containerRef, cardIndex, currentIndex }) => {
 						}
 						initial={{ opacity: 1 }}
 						animate={{ opacity: 0 }}
-						// exit={{ opacity: 1 }}
 						transition={{ delay: 2.25, duration: 0 }}
 					/>
 				</StyledCardContainer>
 				<StyledButton
 					initial={{ opacity: 0, y: 0 }}
 					animate={{ opacity: 1, y: 0 }}
-					// exit={{ opacity: 0, y: 0 }}
 					transition={{ duration: 1, delay: 2.3 }}
 				>
 					<Button
@@ -93,7 +91,7 @@ const StyledCard = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 0px 32px 32px;
+	padding: 0 var(--sm-padding) var(--lg-padding);
 	max-width: var(--container-width-limit);
 	div {
 		flex: 1;
@@ -104,10 +102,12 @@ const StyledCard = styled(motion.div)`
 	img {
 		width: 300px;
 	}
+	@media ${device.mobile} {
+		padding: 0px 32px 32px;
+	}
 `;
 
 const StyledCardContainer = styled(motion.div)`
-	/* border: 1px solid green; */
 	position: relative;
 
 	.back-card {
@@ -121,5 +121,4 @@ const StyledCardContainer = styled(motion.div)`
 const StyledMain = styled(motion.div)`
 	display: flex;
 	align-items: center;
-	border: 1px solid blue;
 `;
