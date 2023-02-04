@@ -6,7 +6,7 @@ import zodiacData from '../../data/zodiacData';
 import { useEffect, useState } from 'react';
 import getHandler from '../../utils/http-requests/getHandler';
 import { useZodiac } from '../../hooks/useZodiac';
-
+import { GiDiamonds } from 'react-icons/gi';
 //MUI imports
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -87,14 +87,22 @@ const Zodiac = () => {
               <StyledDescription>
                 <h2>TRAITS</h2>
                 {zodiacObj.traits.map((trait) => {
-                  return <p key={trait}>* {trait}</p>;
+                  return (
+                    <p key={trait}>
+                      <GiDiamonds /> {trait}
+                    </p>
+                  );
                 })}
               </StyledDescription>
 
               <StyledDescription>
                 <h2>FAMOUS {zodiacObj.zodiac.toUpperCase()}</h2>
                 {zodiacObj.famous.map((fame) => {
-                  return <p key={fame}>* {fame}</p>;
+                  return (
+                    <p key={fame}>
+                      <GiDiamonds /> {fame}
+                    </p>
+                  );
                 })}
               </StyledDescription>
             </Grid>

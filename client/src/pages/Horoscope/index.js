@@ -90,7 +90,7 @@ const StyledHoroscopeInfo = styled.div`
 `;
 
 const StyledHeader = styled.div`
-  padding-top: 32px;
+  padding-top: 24px;
   margin-bottom: 24px;
   /* border: 2px solid yellow; */
   width: fit-content;
