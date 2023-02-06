@@ -15,8 +15,8 @@ import Typography from '@mui/material/Typography';
 import {
   GiBrokenHeart,
   GiLovers,
-  GiPolarStar,
   GiThreeFriends,
+  GiDiamonds,
 } from 'react-icons/gi';
 
 const Profile = () => {
@@ -51,110 +51,110 @@ const Profile = () => {
           </div>
         </StyledTop>
         <StyledBottom>
+          <StyledOverview>
+            <h4>Overview:</h4>
+            <p>{zodiacInfo.description}</p>
+          </StyledOverview>
+
           <StyledTraits>
-            <h4>Characteristics: </h4>
             <div>
+              <h4>Characteristics: </h4>
               <p>Dates: {zodiacInfo.dates}</p>
               <p>Symbol: {zodiacInfo.symbol}</p>
               <p>Element: {zodiacInfo.element}</p>
               <p>Modality: {zodiacInfo.modality}</p>
               <p>Ruled by: {zodiacInfo.ruling_planet}</p>
             </div>
-            <h4>Traits:</h4>
+
             <div>
+              <h4>Traits:</h4>
               {zodiacInfo.traits.map((trait) => {
                 return (
                   <p key={trait}>
-                    <GiPolarStar /> {trait}
+                    <GiDiamonds /> {trait}
                   </p>
                 );
               })}
             </div>
-            <h4>Potential Careers:</h4>
+
             <div>
+              <h4>Potential Careers:</h4>
               {zodiacInfo.careers.map((job) => {
                 return (
                   <p key={job}>
-                    <GiPolarStar /> {job}
+                    <GiDiamonds /> {job}
                   </p>
                 );
               })}
             </div>
           </StyledTraits>
-          <StyledOverview>
-            <h4>Overview:</h4>
-            <p>{zodiacInfo.description}</p>
-            <div>
-              <Accordion>
-                <AccordionSummary
-                  // expandIcon={<ExpandMoreIcon />}
-                  aria-controls='panel1a-content'
-                  id='panel1a-header'
-                >
-                  <Typography>
-                    Friendship <GiThreeFriends />
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography component='div'>
-                    {zodiacInfo.besties.map((friend) => {
-                      return <p key={friend}>{friend}</p>;
-                    })}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-              <Accordion>
-                <AccordionSummary
-                  // expandIcon={<ExpandMoreIcon />}
-                  aria-controls='panel2a-content'
-                  id='panel2a-header'
-                >
-                  <Typography component='div'>
-                    Most Compatible <GiLovers />
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography component='div'>
-                    {zodiacInfo.best_match.map((best) => {
-                      return <p key={best}>{best}</p>;
-                    })}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-              <Accordion>
-                <AccordionSummary
-                  // expandIcon={<ExpandMoreIcon />}
-                  aria-controls='panel2a-content'
-                  id='panel2a-header'
-                >
-                  <Typography component='div'>
-                    Least Compatible <GiBrokenHeart />
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography component='div'>
-                    {zodiacInfo.worst_match.map((worst) => {
-                      return <p key={worst}>{worst}</p>;
-                    })}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            </div>
-          </StyledOverview>
+
+          <div>
+            <Accordion>
+              <AccordionSummary
+                // expandIcon={<ExpandMoreIcon />}
+                aria-controls='panel1a-content'
+                id='panel1a-header'
+              >
+                <Typography>
+                  Friendship <GiThreeFriends />
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography component='div'>
+                  {zodiacInfo.besties.map((friend) => {
+                    return <p key={friend}>{friend}</p>;
+                  })}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                // expandIcon={<ExpandMoreIcon />}
+                aria-controls='panel2a-content'
+                id='panel2a-header'
+              >
+                <Typography component='div'>
+                  Most Compatible <GiLovers />
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography component='div'>
+                  {zodiacInfo.best_match.map((best) => {
+                    return <p key={best}>{best}</p>;
+                  })}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                // expandIcon={<ExpandMoreIcon />}
+                aria-controls='panel2a-content'
+                id='panel2a-header'
+              >
+                <Typography component='div'>
+                  Least Compatible <GiBrokenHeart />
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography component='div'>
+                  {zodiacInfo.worst_match.map((worst) => {
+                    return <p key={worst}>{worst}</p>;
+                  })}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </div>
         </StyledBottom>
       </StyledContainer>
     </StyledPage>
   );
 };
-const StyledPage = styled.div`
-  padding: 32px 64px;
-`;
+const StyledPage = styled.div``;
 const StyledContainer = styled.div`
-  border: 2px solid white;
-  /* h4 {
-    text-align: center;
-  } */
+  padding: 8px;
 `;
+
 const StyledTop = styled.div`
   display: flex;
   text-align: center;
@@ -163,9 +163,16 @@ const StyledTop = styled.div`
   justify-content: space-between;
   height: 50%;
   width: 100%;
-  gap: 8px;
+  gap: 16px;
   /* background-image: url('https://images.rawpixel.com/image_600/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdnA5MzMtYXVkaS00NC1hXzEuanBn.jpg');
   background-position: center 5%; */
+  h2 {
+    letter-spacing: 0.3em;
+    /* padding-top: 24px; */
+  }
+  h3 {
+    color: pink;
+  }
 `;
 const StyledImage = styled.img`
   width: 190px;
@@ -173,27 +180,23 @@ const StyledImage = styled.img`
   border-radius: 50%;
 `;
 
-const StyledBottom = styled.div`
-  /* background-color: #303030; */
-  height: 50%;
-  display: flex;
-  justify-content: space-between;
-`;
+const StyledBottom = styled.div``;
 const StyledTraits = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* border: 2px solid green; */
-  padding: 16px;
-  width: 50%;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 16px;
+  h4 {
+    padding-bottom: 8px;
+    color: pink;
+  }
+  padding-bottom: 24px;
 `;
 const StyledOverview = styled.div`
-  display: flex;
-  flex-direction: column;
-  /* justify-content: space-around; */
-  width: 50%;
-  padding: 16px;
-  gap: 8px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  h4 {
+    padding-bottom: 8px;
+    color: pink;
+  }
 `;
 export default Profile;
