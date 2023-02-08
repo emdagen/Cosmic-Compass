@@ -16,171 +16,169 @@ import Typography from '@mui/material/Typography';
 
 //ReactIcon Imports
 import {
-  GiLovers,
-  GiModernCity,
-  GiSmallFire,
-  GiStarsStack,
-  GiTakeMyMoney,
-  GiThreeFriends,
+	GiLovers,
+	GiModernCity,
+	GiSmallFire,
+	GiStarsStack,
+	GiTakeMyMoney,
+	GiThreeFriends,
 } from 'react-icons/gi';
 import { BiChevronDown } from 'react-icons/bi';
+import Instructions from './components/Instructions';
 
 //TODO display signs astro card, once in data //
 const Compatibility = () => {
-  const [signX, setSignX] = useState('');
-  const [signY, setSignY] = useState('');
-  const [matchResults, setMatchResults] = useState(null);
+	const [signX, setSignX] = useState('');
+	const [signY, setSignY] = useState('');
+	const [matchResults, setMatchResults] = useState(null);
 
-  useEffect(() => {
-    const getCompatibility = async () => {
-      const response = await getHandler(`/api/compatibility/${signX}/${signY}`);
-      console.log(response.data);
-      setMatchResults(response.data);
-    };
-    if (zodiacSignsArray.includes(signX) && zodiacSignsArray.includes(signY)) {
-      getCompatibility();
-    } else {
-      // console.log('no match found');
-    }
-  }, [signX, signY]);
-  // console.log(matchResults);
+	useEffect(() => {
+		const getCompatibility = async () => {
+			const response = await getHandler(`/api/compatibility/${signX}/${signY}`);
+			setMatchResults(response.data);
+		};
+		if (zodiacSignsArray.includes(signX) && zodiacSignsArray.includes(signY)) {
+			getCompatibility();
+		} else {
+			// console.log('no match found');
+		}
+	}, [signX, signY]);
+	// console.log(matchResults);
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+	const Item = styled(Paper)(({ theme }) => ({
+		backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+		...theme.typography.body2,
+		padding: theme.spacing(1),
+		textAlign: 'center',
+		color: theme.palette.text.secondary,
+	}));
 
-  const section = {
-    height: '100%',
-    padding: 16,
-  };
+	const section = {
+		height: '100%',
+		padding: 16,
+	};
 
-  return (
-    <div>
-      <StyledDrop>
-        <StyledHead>COMPATIBILITY</StyledHead>
-        <StyledRow>
-          <ZodiacDropdown signState={signX} setSignState={setSignX} />
-          <ZodiacDropdown signState={signY} setSignState={setSignY} />
-        </StyledRow>
-      </StyledDrop>
-      <div>
-        {!matchResults ? (
-          <StyledInstruction>
-            Please select your sign and your partners sign
-          </StyledInstruction>
-        ) : (
-          <StyledContainer>
-            <Box sx={{ flexGrow: 1 }}>
-              <Grid container spacing={3}>
-                <Grid item xs={12} md={12}>
-                  <Item style={section}>
-                    <h3>
-                      General Compatibility <GiStarsStack />
-                    </h3>
-                    <p>{matchResults.default.answer}</p>
-                  </Item>
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <Item style={section}>
-                    <h3>
-                      As a Couple <GiLovers />
-                    </h3>
-                    <p>{matchResults.romantic.answer}</p>
-                  </Item>
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <Item style={section}>
-                    <h3>
-                      As Friends <GiThreeFriends />
-                    </h3>
-                    <p>{matchResults.friend.answer}</p>
-                  </Item>
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <Item style={section}>
-                    <h3>
-                      As Coworkers <GiModernCity />
-                    </h3>
-                    <p>{matchResults.career.answer}</p>
-                  </Item>
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <Item style={section}>
-                    <h3>
-                      Let's Talk Money <GiTakeMyMoney color='green' />
-                    </h3>
-                    <p>{matchResults.financial.answer}</p>
-                  </Item>
-                </Grid>
-                <Grid item xs={12} md={12}>
-                  <Item style={section}>
-                    <h3>
-                      Sexual Chemistry <GiSmallFire color='red' />
-                    </h3>
-                    <p>{matchResults.sexually.answer}</p>
-                  </Item>
-                </Grid>
-              </Grid>
-            </Box>
-            <StyledAccordion>
-              <Accordion>
-                <AccordionSummary
-                  expandIcon={<BiChevronDown />}
-                  aria-controls='panel1a-content'
-                  id='panel1a-header'
-                >
-                  <Typography component='div'>
-                    <h4>Most Likely to Cheat</h4>
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography component='div'>
-                    <p>{matchResults.unfaithful.answer}</p>
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-              <Accordion>
-                <AccordionSummary
-                  expandIcon={<BiChevronDown />}
-                  aria-controls='panel2a-content'
-                  id='panel2a-header'
-                >
-                  <Typography component='div'>
-                    <h4>Story Time: The Love Affair</h4>
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography component='div'>
-                    <p>{matchResults.story.answer}</p>
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-              <Accordion>
-                <AccordionSummary
-                  expandIcon={<BiChevronDown />}
-                  aria-controls='panel2a-content'
-                  id='panel2a-header'
-                >
-                  <Typography component='div'>
-                    <h4>Story Time: Who's the Murderer?</h4>
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography component='div'>
-                    <p>{matchResults.murder.answer}</p>
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            </StyledAccordion>
-          </StyledContainer>
-        )}
-      </div>
-    </div>
-  );
+	return (
+		<div>
+			<StyledDrop>
+				<StyledHead>COMPATIBILITY</StyledHead>
+				<StyledRow>
+					<ZodiacDropdown signState={signX} setSignState={setSignX} />
+					<ZodiacDropdown signState={signY} setSignState={setSignY} />
+				</StyledRow>
+			</StyledDrop>
+			<div>
+				{!matchResults ? (
+					<Instructions signX={signX} signY={signY} />
+				) : (
+					<StyledContainer>
+						<Box sx={{ flexGrow: 1 }}>
+							<Grid container spacing={3}>
+								<Grid item xs={12} md={12}>
+									<Item style={section}>
+										<h3>
+											General Compatibility <GiStarsStack />
+										</h3>
+										<p>{matchResults.default.answer}</p>
+									</Item>
+								</Grid>
+								<Grid item xs={6} md={6}>
+									<Item style={section}>
+										<h3>
+											As a Couple <GiLovers />
+										</h3>
+										<p>{matchResults.romantic.answer}</p>
+									</Item>
+								</Grid>
+								<Grid item xs={6} md={6}>
+									<Item style={section}>
+										<h3>
+											As Friends <GiThreeFriends />
+										</h3>
+										<p>{matchResults.friend.answer}</p>
+									</Item>
+								</Grid>
+								<Grid item xs={6} md={6}>
+									<Item style={section}>
+										<h3>
+											As Coworkers <GiModernCity />
+										</h3>
+										<p>{matchResults.career.answer}</p>
+									</Item>
+								</Grid>
+								<Grid item xs={6} md={6}>
+									<Item style={section}>
+										<h3>
+											Let's Talk Money <GiTakeMyMoney color='green' />
+										</h3>
+										<p>{matchResults.financial.answer}</p>
+									</Item>
+								</Grid>
+								<Grid item xs={12} md={12}>
+									<Item style={section}>
+										<h3>
+											Sexual Chemistry <GiSmallFire color='red' />
+										</h3>
+										<p>{matchResults.sexually.answer}</p>
+									</Item>
+								</Grid>
+							</Grid>
+						</Box>
+						<StyledAccordion>
+							<Accordion>
+								<AccordionSummary
+									expandIcon={<BiChevronDown />}
+									aria-controls='panel1a-content'
+									id='panel1a-header'
+								>
+									<Typography component='div'>
+										<h4>Most Likely to Cheat</h4>
+									</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+									<Typography component='div'>
+										<p>{matchResults.unfaithful.answer}</p>
+									</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+									expandIcon={<BiChevronDown />}
+									aria-controls='panel2a-content'
+									id='panel2a-header'
+								>
+									<Typography component='div'>
+										<h4>Story Time: The Love Affair</h4>
+									</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+									<Typography component='div'>
+										<p>{matchResults.story.answer}</p>
+									</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+									expandIcon={<BiChevronDown />}
+									aria-controls='panel2a-content'
+									id='panel2a-header'
+								>
+									<Typography component='div'>
+										<h4>Story Time: Who's the Murderer?</h4>
+									</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+									<Typography component='div'>
+										<p>{matchResults.murder.answer}</p>
+									</Typography>
+								</AccordionDetails>
+							</Accordion>
+						</StyledAccordion>
+					</StyledContainer>
+				)}
+			</div>
+		</div>
+	);
 };
 
 export default Compatibility;
