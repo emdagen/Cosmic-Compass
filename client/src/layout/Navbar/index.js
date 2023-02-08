@@ -45,7 +45,7 @@ export default function Navbar() {
 	};
 
 	return (
-		<Box>
+		<StyledBox>
 			<AppBar position='static'>
 				<StyledToolbar>
 					<ToggleDrawer />
@@ -149,9 +149,14 @@ export default function Navbar() {
 					</Box>
 				</StyledToolbar>
 			</AppBar>
-		</Box>
+		</StyledBox>
 	);
 }
+
+const StyledBox = styled(Box)`
+	position: sticky;
+	top: 0;
+`;
 
 const StyledMenuItems = styled.div`
 	display: flex;
