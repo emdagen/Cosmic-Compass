@@ -7,7 +7,7 @@ import getHandler from '../../utils/http-requests/getHandler';
 import { useZodiac } from '../../hooks/useZodiac';
 import { GiDiamonds } from 'react-icons/gi';
 //MUI imports
-import { styled } from '@mui/material/styles';
+import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { ListItem, ListItemText } from '@mui/material';
@@ -35,20 +35,20 @@ const Zodiac = () => {
 	return (
 		<div>
 			{horoscope && (
-				<Box sx={{ flexGrow: 1 }}>
-					<Grid>
+				<StyledBox>
+					<StyledZodiac>
 						<StyledItem>
 							{letters.map((letter, index) => (
 								<span key={index}>{letter.toUpperCase()}</span>
 							))}
 						</StyledItem>
-					</Grid>
+					</StyledZodiac>
 
 					<Grid
 						container
 						spacing={{ xs: 3, md: 8 }}
 						columns={{ xs: 2, sm: 8, md: 12, lg: 16 }}
-						paddingLeft={{ xs: 8, md: 2 }}
+						paddingLeft={{ xs: 4, sm: 4 }}
 						justifyContent='center'
 						alignItems='stretch'
 					>
@@ -97,21 +97,34 @@ const Zodiac = () => {
 							</StyledDescription>
 						</Grid>
 					</Grid>
-				</Box>
+				</StyledBox>
 			)}
 		</div>
 	);
 };
 
-const StyledItem = styled(ListItem)`
+const StyledBox = styled.div`
 	display: flex;
-	margin-top: 60px;
-	flex-direction: column;
+`;
+
+const StyledZodiac = styled.div`
+	position: relative;
+`;
+
+const StyledItem = styled.p`
 	font-size: 48px;
 	line-height: 1.3em;
-	width: fit-content;
-	position: absolute;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	position: sticky;
+	top: 50%;
+	transform: translate(0, -50%);
+
 	padding: 16px;
+	margin-top: 60px;
 	@media (max-width: 600px) {
 		padding: 0;
 	}
@@ -119,7 +132,6 @@ const StyledItem = styled(ListItem)`
 
 const StyledDescription = styled(ListItemText)`
 	padding-bottom: 16px;
-	/* position: relative; */
 `;
 
 const StyledHoroscope = styled(ListItemText)`
