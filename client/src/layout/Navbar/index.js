@@ -156,6 +156,7 @@ export default function Navbar() {
 const StyledBox = styled(Box)`
 	position: sticky;
 	top: 0;
+	z-index: 10;
 `;
 
 const StyledMenuItems = styled.div`
