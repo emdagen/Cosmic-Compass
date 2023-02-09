@@ -67,6 +67,7 @@ const StyledContainer = styled.div`
   h2 {
     margin-bottom: 16px;
     font-size: 40px;
+    letter-spacing: 0.2em;
   }
   h3 {
     /* margin-bottom: 16px; */
@@ -78,7 +79,7 @@ const StyledContainer = styled.div`
 `;
 const StyledHoroscope = styled.p`
   line-height: 1.5em;
-  font-size: 32px;
+  font-size: 24px;
 `;
 const StyledHoroscopeInfo = styled.div`
   display: flex;
