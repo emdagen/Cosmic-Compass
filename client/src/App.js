@@ -40,7 +40,7 @@ const App = () => {
 				) : (
 					<Spinner />
 				)}
-				{userData?.theme === undefined && <SpaceStars />}
+				{(userData === null || userData.theme) && <SpaceStars />}
 			</StyledApp>
 		</ToggleColorMode>
 	);
