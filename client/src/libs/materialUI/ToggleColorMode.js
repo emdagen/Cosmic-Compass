@@ -18,10 +18,10 @@ export const ToggleColorMode = ({ children }) => {
         palette: {
           mode,
           primary: {
-            main: '#1d7874',
+            main: '#545AA7',
           },
           secondary: {
-            main: '#744a45',
+            main: '#7B68EE',
           },
         },
         typography: {
