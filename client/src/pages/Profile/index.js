@@ -18,6 +18,7 @@ import {
   GiThreeFriends,
   GiDiamonds,
 } from 'react-icons/gi';
+import { BiChevronDown } from 'react-icons/bi';
 
 const Profile = () => {
   const { userData } = useContext(UserContext);
@@ -90,9 +91,9 @@ const Profile = () => {
           </StyledTraits>
 
           <div>
-            <Accordion>
+            <Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
               <AccordionSummary
-                // expandIcon={<ExpandMoreIcon />}
+                expandIcon={<BiChevronDown />}
                 aria-controls='panel1a-content'
                 id='panel1a-header'
               >
@@ -108,9 +109,9 @@ const Profile = () => {
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            <Accordion>
+            <Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
               <AccordionSummary
-                // expandIcon={<ExpandMoreIcon />}
+                expandIcon={<BiChevronDown />}
                 aria-controls='panel2a-content'
                 id='panel2a-header'
               >
@@ -126,9 +127,9 @@ const Profile = () => {
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            <Accordion>
+            <Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
               <AccordionSummary
-                // expandIcon={<ExpandMoreIcon />}
+                expandIcon={<BiChevronDown />}
                 aria-controls='panel2a-content'
                 id='panel2a-header'
               >
@@ -164,14 +165,12 @@ const StyledTop = styled.div`
   height: 50%;
   width: 100%;
   gap: 16px;
-  /* background-image: url('https://images.rawpixel.com/image_600/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdnA5MzMtYXVkaS00NC1hXzEuanBn.jpg');
-  background-position: center 5%; */
   h2 {
-    letter-spacing: 0.3em;
-    /* padding-top: 24px; */
+    letter-spacing: 0.2em;
+    font-size: 40px;
   }
   h3 {
-    color: pink;
+    color: rgb(123, 104, 238);
   }
 `;
 const StyledImage = styled.img`
@@ -187,16 +186,19 @@ const StyledTraits = styled.div`
   gap: 16px;
   h4 {
     padding-bottom: 8px;
-    color: pink;
+    color: #545aa7;
+    font-size: 24px;
   }
   padding-bottom: 24px;
 `;
 const StyledOverview = styled.div`
   padding-top: 24px;
   padding-bottom: 24px;
+  text-align: center;
   h4 {
     padding-bottom: 8px;
-    color: pink;
+    color: #545aa7;
+    font-size: 24px;
   }
 `;
 export default Profile;

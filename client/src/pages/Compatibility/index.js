@@ -55,6 +55,7 @@ const Compatibility = () => {
   const section = {
     height: '100%',
     padding: 16,
+    backgroundColor: 'rgb(123,104,238,0.1)',
   };
 
   return (
@@ -124,7 +125,7 @@ const Compatibility = () => {
               </Grid>
             </Box>
             <StyledAccordion>
-              <Accordion>
+              <Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
                 <AccordionSummary
                   expandIcon={<BiChevronDown />}
                   aria-controls='panel1a-content'
@@ -140,7 +141,7 @@ const Compatibility = () => {
                   </Typography>
                 </AccordionDetails>
               </Accordion>
-              <Accordion>
+              <Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
                 <AccordionSummary
                   expandIcon={<BiChevronDown />}
                   aria-controls='panel2a-content'
@@ -156,7 +157,7 @@ const Compatibility = () => {
                   </Typography>
                 </AccordionDetails>
               </Accordion>
-              <Accordion>
+              <Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
                 <AccordionSummary
                   expandIcon={<BiChevronDown />}
                   aria-controls='panel2a-content'
@@ -189,6 +190,7 @@ const StyledContainer = styles.div`
 
   h3{
     padding-bottom:5px;
+    font-size:24px;
   }
 `;
 
