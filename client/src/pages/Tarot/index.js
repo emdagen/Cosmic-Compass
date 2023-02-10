@@ -27,6 +27,7 @@ const StyledTarot = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  padding-top: 32px;
   margin: auto;
   max-width: var(--container-width-limit);
   text-align: center;
