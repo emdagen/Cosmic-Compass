@@ -177,6 +177,8 @@ const StyledImage = styled.img`
   width: 190px;
   height: 190px;
   border-radius: 50%;
+  background: linear-gradient(145deg, #5a60b3, #4c5196);
+  box-shadow: 8px 8px 16px #444987, -8px -8px 16px #646bc7;
 `;
 
 const StyledBottom = styled.div``;

@@ -3,141 +3,142 @@ import styled from 'styled-components';
 import { GiDiamonds } from 'react-icons/gi';
 
 const CardDetails = () => {
-	//CardInfo is all the data about the searched Data
-	const cardInfo = useCollectCard();
-	// console.log(cardInfo);
+  //CardInfo is all the data about the searched Data
+  const cardInfo = useCollectCard();
+  // console.log(cardInfo);
 
-	return (
-		<div>
-			{!cardInfo ? (
-				<h1>Loading</h1>
-			) : (
-				<StyledPage>
-					<h1 className='desktop-title'>{cardInfo.name}</h1>
-					<StyledCard>
-						<StyledImg>
-							<img src={cardInfo.img.url} alt={cardInfo.name} />
-						</StyledImg>
-					</StyledCard>
-					<StyledInfo>
-						<StyledCardName>{cardInfo.name}</StyledCardName>
-						<h3>
-							Arcana: <StyledSpan> {cardInfo.arcana}</StyledSpan>
-						</h3>
-						<h3>
-							Suit: <StyledSpan>{cardInfo.suit}</StyledSpan>
-						</h3>
-						<h3>
-							Element: <StyledSpan>{cardInfo.Elemental}</StyledSpan>
-						</h3>
-						<h3>Mythical Meaning:</h3>
-						<p>{cardInfo['Mythical/Spiritual']}</p>
+  return (
+    <div>
+      {!cardInfo ? (
+        <h1>Loading</h1>
+      ) : (
+        <StyledPage>
+          <h1 className='desktop-title'>{cardInfo.name}</h1>
+          <StyledCard>
+            <StyledImg>
+              <img src={cardInfo.img.url} alt={cardInfo.name} />
+            </StyledImg>
+          </StyledCard>
+          <StyledInfo>
+            <StyledCardName>{cardInfo.name}</StyledCardName>
+            <h3>
+              Arcana: <StyledSpan> {cardInfo.arcana}</StyledSpan>
+            </h3>
+            <h3>
+              Suit: <StyledSpan>{cardInfo.suit}</StyledSpan>
+            </h3>
+            <h3>
+              Element: <StyledSpan>{cardInfo.Elemental}</StyledSpan>
+            </h3>
+            <h3>Mythical Meaning:</h3>
+            <p>{cardInfo['Mythical/Spiritual']}</p>
 
-						<h3>Overview:</h3>
-						{cardInfo.fortune_telling.map((general) => {
-							return (
-								<p key={general}>
-									<GiDiamonds color='pink' /> {general}
-								</p>
-							);
-						})}
-						<h3>Meaning:</h3>
-						{cardInfo.meanings.light.map((light) => {
-							return (
-								<p key={light}>
-									{' '}
-									<GiDiamonds color='pink' /> {light}{' '}
-								</p>
-							);
-						})}
-						<h3>Reversed Meaning:</h3>
-						{cardInfo.meanings.shadow.map((reverse) => {
-							return (
-								<p key={reverse}>
-									{' '}
-									<GiDiamonds color='pink' /> {reverse}{' '}
-								</p>
-							);
-						})}
-					</StyledInfo>
-				</StyledPage>
-			)}
-		</div>
-	);
+            <h3>Overview:</h3>
+            {cardInfo.fortune_telling.map((general) => {
+              return (
+                <p key={general}>
+                  <GiDiamonds color='#545AA7' /> {general}
+                </p>
+              );
+            })}
+            <h3>Meaning:</h3>
+            {cardInfo.meanings.light.map((light) => {
+              return (
+                <p key={light}>
+                  {' '}
+                  <GiDiamonds color='#545AA7' /> {light}{' '}
+                </p>
+              );
+            })}
+            <h3>Reversed Meaning:</h3>
+            {cardInfo.meanings.shadow.map((reverse) => {
+              return (
+                <p key={reverse}>
+                  {' '}
+                  <GiDiamonds color='#545AA7' /> {reverse}{' '}
+                </p>
+              );
+            })}
+          </StyledInfo>
+        </StyledPage>
+      )}
+    </div>
+  );
 };
 
 const StyledPage = styled.div`
-	position: relative;
+  position: relative;
 
-	display: flex;
-	justify-content: center;
-	gap: 60px;
-	padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  padding-top: 50px;
 
-	height: 100%;
-	.desktop-title {
-		display: none;
-	}
-	@media (max-width: 600px) {
-		flex-direction: column;
-		gap: 32px;
-		align-items: center;
-		padding-top: 0px;
-		.desktop-title {
-			display: block;
-		}
-	}
+  height: 100%;
+  .desktop-title {
+    display: none;
+  }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    padding-top: 0px;
+    .desktop-title {
+      display: block;
+    }
+  }
 `;
 
 const StyledCardName = styled.h1`
-	text-align: center;
-	letter-spacing: 0.3em;
+  text-align: center;
+  letter-spacing: 0.2em;
+  font-size: 40px;
 `;
 
 const StyledCard = styled.div`
-	flex: 1;
-	position: relative;
-	min-width: 200px;
-	width: 100%;
-	max-width: 300px;
+  flex: 1;
+  position: relative;
+  min-width: 200px;
+  width: 100%;
+  max-width: 300px;
 `;
 
 const StyledImg = styled.div`
-	min-width: 200px;
-	width: 100%;
-	max-width: 300px;
+  min-width: 200px;
+  width: 100%;
+  max-width: 300px;
 
-	position: relative;
-	height: 100%;
-	img {
-		position: sticky;
-		top: 80px;
-		/* transform: translate(0, -50%); */
-		@media (max-width: 600px) {
-			position: relative;
-			top: 0;
-			transform: unset;
-		}
-	}
+  position: relative;
+  height: 100%;
+  img {
+    position: sticky;
+    top: 210px;
+    /* transform: translate(0, -50%); */
+    @media (max-width: 600px) {
+      position: relative;
+      top: 0;
+      transform: unset;
+    }
+  }
 `;
 
 const StyledInfo = styled.div`
-	flex: 1;
-	gap: 16px;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	max-width: 500px;
-	@media (max-width: 600px) {
-		h1 {
-			display: none;
-		}
-	}
+  flex: 1;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  @media (max-width: 600px) {
+    h1 {
+      display: none;
+    }
+  }
 `;
 
 const StyledSpan = styled.span`
-	font-size: 16px;
-	letter-spacing: 0.2em;
-	color: pink;
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  color: #545aa7;
 `;
 export default CardDetails;
