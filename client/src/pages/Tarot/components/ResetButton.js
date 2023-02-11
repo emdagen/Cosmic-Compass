@@ -1,21 +1,19 @@
 import React from 'react';
-import { useTarotContext } from '../../../hooks/context/useTarotContext';
+
+import useDebounce from '../../../hooks/useDebounce';
 import Button from '@mui/material/Button';
 import { tarotButtonProps } from '../style';
 import { useReset } from '../hook/useReset';
 
 const ResetButton = () => {
-	// const { setSpreadData } = useTarotContext();
-	//  const handleReset = () => {
-	// 	setSpreadData(null);
-	// };
-	const handleReset = useReset();
+  const handleReset = useReset();
+  const debounceReset = useDebounce(handleReset);
 
-	return (
-		<Button onClick={handleReset} {...tarotButtonProps}>
-			Reset Selection
-		</Button>
-	);
+  return (
+    <Button onClick={debounceReset} {...tarotButtonProps}>
+      Reset Selection
+    </Button>
+  );
 };
 
 export default ResetButton;

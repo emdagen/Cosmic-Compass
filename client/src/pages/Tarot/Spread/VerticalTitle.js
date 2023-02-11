@@ -4,31 +4,28 @@ import styled, { keyframes } from 'styled-components';
 import { device } from '../../../libs/styled-components/GlobalStyles';
 
 const VerticalTitle = ({ spreadData }) => {
-	const string = spreadData[0].spreadType.replace('-', ' ');
-	const array = string.toUpperCase().split('');
-	const primary = useTheme().palette.primary.main;
-	return (
-		<StyledVertical primary={primary}>
-			<StyledContainer>
-				{array.map((letter, index) => {
-					return (
-						<StyledLetter index={index} key={index}>
-							{letter}
-						</StyledLetter>
-					);
-				})}
-			</StyledContainer>
-		</StyledVertical>
-	);
+  const string = spreadData[0].spreadType.replace('-', ' ');
+  const array = string.toUpperCase().split('');
+  const primary = useTheme().palette.primary.main;
+  return (
+    <StyledVertical primary={primary}>
+      <StyledContainer>
+        {array.map((letter, index) => {
+          return (
+            <StyledLetter index={index} key={index}>
+              {letter}
+            </StyledLetter>
+          );
+        })}
+      </StyledContainer>
+    </StyledVertical>
+  );
 };
 
 export default VerticalTitle;
 
 const StyledVertical = styled.div`
-	position: relative;
-	/* background-color: ${(props) => {
-		return props.primary;
-	}}; */
+  position: relative;
 `;
 
 const breatheAnimation = keyframes`
@@ -38,25 +35,25 @@ const breatheAnimation = keyframes`
 `;
 
 const StyledLetter = styled.h2`
-	min-height: 24px;
-	animation-name: ${breatheAnimation};
-	animation-duration: ${(props) => {
-		const delay = props.index / 4;
-		return delay;
-	}}s;
+  min-height: 24px;
+  animation-name: ${breatheAnimation};
+  animation-duration: ${(props) => {
+    const delay = props.index / 4;
+    return delay;
+  }}s;
 `;
 
 const StyledContainer = styled.div`
-	padding: 0 var(--sm-padding) var(--lg-padding);
+  padding: 0 var(--sm-padding) var(--lg-padding);
 
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: var(--container-height);
-	position: sticky;
-	top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--container-height);
+  position: sticky;
+  top: 0;
 
-	@media ${device.mobile} {
-		padding: 0 var(--lg-padding) var(--lg-padding);
-	}
+  @media ${device.mobile} {
+    padding: 0 var(--lg-padding) var(--lg-padding);
+  }
 `;

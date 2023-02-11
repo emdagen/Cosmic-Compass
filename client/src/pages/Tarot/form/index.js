@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useUserContext } from '../../../hooks/context/useUserContext';
-import { useTarotContext } from '../../../hooks/context/useTarotContext';
-import postHandler from '../../../utils/http-requests/postHandler';
-import { useNavigate } from 'react-router';
-
 //MUI Imports
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,46 +10,24 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import { tarotButtonProps } from '../style';
 import FramerShake from '../../../libs/framer-motion/FramerShake';
 import { useTheme } from '@mui/material';
+import { useSelectReading } from '../hook/useSelectReading';
+import useDebounce from '../../../hooks/useDebounce';
 
 const Form = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
-  const { setSpreadData } = useTarotContext();
-  const {
-    userData: { _id },
-  } = useUserContext();
-  const navigate = useNavigate();
   const errorTheme = useTheme().palette.error;
-
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      if (formData.spread) {
-        const response = await postHandler('/api/tarot/spread', {
-          ...formData,
-          _id,
-        });
-        // console.log(response);
-        if (response.status === 200) {
-          setSpreadData(response.data);
-          navigate('/tarot/spread');
-          setError(false);
-        } else {
-          console.log('nooooo', response.message);
-        }
-
-        return;
-      }
-      setError(true);
-      console.log(formData);
-    } catch (err) {
-      setError(true);
-      console.log('unable to add spread data');
-    }
-  };
-
+  const handleSelectReading = useSelectReading(formData, setError);
+  const debounceReading = useDebounce(handleSelectReading);
   return (
-    <StyledForm onSubmit={handleSubmit} error={error} errorTheme={errorTheme}>
+    <StyledForm
+      onSubmit={(e) => {
+        e.preventDefault();
+        debounceReading();
+      }}
+      error={error}
+      errorTheme={errorTheme}
+    >
       <h3>Please select a spread</h3>
       <label>{!error ? 'required*' : 'try again'}</label>
       <FramerShake error={error}>
