@@ -10,7 +10,7 @@ import { useUserContext } from '../../hooks/context/useUserContext';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
-
+import Logo from '../../assets/logo/wheel.png';
 import { Button } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -22,6 +22,7 @@ import styled from 'styled-components';
 
 import ToggleDrawer from './ToggleDrawer';
 import { useToggleTheme } from '../../hooks/useToggleTheme';
+import { color } from '@mui/system';
 
 const pages = ['Compatibility', 'Horoscope', 'Tarot'];
 export default function Navbar() {
@@ -68,7 +69,7 @@ export default function Navbar() {
               cursor: 'pointer',
             }}
           >
-            LOGO
+            <StyledImg src={Logo} style={{ maxWidth: '50px' }} />
           </Typography>
           <Box sx={{ flexGrow: 1, display: 'flex' }}>
             {pages.map((page) => {
@@ -178,4 +179,8 @@ const StyledToolbar = styled(Toolbar)`
   max-width: var(--width-limit);
 
   margin: auto;
+`;
+
+const StyledImg = styled.img`
+  color: white;
 `;

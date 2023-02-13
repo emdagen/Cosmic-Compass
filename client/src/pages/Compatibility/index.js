@@ -187,7 +187,9 @@ const StyledRow = styles.div`
   display: flex;
 `;
 const StyledContainer = styles.div`
-
+p{
+  font-size:16px;
+}
   h3{
     padding-bottom:5px;
     font-size:24px;
