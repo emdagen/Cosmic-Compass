@@ -13,8 +13,10 @@ const MenuProps = {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
       width: 200,
-      backgroundColor: 'rgb(	106, 90, 205)',
+      // backgroundColor: 'rgb(	106, 90, 205)',
       // backgroundColor: '#545AA7',
+      backdropFilter: 'blur(5px)',
+      backgroundColor: 'rgb(84,90,167,0.7)',
     },
   },
 };
