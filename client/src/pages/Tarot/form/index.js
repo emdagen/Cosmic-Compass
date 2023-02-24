@@ -19,6 +19,18 @@ const Form = () => {
   const errorTheme = useTheme().palette.error;
   const handleSelectReading = useSelectReading(formData, setError);
   const debounceReading = useDebounce(handleSelectReading);
+
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        // maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        // width: 200,
+
+        backdropFilter: 'blur(5px)',
+        backgroundColor: 'rgb(84,90,167,0.7)',
+      },
+    },
+  };
   return (
     <StyledForm
       onSubmit={(e) => {
@@ -42,6 +54,7 @@ const Form = () => {
                 setError(false);
               }}
               input={<OutlinedInput />}
+              MenuProps={MenuProps}
             >
               <MenuItem disabled value=''>
                 <em>Choose your tarot spread wisely </em>
@@ -77,6 +90,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   gap: 8px;
   text-align: center;
+
   ${(props) => {
     console.log(props.errorTheme);
     if (props.error) return 'color:' + props.errorTheme.main + ';';
@@ -86,9 +100,6 @@ const StyledForm = styled.form`
       if (props.error) return 'color:' + props.errorTheme.main + ';';
     }}
   }
-  /* css-6hp17o-MuiList-root-MuiMenu-list {
-    background-color: #545aa7;
-  } */
 `;
 const StyledCard = styled.span`
   font-weight: bold;

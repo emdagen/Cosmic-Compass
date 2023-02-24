@@ -88,8 +88,6 @@ const StyledSearchContainer = styled.div`
     top: 50%;
     left: 12px;
     transform: translate(0%, -50%);
-    /* backdrop-filter: blur(10px);
-    background-color: rgba(84, 90, 167, 0.7); */
   }
 
   input {
