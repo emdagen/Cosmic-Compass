@@ -11,7 +11,7 @@ import StepNumber from './components/StepNumber';
 import { motion } from 'framer-motion';
 import { slideProps } from '../../../libs/framer-motion';
 import FramerShake from '../../../libs/framer-motion/FramerShake';
-
+const { REACT_APP_BACKEND_URL } = process.env;
 const Orientation2 = () => {
 	const { userData, setUserData } = useUserContext();
 	const { _id, setup } = userData;
@@ -33,11 +33,14 @@ const Orientation2 = () => {
 		try {
 			e.preventDefault();
 			if (imageData) {
-				const uploadResponse = await patchHandler('/api/user/profile-image', {
-					_id,
-					imageData,
-					setup,
-				});
+				const uploadResponse = await patchHandler(
+					REACT_APP_BACKEND_URL + '/api/user/profile-image',
+					{
+						_id,
+						imageData,
+						setup,
+					}
+				);
 				const { data, status, message } = uploadResponse;
 
 				if (status === 200) {
