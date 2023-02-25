@@ -5,34 +5,32 @@ require('dotenv').config();
 //SETUP DATABASE
 
 const options = {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 };
 //FUNCTION TO IMPORT DATA
-
+console.log(MONGO_URI);
 const getZodiacData = async (req, res) => {
-	const client = new MongoClient(
-		'mongodb+srv://VoodooChild:JimiHendrix@cluster0.xhkvobr.mongodb.net/?retryWrites=true&w=majority',
-		options
-	);
-	console.log('connected...');
-	await client.connect();
-	const db = client.db('Zodiac');
+  const client = new MongoClient(MONGO_URI, options);
+  console.log('connected...');
 
-	try {
-		const insertCard = await db.collection('zodiac').find().toArray();
+  await client.connect();
+  const db = client.db('Zodiac');
 
-		const zodiacObj = {};
-		insertCard.forEach((obj) => {
-			console.log(obj.zodiac);
-			zodiacObj[obj.zodiac.toLowerCase()] = obj;
-		});
-		res.status(200).json(zodiacObj);
-	} catch (err) {
-		console.log(err);
-		console.log('❌ something went wrong in the batch import ❌');
-	}
-	await client.close();
+  try {
+    const insertCard = await db.collection('zodiac').find().toArray();
+
+    const zodiacObj = {};
+    insertCard.forEach((obj) => {
+      console.log(obj.zodiac);
+      zodiacObj[obj.zodiac.toLowerCase()] = obj;
+    });
+    res.status(200).json(zodiacObj);
+  } catch (err) {
+    console.log(err);
+    console.log('❌ something went wrong in the batch import ❌');
+  }
+  await client.close();
 };
 
 module.exports = getZodiacData;
