@@ -12,7 +12,7 @@ import DynamicTitle from './components/DynamicTitle';
 import { motion } from 'framer-motion';
 import { slideProps } from '../../../libs/framer-motion';
 import FramerShake from '../../../libs/framer-motion/FramerShake';
-
+const { REACT_APP_BACKEND_URL } = process.env;
 const OrientationOne = () => {
 	const [formData, setFormData] = useState({});
 	const [error, setError] = useState(false);
@@ -22,11 +22,14 @@ const OrientationOne = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await patchHandler('/api/user/username', {
-				...formData,
-				_id,
-				setup,
-			});
+			const response = await patchHandler(
+				REACT_APP_BACKEND_URL + '/api/user/username',
+				{
+					...formData,
+					_id,
+					setup,
+				}
+			);
 			const { username } = response.data;
 			if (response.status === 200) {
 				setUserData({
