@@ -45,26 +45,28 @@ const InitialSetup = () => {
 export default InitialSetup;
 
 const StyledInit = styled.div`
-	position: absolute;
+	/* position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
-
+	transform: translate(-50%, -50%); */
+	max-width: 500px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+	height: 100vh;
 	gap: 16px;
 
 	margin: auto;
 
 	padding: 32px;
 
-	color: black;
+	color: #ccc;
 	h2 {
 		text-align: center;
 	}
 	button {
-		/* border-color: black; */
-		color: black;
+		border-color: #ccc;
+		color: #ccc;
 	}
 `;

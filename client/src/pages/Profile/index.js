@@ -47,7 +47,10 @@ const Profile = () => {
 					<div>
 						<h2>{zodiac.toUpperCase()}</h2>
 					</div>
-					<StyledImage alt='{userData.username}' src={profileImg.url} />
+
+					<StyledImage>
+						<img alt='{userData.username}' src={profileImg.url} />
+					</StyledImage>
 					<div>
 						<h3>{username}</h3>
 						<h4>Joined {dateFormatted}</h4>
@@ -175,12 +178,16 @@ const StyledTop = styled.div`
 		color: rgb(123, 104, 238);
 	}
 `;
-const StyledImage = styled.img`
+const StyledImage = styled.div`
 	width: 190px;
 	height: 190px;
 	border-radius: 50%;
 	background: linear-gradient(145deg, #5a60b3, #4c5196);
 	box-shadow: 8px 8px 16px #444987, -8px -8px 16px #646bc7;
+	overflow: hidden;
+	img {
+		transform: scale(1.1);
+	}
 `;
 
 const StyledBottom = styled.div``;

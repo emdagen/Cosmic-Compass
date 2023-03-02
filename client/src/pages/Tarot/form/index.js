@@ -14,93 +14,102 @@ import { useSelectReading } from '../hook/useSelectReading';
 import useDebounce from '../../../hooks/useDebounce';
 
 const Form = () => {
-  const [formData, setFormData] = useState({});
-  const [error, setError] = useState(false);
-  const errorTheme = useTheme().palette.error;
-  const handleSelectReading = useSelectReading(formData, setError);
-  const debounceReading = useDebounce(handleSelectReading);
+	const [formData, setFormData] = useState({});
+	const [error, setError] = useState(false);
+	const errorTheme = useTheme().palette.error;
+	const handleSelectReading = useSelectReading(formData, setError);
+	const debounceReading = useDebounce(handleSelectReading);
 
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        // maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        // width: 200,
+	const MenuProps = {
+		PaperProps: {
+			style: {
+				backdropFilter: 'blur(5px)',
+				backgroundColor: 'rgb(84,90,167,1)',
+			},
+		},
 
-        backdropFilter: 'blur(5px)',
-        backgroundColor: 'rgb(84,90,167,0.7)',
-      },
-    },
-  };
-  return (
-    <StyledForm
-      onSubmit={(e) => {
-        e.preventDefault();
-        debounceReading();
-      }}
-      error={error}
-      errorTheme={errorTheme}
-    >
-      <h3>Please select a spread</h3>
-      <label>{!error ? 'required*' : 'try again'}</label>
-      <FramerShake error={error}>
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth error={error}>
-            <Select
-              displayEmpty
-              placeholder='Which will it be?'
-              defaultValue={''}
-              onChange={(e) => {
-                setFormData({ ...formData, spread: e.target.value });
-                setError(false);
-              }}
-              input={<OutlinedInput />}
-              MenuProps={MenuProps}
-            >
-              <MenuItem disabled value=''>
-                <em>Choose your tarot spread wisely </em>
-              </MenuItem>
-              <MenuItem value='single'>
-                <StyledCard>1 Card</StyledCard>: For instant clarity (yes or no)
-              </MenuItem>
-              <MenuItem value='three-card'>
-                <StyledCard>3 Card</StyledCard>: Insight to Past, Present &
-                Future
-              </MenuItem>
-              <MenuItem value='five-card'>
-                <StyledCard>5 Card</StyledCard>: Determine a course of action
-              </MenuItem>
-              <MenuItem value='seven-card'>
-                <StyledCard>7 Card</StyledCard>: A detailed overview
-              </MenuItem>
-            </Select>
-            <Button type='submit' {...tarotButtonProps}>
-              Let's Begin !
-            </Button>
-          </FormControl>
-        </Box>
-      </FramerShake>
-    </StyledForm>
-  );
+		sx: {
+			// '& .Mui-selected': {
+			// 	backgroundColor: 'unset!important',
+			// },
+		},
+	};
+	return (
+		<StyledForm
+			onSubmit={(e) => {
+				e.preventDefault();
+				debounceReading();
+			}}
+			error={error}
+			errorTheme={errorTheme}
+		>
+			<h3>Please select a spread</h3>
+			<label>{!error ? 'required*' : 'try again'}</label>
+			<FramerShake error={error}>
+				<Box sx={{ minWidth: 120 }}>
+					<FormControl fullWidth error={error}>
+						<Select
+							displayEmpty
+							placeholder='Which will it be?'
+							defaultValue={''}
+							onChange={(e) => {
+								setFormData({ ...formData, spread: e.target.value });
+								setError(false);
+							}}
+							input={<OutlinedInput />}
+							MenuProps={MenuProps}
+						>
+							<StyledMenuItem disabled value=''>
+								<em>Choose your tarot spread wisely </em>
+							</StyledMenuItem>
+							<StyledMenuItem value='single'>
+								<StyledCard>1 Card</StyledCard>: For instant clarity (yes or no)
+							</StyledMenuItem>
+							<StyledMenuItem value='three-card'>
+								<StyledCard>3 Card</StyledCard>: Insight to Past, Present &
+								Future
+							</StyledMenuItem>
+							<StyledMenuItem value='five-card'>
+								<StyledCard>5 Card</StyledCard>: Determine a course of action
+							</StyledMenuItem>
+							<StyledMenuItem value='seven-card'>
+								<StyledCard>7 Card</StyledCard>: A detailed overview
+							</StyledMenuItem>
+						</Select>
+						<Button type='submit' {...tarotButtonProps}>
+							Let's Begin !
+						</Button>
+					</FormControl>
+				</Box>
+			</FramerShake>
+		</StyledForm>
+	);
 };
 
 export default Form;
+const StyledMenuItem = styled(MenuItem)`
+	color: white !important;
 
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.2) !important;
+	}
+`;
 const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	text-align: center;
 
-  ${(props) => {
-    console.log(props.errorTheme);
-    if (props.error) return 'color:' + props.errorTheme.main + ';';
-  }}
-  em,svg {
-    ${(props) => {
-      if (props.error) return 'color:' + props.errorTheme.main + ';';
-    }}
-  }
+	${(props) => {
+		if (props.error) return 'color:' + props.errorTheme.main + ';';
+	}}
+	em,
+		svg {
+		${(props) => {
+			if (props.error) return 'color:' + props.errorTheme.main + ';';
+		}}
+	}
 `;
 const StyledCard = styled.span`
-  font-weight: bold;
+	font-weight: bold;
 `;

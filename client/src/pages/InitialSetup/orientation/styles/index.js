@@ -15,6 +15,9 @@ export const StyledOrientationContainer = styled(motion.div)`
 	/* border: 1px solid black; */
 	border-radius: 8px;
 	/* padding: 32px; */
+	span {
+		color: #7b68ee;
+	}
 `;
 
 export const StyledOrientationTitle = styled(motion.div)`

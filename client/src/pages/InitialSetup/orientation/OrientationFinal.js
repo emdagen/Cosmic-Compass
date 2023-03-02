@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import FormInput from '../../../components/form/FormInput';
+import Loading from '../../../components/Loading';
 import { slideProps } from '../../../libs/framer-motion';
 import FramerShake from '../../../libs/framer-motion/FramerShake';
 import { useAddZodiac } from '../hooks/useAddZodiac';
@@ -14,43 +15,52 @@ import { buttonProps } from './styles';
 const OrientationFinal = () => {
 	const [formData, setFormData] = useState(null);
 	const [error, setError] = useState(false);
-
+	const [isLoading, setIsLoading] = useState(false);
 	const handleAddZodiac = useAddZodiac();
 
 	const handleSubmit = async (e) => {
+		console.log(error);
 		e.preventDefault();
 		console.log(formData);
+		setIsLoading(true);
 		try {
 			if (formData === null) {
 				setError(true);
+				setIsLoading(false);
 			} else {
 				handleAddZodiac(formData);
+				setIsLoading(false);
 			}
 		} catch (err) {
+			setError(true);
 			console.log(err);
+			setIsLoading(false);
 		}
 	};
 
 	return (
-		<motion.div {...slideProps}>
-			<StepNumber step={3} />
-			<DynamicTitle strArray={birthdayArray} />
-			<FramerShake error={error}>
-				<StyledForm onSubmit={handleSubmit} error={error}>
-					<FormInput
-						setFormData={setFormData}
-						formData={formData}
-						name={'Birthday'}
-						type={'date'}
-						errorData={[error, 'Enter birthday']}
-						label={''}
-					/>
-					<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
-						Save
-					</Button>
-				</StyledForm>
-			</FramerShake>
-		</motion.div>
+		<>
+			<motion.div {...slideProps}>
+				<StepNumber step={3} />
+				<DynamicTitle strArray={birthdayArray} />
+				<FramerShake error={error}>
+					<StyledForm onSubmit={handleSubmit} error={error}>
+						<FormInput
+							setFormData={setFormData}
+							formData={formData}
+							name={'Birthday'}
+							type={'date'}
+							errorData={[error, 'Enter birthday']}
+							label={''}
+						/>
+						<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
+							Save
+						</Button>
+					</StyledForm>
+				</FramerShake>
+			</motion.div>
+			{isLoading && <Loading />}
+		</>
 	);
 };
 
@@ -64,7 +74,13 @@ const StyledForm = styled.form`
 	gap: 16px;
 
 	input {
-		${(props) => props.error && 'color: #d32f2f'}
+		${(props) => props.error && 'color: #d32f2f'};
+		::-webkit-calendar-picker-indicator {
+			${(props) =>
+				props.error
+					? 'filter: invert(30%) sepia(96%) saturate(1710%) hue-rotate(340deg) brightness(82%) contrast(102%);'
+					: 'filter: invert(87%) sepia(15%) saturate(8%) hue-rotate(201deg) brightness(108%) contrast(94%)'};
+		}
 	}
 
 	button {
