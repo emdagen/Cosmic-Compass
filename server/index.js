@@ -18,41 +18,7 @@ app.use(morgan('tiny'));
 app.use(express.json({ limit: '50mb' }));
 //might not need below middleware
 app.use(express.static('public'));
-const allowCors = (fn) => async (req, res) => {
-	// add CORS headers
-	res.setHeader('Access-Control-Allow-Credentials', true);
-	res.setHeader(
-		'Access-Control-Allow-Origin',
-		'https://cosmic-compass.vercel.app'
-	);
-	res.setHeader(
-		'Access-Control-Allow-Methods',
-		'GET,OPTIONS,PATCH,DELETE,POST,PUT'
-	);
-	res.setHeader(
-		'Access-Control-Allow-Headers',
-		'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-	);
-
-	if (req.method === 'OPTIONS') {
-		// respond to OPTIONS requests with a 200 status code
-		res.status(200).end();
-		return;
-	}
-
-	// call the original request handler
-	return await fn(req, res);
-};
-
-// define your request handler function
-const handler = (req, res) => {
-	const d = new Date();
-	res.end(d.toString());
-};
-
-// wrap the handler function with the allowCors middleware
-app.use(allowCors(handler));
-// app.use(cors());
+app.use(cors());
 //ENDPOINTS
 app.use('/api/user', userRoutes);
 app.use('/api/tarot', tarotRoutes);
