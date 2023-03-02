@@ -6,6 +6,21 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 ;
     padding: 0 ;
     box-sizing: border-box ;
+
+    /* ::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+} */
+
 }
 
 :root {
@@ -24,6 +39,23 @@ const GlobalStyle = createGlobalStyle`
   --container-width-limit: 500px;
   --width-limit: 1024px;
   ${(props) => props.theme}
+
+  ::-webkit-scrollbar {
+  width: 8px;
+  /* margin-top: 68.5px !important; */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #545AA7;
+  border-radius: 5px;
+  /* height: 20px; 
+  width: 6px; */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ccc;
+}
+
 }
 h1, h2{
   font-family: 'Playfair Display', serif;
@@ -42,26 +74,26 @@ img{
 `;
 
 const size = {
-	mobileS: '320px',
-	mobileM: '375px',
-	mobileL: '425px',
-	mobile: '500px',
-	tablet: '768px',
-	laptop: '1024px',
-	laptopL: '1440px',
-	desktop: '2560px',
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  mobile: '500px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '2560px',
 };
 
 export const device = {
-	mobileS: `(min-width: ${size.mobileS})`,
-	mobileM: `(min-width: ${size.mobileM})`,
-	mobileL: `(min-width: ${size.mobileL})`,
-	mobile: `(min-width: ${size.mobile})`,
-	tablet: `(min-width: ${size.tablet})`,
-	laptop: `(min-width: ${size.laptop})`,
-	laptopL: `(min-width: ${size.laptopL})`,
-	desktop: `(min-width: ${size.desktop})`,
-	desktopL: `(min-width: ${size.desktop})`,
+  mobileS: `(min-width: ${size.mobileS})`,
+  mobileM: `(min-width: ${size.mobileM})`,
+  mobileL: `(min-width: ${size.mobileL})`,
+  mobile: `(min-width: ${size.mobile})`,
+  tablet: `(min-width: ${size.tablet})`,
+  laptop: `(min-width: ${size.laptop})`,
+  laptopL: `(min-width: ${size.laptopL})`,
+  desktop: `(min-width: ${size.desktop})`,
+  desktopL: `(min-width: ${size.desktop})`,
 };
 
 export default GlobalStyle;
