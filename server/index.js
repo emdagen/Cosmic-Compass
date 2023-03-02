@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Credentials', true);
 	next();
 });
-app.use(cors());
+app.use(cors({ origin: 'https://cosmic-compass.vercel.app' }));
 //ENDPOINTS
 app.use('/api/user', userRoutes);
 app.use('/api/tarot', tarotRoutes);
