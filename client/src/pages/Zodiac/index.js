@@ -193,6 +193,7 @@ const Zodiac = () => {
 
 const StyledBox = styled.div`
 	display: flex;
+	padding: var(--layout-padding);
 	h2 {
 		padding-bottom: 8px;
 		letter-spacing: 0.1em;

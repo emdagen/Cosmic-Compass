@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
   --nav-height: 56px;
   --container-height: calc(100vh - 56px);
   /* --mobile-width: 500px; */
-  --layout-padding: 32px 32px;
+  --layout-padding: 32px 32px 64px 32px;
   --primary: #6C9A8B;
   --secondary: #A1683A;
   --error: #e7195a;

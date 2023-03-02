@@ -27,9 +27,9 @@ const Spread = () => {
 	};
 	const debounceClick = useDebounce(handleClick);
 	return (
-		<StyledSpread>
+		<>
 			{!activeTarot && spreadData && (
-				<>
+				<StyledSpread>
 					<SpreadTitle spreadData={spreadData} />
 					<p>
 						Unlock the secrets of your future! Let's see what the stars have in
@@ -44,9 +44,9 @@ const Spread = () => {
 					>
 						Begin Reading
 					</Button>
-				</>
+				</StyledSpread>
 			)}
-		</StyledSpread>
+		</>
 	);
 };
 
@@ -56,7 +56,7 @@ const StyledSpread = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-
+	padding: var(--layout-padding);
 	max-width: var(--container-width-limit);
 	margin: auto;
 	p {

@@ -41,124 +41,122 @@ const Profile = () => {
 	}, []);
 
 	return (
-		<StyledPage>
-			<StyledContainer>
-				<StyledTop>
+		<StyledContainer>
+			<StyledTop>
+				<div>
+					<h2>{zodiac.toUpperCase()}</h2>
+				</div>
+
+				<StyledImage>
+					<img alt='{userData.username}' src={profileImg.url} />
+				</StyledImage>
+				<div>
+					<h3>{username}</h3>
+					<h4>Joined {dateFormatted}</h4>
+				</div>
+			</StyledTop>
+			<StyledBottom>
+				<StyledOverview>
+					<h4>Overview:</h4>
+					<p>{zodiacInfo.description}</p>
+				</StyledOverview>
+
+				<StyledTraits>
 					<div>
-						<h2>{zodiac.toUpperCase()}</h2>
+						<h4>Characteristics: </h4>
+						<p>Dates: {zodiacInfo.dates}</p>
+						<p>Symbol: {zodiacInfo.symbol}</p>
+						<p>Element: {zodiacInfo.element}</p>
+						<p>Modality: {zodiacInfo.modality}</p>
+						<p>Ruled by: {zodiacInfo.ruling_planet}</p>
 					</div>
 
-					<StyledImage>
-						<img alt='{userData.username}' src={profileImg.url} />
-					</StyledImage>
 					<div>
-						<h3>{username}</h3>
-						<h4>Joined {dateFormatted}</h4>
+						<h4>Traits:</h4>
+						{zodiacInfo.traits.map((trait) => {
+							return (
+								<p key={trait}>
+									<GiDiamonds /> {trait}
+								</p>
+							);
+						})}
 					</div>
-				</StyledTop>
-				<StyledBottom>
-					<StyledOverview>
-						<h4>Overview:</h4>
-						<p>{zodiacInfo.description}</p>
-					</StyledOverview>
-
-					<StyledTraits>
-						<div>
-							<h4>Characteristics: </h4>
-							<p>Dates: {zodiacInfo.dates}</p>
-							<p>Symbol: {zodiacInfo.symbol}</p>
-							<p>Element: {zodiacInfo.element}</p>
-							<p>Modality: {zodiacInfo.modality}</p>
-							<p>Ruled by: {zodiacInfo.ruling_planet}</p>
-						</div>
-
-						<div>
-							<h4>Traits:</h4>
-							{zodiacInfo.traits.map((trait) => {
-								return (
-									<p key={trait}>
-										<GiDiamonds /> {trait}
-									</p>
-								);
-							})}
-						</div>
-
-						<div>
-							<h4>Potential Careers:</h4>
-							{zodiacInfo.careers.map((job) => {
-								return (
-									<p key={job}>
-										<GiDiamonds /> {job}
-									</p>
-								);
-							})}
-						</div>
-					</StyledTraits>
 
 					<div>
-						<Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
-							<AccordionSummary
-								expandIcon={<BiChevronDown />}
-								aria-controls='panel1a-content'
-								id='panel1a-header'
-							>
-								<Typography>
-									Friendship <GiThreeFriends />
-								</Typography>
-							</AccordionSummary>
-							<AccordionDetails>
-								<Typography component='div'>
-									{zodiacInfo.besties.map((friend) => {
-										return <p key={friend}>{friend}</p>;
-									})}
-								</Typography>
-							</AccordionDetails>
-						</Accordion>
-						<Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
-							<AccordionSummary
-								expandIcon={<BiChevronDown />}
-								aria-controls='panel2a-content'
-								id='panel2a-header'
-							>
-								<Typography component='div'>
-									Most Compatible <GiLovers />
-								</Typography>
-							</AccordionSummary>
-							<AccordionDetails>
-								<Typography component='div'>
-									{zodiacInfo.best_match.map((best) => {
-										return <p key={best}>{best}</p>;
-									})}
-								</Typography>
-							</AccordionDetails>
-						</Accordion>
-						<Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
-							<AccordionSummary
-								expandIcon={<BiChevronDown />}
-								aria-controls='panel2a-content'
-								id='panel2a-header'
-							>
-								<Typography component='div'>
-									Least Compatible <GiBrokenHeart />
-								</Typography>
-							</AccordionSummary>
-							<AccordionDetails>
-								<Typography component='div'>
-									{zodiacInfo.worst_match.map((worst) => {
-										return <p key={worst}>{worst}</p>;
-									})}
-								</Typography>
-							</AccordionDetails>
-						</Accordion>
+						<h4>Potential Careers:</h4>
+						{zodiacInfo.careers.map((job) => {
+							return (
+								<p key={job}>
+									<GiDiamonds /> {job}
+								</p>
+							);
+						})}
 					</div>
-				</StyledBottom>
-			</StyledContainer>
-		</StyledPage>
+				</StyledTraits>
+
+				<div>
+					<Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
+						<AccordionSummary
+							expandIcon={<BiChevronDown />}
+							aria-controls='panel1a-content'
+							id='panel1a-header'
+						>
+							<Typography>
+								Friendship <GiThreeFriends />
+							</Typography>
+						</AccordionSummary>
+						<AccordionDetails>
+							<Typography component='div'>
+								{zodiacInfo.besties.map((friend) => {
+									return <p key={friend}>{friend}</p>;
+								})}
+							</Typography>
+						</AccordionDetails>
+					</Accordion>
+					<Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
+						<AccordionSummary
+							expandIcon={<BiChevronDown />}
+							aria-controls='panel2a-content'
+							id='panel2a-header'
+						>
+							<Typography component='div'>
+								Most Compatible <GiLovers />
+							</Typography>
+						</AccordionSummary>
+						<AccordionDetails>
+							<Typography component='div'>
+								{zodiacInfo.best_match.map((best) => {
+									return <p key={best}>{best}</p>;
+								})}
+							</Typography>
+						</AccordionDetails>
+					</Accordion>
+					<Accordion style={{ backgroundColor: 'rgb(123,104,238,0.1)' }}>
+						<AccordionSummary
+							expandIcon={<BiChevronDown />}
+							aria-controls='panel2a-content'
+							id='panel2a-header'
+						>
+							<Typography component='div'>
+								Least Compatible <GiBrokenHeart />
+							</Typography>
+						</AccordionSummary>
+						<AccordionDetails>
+							<Typography component='div'>
+								{zodiacInfo.worst_match.map((worst) => {
+									return <p key={worst}>{worst}</p>;
+								})}
+							</Typography>
+						</AccordionDetails>
+					</Accordion>
+				</div>
+			</StyledBottom>
+		</StyledContainer>
 	);
 };
-const StyledPage = styled.div``;
+
 const StyledContainer = styled.div`
-	padding: 8px;
+	padding: var(--layout-padding);
 `;
 
 const StyledTop = styled.div`

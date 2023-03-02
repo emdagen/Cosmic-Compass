@@ -61,6 +61,7 @@ const Horoscope = () => {
 };
 
 const StyledContainer = styled.div`
+	padding: var(--layout-padding);
 	h2 {
 		margin-bottom: 16px;
 		font-size: 40px;

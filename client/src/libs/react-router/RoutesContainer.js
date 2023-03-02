@@ -16,8 +16,9 @@ const RoutesContainer = () => {
 	const location = useLocation();
 	const background = location.state && location.state.background;
 	const { loadingObj, userData } = useUserContext();
+	console.log(userData.data.birthday);
 	return (
-		<StyledPage location={location}>
+		<StyledPage location={location} birthday={userData.data.birthday}>
 			<Routes location={background || location} key={location.pathname}>
 				<Route path='/' element={<Home />} />
 				{loadingObj.zodiac !== 'loading' && userData.setup === 'Completed' && (
