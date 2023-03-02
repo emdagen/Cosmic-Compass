@@ -18,7 +18,24 @@ app.use(morgan('tiny'));
 app.use(express.json({ limit: '50mb' }));
 //might not need below middleware
 app.use(express.static('public'));
-app.use(cors());
+app.use(function (req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader(
+		'Access-Control-Allow-Methods',
+		'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+	);
+	res.setHeader(
+		'Access-Control-Allow-Headers',
+		'X-Requested-With,content-type'
+	);
+	res.setHeader('Access-Control-Allow-Credentials', true);
+	next();
+});
+app.use(
+	cors({
+		origin: SECRET_ACCESS.split(','),
+	})
+);
 //ENDPOINTS
 app.use('/api/user', userRoutes);
 app.use('/api/tarot', tarotRoutes);
