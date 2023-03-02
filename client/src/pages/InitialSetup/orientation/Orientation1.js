@@ -96,6 +96,7 @@ const StyledContainer = styled(motion.div)`
 	flex-direction: column;
 	align-items: center;
 	gap: 12px;
+	padding: var(--layout-padding);
 `;
 
 const StyledForm = styled.form`

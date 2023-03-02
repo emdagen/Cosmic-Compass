@@ -40,7 +40,7 @@ const OrientationFinal = () => {
 
 	return (
 		<>
-			<motion.div {...slideProps}>
+			<StyledOrientationPage {...slideProps}>
 				<StepNumber step={3} />
 				<DynamicTitle strArray={birthdayArray} />
 				<FramerShake error={error}>
@@ -58,7 +58,7 @@ const OrientationFinal = () => {
 						</Button>
 					</StyledForm>
 				</FramerShake>
-			</motion.div>
+			</StyledOrientationPage>
 			{isLoading && <Loading />}
 		</>
 	);
@@ -66,9 +66,14 @@ const OrientationFinal = () => {
 
 export default OrientationFinal;
 
+const StyledOrientationPage = styled(motion.div)`
+	padding: var(--layout-padding);
+`;
+
 const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
+	margin-top: 16px;
 	/* align-items: center; */
 
 	gap: 16px;

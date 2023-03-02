@@ -123,6 +123,13 @@ const Orientation2 = () => {
 export default Orientation2;
 
 const StyledOrientationPage = styled(motion.div)`
+	display: flex;
+
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: var(--layout-padding);
+
 	img {
 		width: 250px;
 		transform: scale(1.1);
@@ -130,6 +137,7 @@ const StyledOrientationPage = styled(motion.div)`
 	input {
 		cursor: pointer;
 	}
+
 	.error {
 		color: #d32f2f;
 		input {

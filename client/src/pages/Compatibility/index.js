@@ -61,7 +61,7 @@ const Compatibility = () => {
 	};
 
 	return (
-		<div>
+		<StyledDiv>
 			<StyledDrop>
 				<StyledHead>COMPATIBILITY</StyledHead>
 				<StyledRow>
@@ -179,11 +179,15 @@ const Compatibility = () => {
 					</StyledContainer>
 				)}
 			</div>
-		</div>
+		</StyledDiv>
 	);
 };
 
 export default Compatibility;
+
+const StyledDiv = styles.div`
+	padding: var(--layout-padding);
+`;
 
 const StyledRow = styles.div`
   display: flex;
@@ -203,7 +207,8 @@ margin-top:32px
 `;
 
 const StyledDrop = styles.div`
-margin-top:32px;
+
+
 display:flex;
 flex-direction: column;
 justify-content:center;

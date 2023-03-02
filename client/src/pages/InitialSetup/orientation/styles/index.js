@@ -14,6 +14,7 @@ export const StyledOrientationContainer = styled(motion.div)`
 	gap: 12px;
 	/* border: 1px solid black; */
 	border-radius: 8px;
+	padding: var(--layout-padding);
 	/* padding: 32px; */
 	span {
 		color: #7b68ee;
