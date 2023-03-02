@@ -1,11 +1,11 @@
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { slideUpProps } from '../../../libs/framer-motion';
-import Spinner from '../../../libs/materialUI/Spinner';
+
 import Checkmark from './Checkmark';
 
 const ShuffleModel = () => {
@@ -32,7 +32,7 @@ const ShuffleModel = () => {
 							<Typography variant='h3' component='h3'>
 								Shuffling
 							</Typography>
-							<Spinner />
+							<CircularProgress />
 						</StyledContent>
 					)}
 				</AnimatePresence>
@@ -49,10 +49,12 @@ const StyledMain = styled(motion.div)`
 	z-index: 10;
 	height: 100vh;
 	width: 100vw;
-	background-color: pink;
+	/* background-color: #545aa7; */
+	backdrop-filter: blur(10px);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
 	.flex {
 		display: flex;
 		flex-direction: column;

@@ -13,10 +13,10 @@ const Greeting = () => {
 	return (
 		<StyledOrientationContainer {...slideProps}>
 			<Typography variant='h3' component='h2'>
-				Nice to meet you {username}
+				Nice to meet you <span>{username}</span>
 			</Typography>
 			<Typography variant='h5' component='h2'>
-				Let's navigate the stars together
+				Let's navigate the stars together ✨
 			</Typography>
 			<NextStep />
 		</StyledOrientationContainer>

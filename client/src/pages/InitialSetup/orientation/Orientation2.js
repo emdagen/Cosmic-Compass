@@ -11,11 +11,13 @@ import StepNumber from './components/StepNumber';
 import { motion } from 'framer-motion';
 import { slideProps } from '../../../libs/framer-motion';
 import FramerShake from '../../../libs/framer-motion/FramerShake';
+import Loading from '../../../components/Loading';
 const { REACT_APP_BACKEND_URL } = process.env;
 const Orientation2 = () => {
 	const { userData, setUserData } = useUserContext();
 	const { _id, setup } = userData;
 	const [imageData, setImageData] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(false);
 	//convert image to base64 string
 	const handleFileUpload = (e) => {
@@ -32,6 +34,7 @@ const Orientation2 = () => {
 	const handleSubmit = async (e) => {
 		try {
 			e.preventDefault();
+			setIsLoading(true);
 			if (imageData) {
 				const uploadResponse = await patchHandler(
 					REACT_APP_BACKEND_URL + '/api/user/profile-image',
@@ -49,13 +52,16 @@ const Orientation2 = () => {
 						data: { ...userData.data, profileImg: data.profileImg },
 						setup: data.setup,
 					});
+					setIsLoading(false);
 					console.log(message);
 				} else {
+					setIsLoading(false);
 					console.log(message);
 				}
 			} else {
 				console.log('no image was added');
 				setError(true);
+				setIsLoading(false);
 			}
 		} catch (err) {
 			console.log('oops');
@@ -63,51 +69,54 @@ const Orientation2 = () => {
 	};
 
 	return (
-		<StyledOrientationPage {...slideProps}>
-			<StepNumber step={2} />
-			<DynamicTitle strArray={pictureArray} />
-			<StyledImageContainer>
-				{imageData && <img src={imageData} alt='user image' />}
-			</StyledImageContainer>
-			<FramerShake error={error}>
-				<form onSubmit={handleSubmit} className={error ? 'error' : ''}>
-					{error && <p>Must select an image</p>}
-					{!imageData ? (
-						<Input
-							error={error}
-							fullWidth
-							variant='filled'
-							type='file'
-							accept='image/*'
-							id='file'
-							placeholder='Upload file'
-							sx={{
-								background: 'rgba(0,0,0,0.2)',
-								p: 1,
-								borderTopLeftRadius: 4,
-								borderTopRightRadius: 4,
-							}}
-							onChange={(e) => handleFileUpload(e)}
-						/>
-					) : (
-						<Button
-							{...buttonProps}
-							sx={{ mt: 1 }}
-							type='reset'
-							onClick={(e) => {
-								e.preventDefault();
-								setImageData(null);
-							}}
-						>
-							Remove
+		<>
+			<StyledOrientationPage {...slideProps}>
+				<StepNumber step={2} />
+				<DynamicTitle strArray={pictureArray} />
+				<StyledImageContainer>
+					{imageData && <img src={imageData} alt='user image' />}
+				</StyledImageContainer>
+				<FramerShake error={error}>
+					<form onSubmit={handleSubmit} className={error ? 'error' : ''}>
+						{error && <p>Must select an image</p>}
+						{!imageData ? (
+							<Input
+								error={error}
+								fullWidth
+								variant='filled'
+								type='file'
+								accept='image/*'
+								id='file'
+								placeholder='Upload file'
+								sx={{
+									background: 'rgba(0,0,0,0.2)',
+									p: 1,
+									borderTopLeftRadius: 4,
+									borderTopRightRadius: 4,
+								}}
+								onChange={(e) => handleFileUpload(e)}
+							/>
+						) : (
+							<Button
+								{...buttonProps}
+								sx={{ mt: 1 }}
+								type='reset'
+								onClick={(e) => {
+									e.preventDefault();
+									setImageData(null);
+								}}
+							>
+								Remove
+							</Button>
+						)}
+						<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
+							Upload Image
 						</Button>
-					)}
-					<Button {...buttonProps} sx={{ mt: 1 }} type='submit'>
-						Upload Image
-					</Button>
-				</form>
-			</FramerShake>
-		</StyledOrientationPage>
+					</form>
+				</FramerShake>
+			</StyledOrientationPage>
+			{isLoading && <Loading />}
+		</>
 	);
 };
 
@@ -116,6 +125,7 @@ export default Orientation2;
 const StyledOrientationPage = styled(motion.div)`
 	img {
 		width: 250px;
+		transform: scale(1.1);
 	}
 	input {
 		cursor: pointer;

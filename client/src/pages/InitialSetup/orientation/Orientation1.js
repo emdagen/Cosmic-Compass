@@ -12,15 +12,18 @@ import DynamicTitle from './components/DynamicTitle';
 import { motion } from 'framer-motion';
 import { slideProps } from '../../../libs/framer-motion';
 import FramerShake from '../../../libs/framer-motion/FramerShake';
+import Loading from '../../../components/Loading';
 const { REACT_APP_BACKEND_URL } = process.env;
 const OrientationOne = () => {
 	const [formData, setFormData] = useState({});
 	const [error, setError] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const { userData, setUserData } = useUserContext();
 	const { _id, setup } = userData;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsLoading(true);
 		try {
 			const response = await patchHandler(
 				REACT_APP_BACKEND_URL + '/api/user/username',
@@ -37,11 +40,13 @@ const OrientationOne = () => {
 					setup: response.data.setup,
 					data: { ...userData.data, username },
 				});
+				setIsLoading(false);
 				setError(false);
 			} else {
 				console.log('nooooo', response.message);
 			}
 		} catch (err) {
+			setIsLoading(false);
 			setError(true);
 			console.log('oof, a username was not included');
 		}
@@ -51,33 +56,36 @@ const OrientationOne = () => {
 	}, [error]);
 
 	return (
-		<StyledContainer {...slideProps}>
-			<StepNumber step={1} />
-			<DynamicTitle strArray={greetingsArray} />
-			<FramerShake error={error}>
-				<StyledForm onSubmit={handleSubmit}>
-					<FormInput
-						formData={formData}
-						setFormData={setFormData}
-						name={'username'}
-						type={'text'}
-						label={'Please add a username'}
-						errorData={[error, 'New phone who dis?']}
-					/>
-					<Button
-						size='large'
-						type='submit'
-						variant='outlined'
-						sx={{ mt: 1 }}
-						onClick={() => {
-							error && setError(true);
-						}}
-					>
-						Next Step
-					</Button>
-				</StyledForm>
-			</FramerShake>
-		</StyledContainer>
+		<>
+			<StyledContainer {...slideProps}>
+				<StepNumber step={1} />
+				<DynamicTitle strArray={greetingsArray} />
+				<FramerShake error={error}>
+					<StyledForm onSubmit={handleSubmit}>
+						<FormInput
+							formData={formData}
+							setFormData={setFormData}
+							name={'username'}
+							type={'text'}
+							label={'Please add a username'}
+							errorData={[error, 'New phone who dis?']}
+						/>
+						<Button
+							size='large'
+							type='submit'
+							variant='outlined'
+							sx={{ mt: 1 }}
+							onClick={() => {
+								error && setError(true);
+							}}
+						>
+							Next Step
+						</Button>
+					</StyledForm>
+				</FramerShake>
+			</StyledContainer>
+			{isLoading && <Loading />}
+		</>
 	);
 };
 

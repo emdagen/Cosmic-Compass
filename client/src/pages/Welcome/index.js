@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material';
 import styled from 'styled-components';
 import SignUp from '../../libs/auth0/SignUp';
-import Background from './Background';
 import { motion } from 'framer-motion';
 
 const Welcome = () => {
@@ -46,18 +45,13 @@ const StyledWelcome = styled.div`
 	align-items: center;
 
 	padding: var(--layout-padding);
-	visibility: hidden;
 `;
 
 const StyledInfo = styled(motion.div)`
-	visibility: visible;
 	position: relative;
 	z-index: 1;
 	max-width: 420px;
-
 	color: #ccc;
-
-	pointer-events: none;
 
 	span {
 		color: var(--primary);

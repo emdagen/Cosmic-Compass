@@ -1,6 +1,7 @@
 const { usersHandlers } = require('../../db/handlers');
 // const { cloudinary } = require('../../libs/cloudinary/cloudinary');
 const uploadCloudinary = require('../../libs/cloudinary/uploadCloudinary');
+const { delayAsync } = require('../../util/delayAsync');
 const findZodiacSign = require('../../util/findZodiacSign');
 
 const verifyUser = async (req, res) => {
@@ -21,11 +22,11 @@ const addUsername = async (req, res) => {
 			},
 		};
 		const mongoResponse = await usersHandlers.updateUser(updateObject);
+		await delayAsync();
 		res
 			.status(200)
 			.json({ ...mongoResponse, data: { setup: setup + 1, username } });
 	} else {
-		console.log('bye');
 		res.status(400).json({
 			status: 400,
 			message: 'There was nothing that changed',
@@ -34,6 +35,7 @@ const addUsername = async (req, res) => {
 };
 
 const addProfileImage = async (req, res) => {
+	console.log('first');
 	try {
 		const { imageData, _id, setup } = req.body;
 
@@ -57,12 +59,14 @@ const addProfileImage = async (req, res) => {
 					data: { profileImg: cloudinaryResponse, setup: setup + 1 },
 				});
 			} else {
+				await delayAsync();
 				res.status(400).json({
 					status: 400,
 					message: 'There was nothing that changed',
 				});
 			}
 		} else {
+			await delayAsync();
 			res.status(400).json({
 				status: 400,
 				message: 'There was no image string to send to cloudinary',
@@ -90,12 +94,13 @@ const determineZodiac = async (req, res) => {
 		};
 		console.log(updateObject);
 		const mongoResponse = await usersHandlers.updateUser(updateObject);
+		await delayAsync();
 		res.status(200).json({
 			...mongoResponse,
 			data: { setup: 'Completed', birthday, zodiac },
 		});
 	} else {
-		console.log('bye');
+		await delayAsync();
 		res.status(400).json({
 			status: 400,
 			message: 'There was nothing that changed',

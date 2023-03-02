@@ -24,16 +24,6 @@ const GlobalStyle = createGlobalStyle`
   --container-width-limit: 500px;
   --width-limit: 1024px;
   ${(props) => props.theme}
-  /* --wave-primary: #C7D3dd;
-  --wave-text: #012a4a;
-  --wave-color-1: #468faf;//top outer, button, bottom inner //dark color with light text
-  --wave-color-2:   #CEE5F2; // inner top and text ring
-  --wave-color-6:   #FFFFFF; // inner top and text ring
-  --wave-color-3: #37393A;// button
-  --wave-color-4: #61a5c2;//bottom outer
-  --wave-color-5: #a9d6e5;//background //dark color with light text
-  --wave-color-6:   #FFFFFF; // inner top and text ring
-  --settings-bg: #CEE5F2; */
 }
 h1, h2{
   font-family: 'Playfair Display', serif;
