@@ -23,100 +23,64 @@ const MobileDrawer = ({ anchor, debounceCloseDrawer }) => {
 		<StyledBox
 			sx={{
 				width: anchor === 'top' || anchor === 'bottom' ? 'auto' : '100%',
-				backdropFilter: 'blur(10px)',
-				backgroundColor: 'rgb(84,90,167,0.7)',
 			}}
 			role='presentation'
 			onClick={debounceCloseDrawer}
 		>
-			{list.map((title) => {
-				return (
-					<StyledLink key={title} to={`/${title}`}>
-						{title}
-					</StyledLink>
-				);
-			})}
-			<Accordion
-				onClick={(e) => e.stopPropagation()}
-				expanded={expanded === 'panel1'}
-				onChange={handleChange('panel1')}
-				sx={{
-					// backdropFilter: 'none',
-					backgroundColor: 'transparent',
-					backgroundImage: 'unset',
-					boxShadow: 'unset',
-				}}
-			>
-				<AccordionSummary aria-controls='panel1d-content' id='panel1d-header'>
-					<StyledTitle isActive={expanded}>
-						<BiRightArrow />
-						<h1>Zodiac</h1>
-					</StyledTitle>
-				</AccordionSummary>
-				<AccordionDetails>
-					{zodiacIcons.map((zodiac, i) => {
-						return (
-							<StyledZodiacLink
-								key={zodiac.sign}
-								to={`/zodiac/${zodiac.sign.toLowerCase()}`}
-								onClick={debounceCloseDrawer}
-							>
-								{zodiac.icon()}
-								<p>{zodiac.sign}</p>
-							</StyledZodiacLink>
-						);
-					})}
-				</AccordionDetails>
-			</Accordion>
-			<h1 onClick={toggleDarkMode}>{theme ? 'Light' : 'Dark'} mode</h1>
-			<StyledLink to={`/profile`}>Profile</StyledLink>
-			<SignInOut />
+			<StyledContent>
+				{list.map((title) => {
+					return (
+						<StyledLink key={title} to={`/${title}`}>
+							{title}
+						</StyledLink>
+					);
+				})}
+				<Accordion
+					onClick={(e) => e.stopPropagation()}
+					expanded={expanded === 'panel1'}
+					onChange={handleChange('panel1')}
+					sx={{
+						// backdropFilter: 'none',
+						backgroundColor: 'transparent',
+						backgroundImage: 'unset',
+						boxShadow: 'unset',
+					}}
+				>
+					<AccordionSummary aria-controls='panel1d-content' id='panel1d-header'>
+						<StyledTitle isActive={expanded}>
+							<BiRightArrow />
+							<h1>Zodiac</h1>
+						</StyledTitle>
+					</AccordionSummary>
+					<AccordionDetails>
+						{zodiacIcons.map((zodiac, i) => {
+							return (
+								<StyledZodiacLink
+									key={zodiac.sign}
+									to={`/zodiac/${zodiac.sign.toLowerCase()}`}
+									onClick={debounceCloseDrawer}
+								>
+									{zodiac.icon()}
+									<p>{zodiac.sign}</p>
+								</StyledZodiacLink>
+							);
+						})}
+					</AccordionDetails>
+				</Accordion>
+				<h1 onClick={toggleDarkMode}>{theme ? 'Light' : 'Dark'} mode</h1>
+				<StyledLink to={`/profile`}>Profile</StyledLink>
+				<SignInOut />
+			</StyledContent>
 		</StyledBox>
 	);
 };
 
 export default MobileDrawer;
 
-const StyledLink = styled(Link)`
-	text-decoration: none;
-	color: #ccc;
-	font-size: 2em;
-	font-weight: bold;
-`;
-
-const StyledZodiacLink = styled(Link)`
-	text-decoration: none;
-	color: #ccc;
-	/* background-color: #545aa7; */
-	display: flex;
-	align-items: center;
-	gap: 16px;
-	padding: 4px 4px;
-	p {
-		font-size: 18px;
-	}
-	svg {
-		height: 25px;
-		width: 25px;
-	}
-	&:hover {
-		p,
-		svg {
-			color: rgba(0, 0, 0, 0.3);
-		}
-	}
-`;
-
 const StyledBox = styled(Box)`
-	height: 100%;
-	background-color: none;
+	backdrop-filter: blur(10px);
+	background-color: rgb(84, 90, 167, 0.7);
 	color: #ccc;
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
 
 	h1,
 	p {
@@ -145,6 +109,16 @@ const StyledBox = styled(Box)`
 	}
 `;
 
+const StyledContent = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 100vh;
+	padding: var(--layout-padding);
+`;
+
 const StyledTitle = styled.div`
 	display: flex;
 	align-items: center;
@@ -162,4 +136,33 @@ const StyledTitle = styled.div`
 			color: rgba(0, 0, 0, 0.3);
 		}
 	}
+`;
+
+const StyledZodiacLink = styled(Link)`
+	text-decoration: none;
+	color: #ccc;
+	/* background-color: #545aa7; */
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 4px 4px;
+	p {
+		font-size: 18px;
+	}
+	svg {
+		height: 25px;
+		width: 25px;
+	}
+	&:hover {
+		p,
+		svg {
+			color: rgba(0, 0, 0, 0.3);
+		}
+	}
+`;
+const StyledLink = styled(Link)`
+	text-decoration: none;
+	color: #ccc;
+	font-size: 2em;
+	font-weight: bold;
 `;
