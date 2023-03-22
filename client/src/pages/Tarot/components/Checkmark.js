@@ -33,7 +33,7 @@ const Checkmark = ({ size }) => {
         style={{ x: progress }}
         transition={{ duration: 0.9 }}
       />
-      <CircularProgress progress={progress} size={size} />;
+      <CircularProgress progress={progress} size={size} />
     </div>
   );
 };
