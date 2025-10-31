@@ -106,14 +106,6 @@ To run this project, you will need to add the following environment variables to
 
 ---
 
-## **Contributors** :busts_in_silhouette:
-
-- [@emdagen](https://www.github.com/emdagen)
-- [@jffry93](https://www.github.com/jffry93)
-- [@jesdag](https://www.github.com/jesdag)
-
----
-
 ## **More Screenshots** :camera:
 
 <p>
@@ -125,3 +117,4 @@ To run this project, you will need to add the following environment variables to
 <img src="https://res.cloudinary.com/curatedtrips/image/upload/v1677274335/3card-dark.png" alt="Screenshot description" width="350" >
 <img src="https://res.cloudinary.com/curatedtrips/image/upload/v1677274339/5card-light.png" alt="Screenshot description" width="350" >
 </p>
+
